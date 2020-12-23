@@ -76,6 +76,7 @@ namespace VietTravel
         private void done_button_Click(object sender, EventArgs e)
         {
             string file = Global + privacy.Image.Tag.ToString();
+            MessageBox.Show(file);
             SqlConnection con = new SqlConnection(cStr);
             con.Open();
             byte[] buffer = File.ReadAllBytes(file);
@@ -92,6 +93,7 @@ namespace VietTravel
                 SqlDataAdapter adapter = new SqlDataAdapter(command1);
                 DataTable data = new DataTable();
                 adapter.Fill(data);
+                command1.ExecuteNonQuery();
 
                 MessageBox.Show("In order to complete the employee information registration you need to complete creating an account for the employee", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DangKyTaiKhoan taiKhoan = new DangKyTaiKhoan();
