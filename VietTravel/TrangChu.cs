@@ -47,6 +47,7 @@ namespace VietTravel
             SqlDataAdapter adapter1 = new SqlDataAdapter(command1);
             DataTable data1 = new DataTable();
             adapter1.Fill(data1);
+            PrettyGribView.Columns["MaHDV"].Visible = false;
             PrettyGribView.DataSource = data1;
             PrettyGribView.Columns["MaHDV"].Visible = false;
             PrettyGribView.Columns["AnhHuongDan"].Visible = false;
@@ -208,21 +209,21 @@ namespace VietTravel
             if (IsDirty == false)
             {
                 string luu = toannang + Pretty.Image.Tag.ToString();
-                SqlConnection con = new SqlConnection(cStr);
-                con.Open();
+            SqlConnection con = new SqlConnection(cStr);
+            con.Open();
                 byte[] buffer = File.ReadAllBytes(luu);
-                string save = "Update HuongDanVien Set HuongDanVien = @tenhuongdanvien , NgaySinh = @ngaysinh , SoDienThoai = @sodienthoai , DiaChi = @diachi , Emails = @emails , AnhHuongDan = @anhhuongdan where HuongDanVien = @tenhuongdanvien";
-                SqlCommand command = new SqlCommand(save, con);
-                command.Parameters.AddWithValue("@tenhuongdanvien", NamePretty.Text);
-                command.Parameters.AddWithValue("@ngaysinh", DobPretty.Value);
-                command.Parameters.AddWithValue("@sodienthoai", PhonePretty.Text);
-                command.Parameters.AddWithValue("@diachi", AddressPretty.Text);
-                command.Parameters.AddWithValue("@emails", Mailspretty.Text);
+            string save = "Update HuongDanVien Set HuongDanVien = @tenhuongdanvien , NgaySinh = @ngaysinh , SoDienThoai = @sodienthoai , DiaChi = @diachi , Emails = @emails , AnhHuongDan = @anhhuongdan where HuongDanVien = @tenhuongdanvien";
+            SqlCommand command = new SqlCommand(save, con);
+            command.Parameters.AddWithValue("@tenhuongdanvien", NamePretty.Text);
+            command.Parameters.AddWithValue("@ngaysinh", DobPretty.Value);
+            command.Parameters.AddWithValue("@sodienthoai", PhonePretty.Text);
+            command.Parameters.AddWithValue("@diachi", AddressPretty.Text);
+            command.Parameters.AddWithValue("@emails", Mailspretty.Text);
                 var binary = command.Parameters.Add("@anhhuongdan", SqlDbType.VarBinary, -1);
                 binary.Value = buffer;
-                SqlDataAdapter adapter = new SqlDataAdapter(command);
-                DataTable capnhap = new DataTable();
-                adapter.Fill(capnhap);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataTable capnhap = new DataTable();
+            adapter.Fill(capnhap);
             }
             else
             {
@@ -234,7 +235,7 @@ namespace VietTravel
         {
 
             //Dinh Dang Hinh Anh
-            /*            open.Filter = "Image Files(*.JPG ; *.jpeg ; *.gif ; *.bmp ; *.png) | *.jpg ; *.jpeg ; *.gif ; *.bmp ; *png";*/
+/*            open.Filter = "Image Files(*.JPG ; *.jpeg ; *.gif ; *.bmp ; *.png) | *.jpg ; *.jpeg ; *.gif ; *.bmp ; *png";*/
             OpenFileDialog create = new OpenFileDialog();
 
             if (create.ShowDialog() == DialogResult.OK)
@@ -442,7 +443,7 @@ namespace VietTravel
         {
             OpenFileDialog createnew = new OpenFileDialog();
             if (createnew.ShowDialog() == DialogResult.OK)
-            {
+                        {
                 string pathImagemore = createnew.FileName.Replace(toanbo, "");
                 NhanVienKT.Image = new Bitmap(toanbo+pathImagemore);
                 NhanVienKT.Image.Tag = pathImagemore;
@@ -468,6 +469,8 @@ namespace VietTravel
                 var binary = command.Parameters.Add("@anhthe", SqlDbType.VarBinary ,-1);
                 binary.Value = buffer;
                 command.Parameters.AddWithValue("@emails", EmailsKT.Text);
+                command.ExecuteNonQuery();
+                NhanVienKT.Image = Image.FromStream(new MemoryStream((byte[])rawdata));
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 DataTable capnhap = new DataTable();
                 adapter.Fill(capnhap);
