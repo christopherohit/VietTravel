@@ -55,6 +55,18 @@
     <Compile Include="CheckAdmin.Designer.cs">
       <DependentUpon>CheckAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChinhSuaKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChinhSuaKhachHang.Designer.cs">
+      <DependentUpon>ChinhSuaKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Confirm Registration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Confirm Registration.Designer.cs">
+      <DependentUpon>Confirm Registration.cs</DependentUpon>
+    </Compile>
     <Compile Include="DangKyNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +85,18 @@
     <Compile Include="DangKyTaiKhoan.Designer.cs">
       <DependentUpon>DangKyTaiKhoan.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NhanVienTrangChu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NhanVienTrangChu.Designer.cs">
+      <DependentUpon>NhanVienTrangChu.cs</DependentUpon>
+    </Compile>
     <Compile Include="QuanLyDuLichDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -86,6 +110,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThemKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThemKhachHang.Designer.cs">
+      <DependentUpon>ThemKhachHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="TrangChu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +125,12 @@
     <EmbeddedResource Include="CheckAdmin.resx">
       <DependentUpon>CheckAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChinhSuaKhachHang.resx">
+      <DependentUpon>ChinhSuaKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Confirm Registration.resx">
+      <DependentUpon>Confirm Registration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DangKyNhanVien.resx">
       <DependentUpon>DangKyNhanVien.cs</DependentUpon>
     </EmbeddedResource>
@@ -103,6 +139,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DangKyTaiKhoan.resx">
       <DependentUpon>DangKyTaiKhoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadingForm.resx">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NhanVienTrangChu.resx">
+      <DependentUpon>NhanVienTrangChu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SignIn.resx">
       <DependentUpon>SignIn.cs</DependentUpon>
@@ -116,6 +158,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ThemKhachHang.resx">
+      <DependentUpon>ThemKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TrangChu.resx">
       <DependentUpon>TrangChu.cs</DependentUpon>
     </EmbeddedResource>

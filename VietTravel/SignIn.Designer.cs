@@ -54,7 +54,7 @@ namespace VietTravel
             this.UserBox.Name = "UserBox";
             this.UserBox.Size = new System.Drawing.Size(137, 20);
             this.UserBox.TabIndex = 1;
-            this.UserBox.Text = "songngannguyen";
+            this.UserBox.Text = "QuinnTran";
             // 
             // label2
             // 
@@ -72,7 +72,7 @@ namespace VietTravel
             this.PassBox.PasswordChar = '*';
             this.PassBox.Size = new System.Drawing.Size(137, 20);
             this.PassBox.TabIndex = 1;
-            this.PassBox.Text = "19102000";
+            this.PassBox.Text = "20032000";
             // 
             // InBut
             // 
@@ -128,9 +128,10 @@ namespace VietTravel
             this.Controls.Add(this.label1);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Signin";
-            this.Text = "Đăng Nhập";
+            this.Text = "Sign In";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Signin_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);

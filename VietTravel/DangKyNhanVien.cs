@@ -15,7 +15,9 @@ namespace VietTravel
    
     public partial class DangkyNhanVien : Form
     {
-        string Global = Path.GetFullPath("/VietTravel/Used/HuongDanVien/");   
+        string Global = Path.GetFullPath("/VietTravel/Used/HuongDanVien/");
+        string toanbo = Path.GetFullPath("/VietTravel/Used/KeToan/");
+        string toanphan = Path.GetFullPath("/VietTravel/Used/CSKH/");
         string cStr = "Data Source=DESKTOP-7CBSM7T\\HENDRICHS;Initial Catalog=QuanLyDuLich;Integrated Security=True";
 
         public ComboBox combo1 { get { return this.Chucvu; } }
@@ -23,6 +25,7 @@ namespace VietTravel
         public PictureBox picture { get { return this.pictureBox1; } }
         public ComboBox phongban { get { return this.PhongBan; } }
         public Label GetLabel { get { return this.label7; } }
+        public TextBox sodt { get { return this.phonenumber; } }
 
         public DangkyNhanVien()
         {
@@ -32,13 +35,36 @@ namespace VietTravel
 
         private void privacy_Click(object sender, EventArgs e)
         {
-            OpenFileDialog create = new OpenFileDialog();
-            
-            if(create.ShowDialog() == DialogResult.OK)
+            if (PhongBan.Text.Equals("Tourist Guide"))
             {
-                string pathImage = create.FileName.Replace(Global,"");
-                privacy.Image = new Bitmap(Global+pathImage);
-                privacy.Image.Tag = pathImage;
+                OpenFileDialog create = new OpenFileDialog();
+
+                if (create.ShowDialog() == DialogResult.OK)
+                {
+                    string pathImage = create.FileName.Replace(Global, "");
+                    privacy.Image = new Bitmap(Global + pathImage);
+                    privacy.Image.Tag = pathImage;
+                }
+            }
+            else if (PhongBan.Text.Equals("Customer Care Staff"))
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    string path = dialog.FileName.Replace(toanphan, "");
+                    privacy.Image = new Bitmap(toanphan + path);
+                    privacy.Image.Tag = path;
+                }
+            }
+            else if (PhongBan.Text.Equals("Staff Accountant"))
+            {
+                OpenFileDialog fileDialog = new OpenFileDialog();
+                if (fileDialog.ShowDialog()== DialogResult.OK)
+                {
+                    string hinhanh = fileDialog.FileName.Replace(toanbo, "");
+                    privacy.Image = new Bitmap(toanbo + hinhanh);
+                    privacy.Image.Tag = hinhanh;
+                }
             }
         }
 
@@ -75,13 +101,12 @@ namespace VietTravel
 
         private void done_button_Click(object sender, EventArgs e)
         {
-            string file = Global + privacy.Image.Tag.ToString();
-            MessageBox.Show(file);
             SqlConnection con = new SqlConnection(cStr);
             con.Open();
-            byte[] buffer = File.ReadAllBytes(file);
             if (PhongBan.Text.Equals("Tourist Guide"))
             {
+                string file = Global + privacy.Image.Tag.ToString();
+                byte[] buffer = File.ReadAllBytes(file);
                 string query = "insert into HuongDanVien (HuongDanVien , Ngaysinh , SoDienThoai , DiaChi , Emails, MatKhau,MaPhongBan ,  AnhHuongDan) values (@hoten , @dob , @sdt , @diachi , null , null , 'TRG29100512200X' , @image)";
                 SqlCommand command1 = new SqlCommand(query, con);
                 command1.Parameters.AddWithValue("@hoten", NameFull.Text);
@@ -93,26 +118,80 @@ namespace VietTravel
                 SqlDataAdapter adapter = new SqlDataAdapter(command1);
                 DataTable data = new DataTable();
                 adapter.Fill(data);
-                command1.ExecuteNonQuery();
-
                 MessageBox.Show("In order to complete the employee information registration you need to complete creating an account for the employee", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DangKyTaiKhoan taiKhoan = new DangKyTaiKhoan();
                 taiKhoan.Show();
                 taiKhoan.GetLabel.Hide();
                 taiKhoan.GetLabel2.Hide();
                 taiKhoan.GetComboBox.Text = "Tourist Guide";
+                taiKhoan.GetComboBox.Enabled = false;
                 taiKhoan.GetTextBox.Text = "TRG29100512200X";
                 taiKhoan.GetComboBox.Visible = false;
                 taiKhoan.GetTextBox.Visible = false;
+                taiKhoan.GetButton.Text = "Done";
                 this.Hide();
 
             }
-            else if(PhongBan.Text.Equals("Customer care staff"))
+            else if(PhongBan.Text.Equals("Customer Care Staff"))
             {
-
+                string path = toanphan + privacy.Image.Tag.ToString();
+                byte[] buffer = File.ReadAllBytes(path);
+                string query4 = "Insert into CSKH (emais, hoten , DateBirth , PhoneNum , DiachiCS , ChucVuCD , AnhThe , MaPhongBan, MatKhau) values (null , @hoten , @datebirth , @phonenum , @Diachi , @chucvu , @anh , 'CCS16102000X' , null)";
+                SqlCommand command = new SqlCommand(query4, con);
+                command.Parameters.AddWithValue("@hoten", NameFull.Text);
+                command.Parameters.AddWithValue("@datebirth", dayofbirth.Value);
+                command.Parameters.AddWithValue("@phonenum", phonenumber.Text);
+                command.Parameters.AddWithValue("@Diachi", address.Text);
+                command.Parameters.AddWithValue("@Chucvu", Chucvu.Text);
+                var res = command.Parameters.Add("@anh", SqlDbType.VarBinary, -1);
+                res.Value = buffer;
+                SqlDataAdapter sql = new SqlDataAdapter(command);
+                DataTable data = new DataTable();
+                sql.Fill(data);
+                MessageBox.Show("In order to complete the employee information registration you need to complete creating an account for the employee", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DangKyTaiKhoan taiKhoan = new DangKyTaiKhoan();
+                taiKhoan.Show();
+                taiKhoan.GetLabel.Hide();
+                taiKhoan.GetLabel2.Hide();
+                taiKhoan.GetComboBox.Text = "Staff Accountant";
+                taiKhoan.GetComboBox.Enabled = false;
+                taiKhoan.GetTextBox.Text = "STC2812200319992000";
+                taiKhoan.GetComboBox.Visible = false;
+                taiKhoan.GetTextBox.Visible = false;
+                taiKhoan.GetButton.Text = "Done";
+                this.Hide();
             }
-            
-            
+            else if (PhongBan.Text.Equals("Staff Accountant"))
+            {
+                string hinhanh = toanbo + privacy.Image.Tag.ToString();
+                byte[] buffer = File.ReadAllBytes(hinhanh);
+                string query = "Insert into NhanVienKeToan (hoten , dob , emails , phone, Addressnv, chucvu , MaPhongBan, matkhau ,anhcanhan) values  (@hoten ,  @dob , null , @phone ,  @addressnv ,  @chucvu , 'STC2812200319992000' , null ,  @anhthe)";
+                SqlCommand command3 = new SqlCommand(query, con);
+                command3.Parameters.AddWithValue("@hoten", NameFull.Text);
+                command3.Parameters.AddWithValue("@dob", dayofbirth.Value);
+                command3.Parameters.AddWithValue("@phone", phonenumber.Text);
+                command3.Parameters.AddWithValue("@addressnv", address.Text);
+                command3.Parameters.AddWithValue("@chucvu", Chucvu.Text);
+                var nhiphan = command3.Parameters.Add("@anhthe", SqlDbType.VarBinary, -1);
+                nhiphan.Value = buffer;
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command3);
+                DataTable data = new DataTable();
+                dataAdapter.Fill(data);
+                MessageBox.Show("In order to complete the employee information registration you need to complete creating an account for the employee", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DangKyTaiKhoan taiKhoan = new DangKyTaiKhoan();
+                taiKhoan.Show();
+                taiKhoan.GetLabel.Hide();
+                taiKhoan.GetLabel2.Hide();
+                taiKhoan.GetComboBox.Text = "Staff Accountant";
+                taiKhoan.GetComboBox.Enabled = false;
+                taiKhoan.GetTextBox.Text = "STC2812200319992000";
+                taiKhoan.GetComboBox.Visible = false;
+                taiKhoan.GetTextBox.Visible = false;
+                taiKhoan.GetButton.Text = "Done";
+                this.Hide();
+            }
+
+
         }
 
         private void DangkyNhanVien_Load(object sender, EventArgs e)

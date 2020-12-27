@@ -159,7 +159,7 @@ namespace VietTravel
             this.HuongDanVien.Padding = new System.Windows.Forms.Padding(3);
             this.HuongDanVien.Size = new System.Drawing.Size(1000, 421);
             this.HuongDanVien.TabIndex = 1;
-            this.HuongDanVien.Text = "Hướng Dẫn Viên";
+            this.HuongDanVien.Text = "Tourist Guide Staff";
             this.HuongDanVien.UseVisualStyleBackColor = true;
             // 
             // Pretty
@@ -172,6 +172,7 @@ namespace VietTravel
             this.Pretty.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Pretty.TabIndex = 35;
             this.Pretty.TabStop = false;
+            this.Pretty.BackgroundImageChanged += new System.EventHandler(this.Pretty_BackgroundImageChanged);
             this.Pretty.Click += new System.EventHandler(this.Pretty_Click);
             // 
             // DobPretty
@@ -180,6 +181,7 @@ namespace VietTravel
             this.DobPretty.Name = "DobPretty";
             this.DobPretty.Size = new System.Drawing.Size(200, 20);
             this.DobPretty.TabIndex = 34;
+            this.DobPretty.ValueChanged += new System.EventHandler(this.DobPretty_ValueChanged);
             // 
             // Mailspretty
             // 
@@ -187,6 +189,7 @@ namespace VietTravel
             this.Mailspretty.Name = "Mailspretty";
             this.Mailspretty.Size = new System.Drawing.Size(200, 20);
             this.Mailspretty.TabIndex = 30;
+            this.Mailspretty.TextChanged += new System.EventHandler(this.Mailspretty_TextChanged);
             // 
             // AddressPretty
             // 
@@ -194,6 +197,7 @@ namespace VietTravel
             this.AddressPretty.Name = "AddressPretty";
             this.AddressPretty.Size = new System.Drawing.Size(200, 20);
             this.AddressPretty.TabIndex = 31;
+            this.AddressPretty.TextChanged += new System.EventHandler(this.AddressPretty_TextChanged);
             // 
             // PhonePretty
             // 
@@ -201,6 +205,7 @@ namespace VietTravel
             this.PhonePretty.Name = "PhonePretty";
             this.PhonePretty.Size = new System.Drawing.Size(200, 20);
             this.PhonePretty.TabIndex = 32;
+            this.PhonePretty.TextChanged += new System.EventHandler(this.PhonePretty_TextChanged);
             // 
             // NamePretty
             // 
@@ -280,7 +285,7 @@ namespace VietTravel
             this.SavePretty.Name = "SavePretty";
             this.SavePretty.Size = new System.Drawing.Size(75, 23);
             this.SavePretty.TabIndex = 22;
-            this.SavePretty.Text = "Save";
+            this.SavePretty.Text = "Edit";
             this.SavePretty.UseVisualStyleBackColor = true;
             this.SavePretty.Click += new System.EventHandler(this.SavePretty_Click);
             // 
@@ -329,7 +334,7 @@ namespace VietTravel
             this.NhanVienKeToan.Name = "NhanVienKeToan";
             this.NhanVienKeToan.Size = new System.Drawing.Size(1000, 421);
             this.NhanVienKeToan.TabIndex = 2;
-            this.NhanVienKeToan.Text = "Nhân Viên Kế Toán";
+            this.NhanVienKeToan.Text = "Staff Accountant";
             this.NhanVienKeToan.UseVisualStyleBackColor = true;
             // 
             // Boss
@@ -367,7 +372,7 @@ namespace VietTravel
             this.SaveKT.Name = "SaveKT";
             this.SaveKT.Size = new System.Drawing.Size(75, 23);
             this.SaveKT.TabIndex = 22;
-            this.SaveKT.Text = "Save";
+            this.SaveKT.Text = "Edit";
             this.SaveKT.UseVisualStyleBackColor = true;
             this.SaveKT.Click += new System.EventHandler(this.SaveKT_Click);
             // 
@@ -533,7 +538,7 @@ namespace VietTravel
             this.CSKH.Padding = new System.Windows.Forms.Padding(3);
             this.CSKH.Size = new System.Drawing.Size(1000, 421);
             this.CSKH.TabIndex = 0;
-            this.CSKH.Text = "Nhân Viên Chăm Sóc Khách Hàng";
+            this.CSKH.Text = "Customer Care Staff";
             this.CSKH.UseVisualStyleBackColor = true;
             // 
             // Septong
@@ -579,7 +584,7 @@ namespace VietTravel
             this.SaveCSKH.Name = "SaveCSKH";
             this.SaveCSKH.Size = new System.Drawing.Size(75, 23);
             this.SaveCSKH.TabIndex = 7;
-            this.SaveCSKH.Text = "Save";
+            this.SaveCSKH.Text = "Edit";
             this.SaveCSKH.UseVisualStyleBackColor = true;
             // 
             // AddCSKH
@@ -715,35 +720,38 @@ namespace VietTravel
             this.KhachHang.Name = "KhachHang";
             this.KhachHang.Size = new System.Drawing.Size(1000, 421);
             this.KhachHang.TabIndex = 3;
-            this.KhachHang.Text = "Khách Hàng";
+            this.KhachHang.Text = "Customers Management";
             this.KhachHang.UseVisualStyleBackColor = true;
             // 
             // DeleteClient
             // 
-            this.DeleteClient.Location = new System.Drawing.Point(777, 35);
+            this.DeleteClient.Location = new System.Drawing.Point(895, 41);
             this.DeleteClient.Name = "DeleteClient";
             this.DeleteClient.Size = new System.Drawing.Size(75, 23);
             this.DeleteClient.TabIndex = 11;
             this.DeleteClient.Text = "Delete";
             this.DeleteClient.UseVisualStyleBackColor = true;
+            this.DeleteClient.Click += new System.EventHandler(this.DeleteClient_Click);
             // 
             // EditClient
             // 
-            this.EditClient.Location = new System.Drawing.Point(582, 35);
+            this.EditClient.Location = new System.Drawing.Point(709, 41);
             this.EditClient.Name = "EditClient";
             this.EditClient.Size = new System.Drawing.Size(75, 23);
             this.EditClient.TabIndex = 12;
             this.EditClient.Text = "Edit";
             this.EditClient.UseVisualStyleBackColor = true;
+            this.EditClient.Click += new System.EventHandler(this.EditClient_Click);
             // 
             // AddClient
             // 
-            this.AddClient.Location = new System.Drawing.Point(382, 35);
+            this.AddClient.Location = new System.Drawing.Point(500, 41);
             this.AddClient.Name = "AddClient";
             this.AddClient.Size = new System.Drawing.Size(75, 23);
             this.AddClient.TabIndex = 13;
             this.AddClient.Text = "Add ";
             this.AddClient.UseVisualStyleBackColor = true;
+            this.AddClient.Click += new System.EventHandler(this.AddClient_Click);
             // 
             // OrderOfCusGridView
             // 
@@ -764,6 +772,7 @@ namespace VietTravel
             this.InforCusGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.InforCusGridView.Size = new System.Drawing.Size(434, 332);
             this.InforCusGridView.TabIndex = 1;
+            this.InforCusGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.InforCusGridView_CellClick);
             // 
             // Daily
             // 
@@ -776,7 +785,7 @@ namespace VietTravel
             this.Daily.Name = "Daily";
             this.Daily.Size = new System.Drawing.Size(1000, 421);
             this.Daily.TabIndex = 4;
-            this.Daily.Text = "Quản Lý Đại Lý";
+            this.Daily.Text = "Agency Management";
             this.Daily.UseVisualStyleBackColor = true;
             this.Daily.Click += new System.EventHandler(this.Daily_Click);
             // 
@@ -816,6 +825,7 @@ namespace VietTravel
             this.TripAvailableAgencyGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.TripAvailableAgencyGridView.Size = new System.Drawing.Size(353, 347);
             this.TripAvailableAgencyGridView.TabIndex = 5;
+            this.TripAvailableAgencyGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TripAvailableAgencyGridView_CellClick);
             // 
             // AgencyGribView
             // 
@@ -826,6 +836,7 @@ namespace VietTravel
             this.AgencyGribView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.AgencyGribView.Size = new System.Drawing.Size(606, 347);
             this.AgencyGribView.TabIndex = 4;
+            this.AgencyGribView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AgencyGribView_CellClick);
             // 
             // pictureBox2
             // 
@@ -870,7 +881,7 @@ namespace VietTravel
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TrangChu";
-            this.Text = "Bảng Điều Hướng";
+            this.Text = "Navigation Panel";
             this.Load += new System.EventHandler(this.TrangChu_Load);
             this.tabControl1.ResumeLayout(false);
             this.HuongDanVien.ResumeLayout(false);

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace VietTravel
 {
@@ -29,14 +30,13 @@ namespace VietTravel
             {
                 if (string.IsNullOrWhiteSpace(UserBox.Text))
                 {
-                    UserBox.BackColor = Color.Red;
+
                 }
                 if (string.IsNullOrWhiteSpace(PassBox.Text))
                 {
-                    PassBox.BackColor = Color.Red;
                 }
 
-                MessageBox.Show("Hãy điền vào chỗ trống", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please Fill in The Blank Space", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 UserBox.Text = string.Empty;
                 PassBox.Text = string.Empty;
                 UserBox.BackColor = Color.White;
@@ -44,55 +44,53 @@ namespace VietTravel
             }
             else if (UserBox.Text.Length <= 3 || UserBox.Text.Length >= 20)
             {
-                UserBox.BackColor = Color.Red;
-                MessageBox.Show("Độ dài tài khoản không phù hợp, \n độ dài phải nhỏ hơn 20 và dài hơn 3 chữ cái \n Vui lòng thử lại", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                MessageBox.Show("Inconsistent account length, \nLength should be less than 20 and longer than 3 letters \nPlease try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 UserBox.Text = string.Empty;
                 UserBox.BackColor = Color.White;
             }
             else if (PassBox.Text.Length < 6 || PassBox.Text.Length > 30)
             {
-                PassBox.BackColor = Color.Red;
-                MessageBox.Show("Độ dài mật khẩu không phù hợp, \n độ dài phải nhỏ hơn 20 và dài hơn 3 chữ cái \n Vui lòng thử lại", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                MessageBox.Show("Inconsistent password length, \nLength should be less than 20 and longer than 3 letters \nPlease try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 PassBox.Text = string.Empty;
                 PassBox.BackColor = Color.White;
             }
             else
             {
                 string nickname;
-                int password;
+                string password;
                 bool isInt = int.TryParse(PassBox.Text, out int number);
                 bool isIntName = int.TryParse(UserBox.Text, out number);
-                if (isIntName == true || isInt == false)
-                {
-                    if (isIntName == true)
-                    {
-                        UserBox.BackColor = Color.Red;
-                        MessageBox.Show("Tài Khoản vừa nhập chỉ có số không có ký tự khác \n Vui lòng thừ lại", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        UserBox.Text = string.Empty;
-                        UserBox.BackColor = Color.White;
-                    }
-                    else
-                    {
-                        nickname = UserBox.Text;
-                    }
-                    if (isInt == true)
-                    {
-                        /*PassBox.BackColor = Color.Red;
-                        MessageBox.Show("Mật khẩu chỉ Bao gồm số \n Vui lòng thử lại", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        PassBox.Text = string.Empty;
-                        PassBox.BackColor = Color.White;*/
-                        password = Convert.ToInt32(PassBox.Text);
-                    }
-                
-                }
-                else
+               
+                if (UserBox.Text != "")
                 {
                     nickname = UserBox.Text;
-                    password = Convert.ToInt32(PassBox.Text);
+                    password = PassBox.Text;
                     // Check User Exist.
                     string conStr = "Data Source=DESKTOP-7CBSM7T\\HENDRICHS;Initial Catalog=QuanLyDuLich;Integrated Security=True";
                     SqlConnection con = new SqlConnection(conStr);
-
+                    string kiemhuongdanvien = "Select * from HuongDanVien where Emails = @emails and MatKhau = @matkhau";
+                    SqlCommand sql = new SqlCommand(kiemhuongdanvien, con);
+                    sql.Parameters.AddWithValue("@emails", nickname);
+                    sql.Parameters.AddWithValue("@matkhau", password);
+                    SqlDataAdapter b = new SqlDataAdapter(sql);
+                    DataTable table = new DataTable();
+                    b.Fill(table);
+                    string kiemKetoan = "Select * from NhanVienKeToan where Emails = @emails and MatKhau = @matkhau";
+                    SqlCommand sql2 = new SqlCommand(kiemKetoan, con);
+                    sql2.Parameters.AddWithValue("@emails", nickname);
+                    sql2.Parameters.AddWithValue("@matkhau", password);
+                    SqlDataAdapter o = new SqlDataAdapter(sql2);
+                    DataTable tab = new DataTable();
+                    o.Fill(tab);
+                    string kiemCSKH = "Select * from CSKH where Emais = @emails and MatKhau = @matkhau";
+                    SqlCommand sql3 = new SqlCommand(kiemCSKH, con);
+                    sql3.Parameters.AddWithValue("@emails", nickname);
+                    sql3.Parameters.AddWithValue("@matkhau", password);
+                    SqlDataAdapter P = new SqlDataAdapter(sql3);
+                    DataTable BAP = new DataTable();
+                    P.Fill(BAP);
                     string query = "select * from Account where AdminName = @tentaikhoan and PassWordAdmin = @matkhau";
                     SqlCommand command = new SqlCommand(query, con);
                     command.Parameters.AddWithValue("@tentaikhoan", nickname);
@@ -102,14 +100,87 @@ namespace VietTravel
                     a.Fill(data);
                     if (data.Rows.Count > 0)
                     {
-                        MessageBox.Show($"Hello {nickname}! Hy vọng bạn có một ngày tốt lành ", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        
+                        MessageBox.Show($"Hello Administrators {nickname}! Hope you have a good day", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Form aform = new TrangChu();
                         aform.Show();
                         this.Hide();
                     }
+                    else if (table.Rows.Count > 0)
+                    {
+                        string layten = "select HuongDanVien from HuongDanVien Where Emails = @emails";
+                        SqlCommand sql1 = new SqlCommand(layten, con);
+                        sql1.Parameters.AddWithValue("@emails", nickname);
+                        SqlDataAdapter da = new SqlDataAdapter(sql1);
+                        DataTable i = new DataTable();
+                        da.Fill(i);
+                        MessageBox.Show($"Hello Tourist Guide {i.Rows[0].ItemArray[0].ToString()}! Hope you have a good day", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadingForm q = new LoadingForm();
+                        q.Show();
+                        this.Hide();
+                        NhanVienTrangChu l = new NhanVienTrangChu();
+                        for (int k = 0; k <= 3; k++)
+                        {
+                            Thread.Sleep(800);
+                            int count = k + 1;
+                            if (count == 3)
+                            {
+                                l.Show();
+                                q.Close();
+                            }
+                        }
+
+                    }else if(tab.Rows.Count > 0)
+                    {
+                        string layen = "select Hoten from NhanVienKeToan Where Emails = @emails";
+                        SqlCommand sqll2 = new SqlCommand(layen, con);
+                        sqll2.Parameters.AddWithValue("@emails", nickname);
+                        SqlDataAdapter ada = new SqlDataAdapter(sqll2);
+                        DataTable r = new DataTable();
+                        ada.Fill(r);
+                        MessageBox.Show($"Hello Accountant {r.Rows[0].ItemArray[0].ToString()}! Hope you have a good day", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadingForm q = new LoadingForm();
+                        q.Show();
+                        this.Hide();
+                        NhanVienTrangChu l = new NhanVienTrangChu();
+                        for (int k = 0; k <= 3; k++)
+                        {
+                            Thread.Sleep(800);
+                            int count = k + 1;
+                            if (count == 3)
+                            {
+                                l.Show();
+                                q.Close();
+                            }
+                        }
+                    }
+                    else if (BAP.Rows.Count > 0)
+                    {
+                        string layen = "select HoTen from CSKH Where Emais = @emails";
+                        SqlCommand sqll2 = new SqlCommand(layen, con);
+                        sqll2.Parameters.AddWithValue("@emails", nickname);
+                        SqlDataAdapter ada = new SqlDataAdapter(sqll2);
+                        DataTable r = new DataTable();
+                        ada.Fill(r);
+                        MessageBox.Show($"Hello Customer Care Staff {r.Rows[0].ItemArray[0].ToString()}! Hope you have a good day", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadingForm q = new LoadingForm();
+                        q.Show();
+                        this.Hide();
+                        NhanVienTrangChu l = new NhanVienTrangChu();
+                        for (int k = 0; k <= 3; k++)
+                        {
+                            Thread.Sleep(800);
+                            int count = k + 1;
+                            if (count == 3)
+                            {
+                                l.Show();
+                                q.Close();
+                            }
+                        }
+                    }
                     else
                     {
-                        MessageBox.Show("Xin tài khoản không có sẵn \n Xin Vui Lòng Thử Lại ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Please account not available \nPlease Try Again ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         UserBox.Text = string.Empty;
                         PassBox.Text = string.Empty;
                     }

@@ -23,22 +23,26 @@ namespace VietTravel
         string toanphan = Path.GetFullPath("/VietTravel/Used/CSKH/");
         string cStr = "Data Source=DESKTOP-7CBSM7T\\HENDRICHS;Initial Catalog=QuanLyDuLich;Integrated Security=True";
         public bool IsDirty =true;
+        public TextBox sdt { get { return this.PhonePretty; } set { PhonePretty = value; } }
+        public TextBox sdt2 { get { return this.SDTCSKH; } }
+        public TextBox sdt3 { get { return this.SDTKt; } }
+        public DataGridView grid { get { return this.InforCusGridView; } }
         public TrangChu()
         {
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        public void label1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void Daily_Click(object sender, EventArgs e)
+        public void Daily_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void TrangChu_Load(object sender, EventArgs e)
+        public void TrangChu_Load(object sender, EventArgs e)
         {
             // Load Infor for Pretty
             SqlConnection con1 = new SqlConnection(cStr);
@@ -47,7 +51,6 @@ namespace VietTravel
             SqlDataAdapter adapter1 = new SqlDataAdapter(command1);
             DataTable data1 = new DataTable();
             adapter1.Fill(data1);
-            PrettyGribView.Columns["MaHDV"].Visible = false;
             PrettyGribView.DataSource = data1;
             PrettyGribView.Columns["MaHDV"].Visible = false;
             PrettyGribView.Columns["AnhHuongDan"].Visible = false;
@@ -55,6 +58,13 @@ namespace VietTravel
             PrettyGribView.AutoGenerateColumns = false;
             PrettyGribView.ReadOnly = true;
             PrettyGribView.Columns["MaPhongBan"].Visible = false;
+            PrettyGribView.Columns["HuongDanVien"].HeaderText = "Name Staff";
+            PrettyGribView.Columns["NgaySinh"].HeaderText = "Date Of Birth";
+            PrettyGribView.Columns["SoDienThoai"].HeaderText = "Mobile Phone";
+            PrettyGribView.Columns["DiaChi"].HeaderText = "Address";
+            PrettyGribView.Columns["Emails"].HeaderText = "Emails";
+            PrettyGribView.AllowUserToAddRows = false;
+            PrettyGribView.Rows.RemoveAt(PrettyGribView.Rows.Count - 1);
 
             // Load Infor for KT
             string query2 = "Select * from NhanVienKeToan";
@@ -69,6 +79,13 @@ namespace VietTravel
             NhanVienKeToanGribView.Columns["AnhCaNhan"].Visible = false;
             NhanVienKeToanGribView.AutoGenerateColumns = false;
             NhanVienKeToanGribView.ReadOnly = true;
+            NhanVienKeToanGribView.Columns["Hoten"].HeaderText = "Name Staff";
+            NhanVienKeToanGribView.Columns["DOB"].HeaderText = "Day Of Birth";
+            NhanVienKeToanGribView.Columns["Phone"].HeaderText = "Mobile Phone";
+            NhanVienKeToanGribView.Columns["AddressNV"].HeaderText = "Address";
+            NhanVienKeToanGribView.Columns["ChucVu"].HeaderText = "Regency";
+            NhanVienKeToanGribView.AllowUserToAddRows = false;
+            NhanVienKeToanGribView.Rows.RemoveAt(NhanVienKeToanGribView.Rows.Count - 1);
 
             // Load Infor For CSKH
             string query3 = "select * from CSKH";
@@ -83,6 +100,13 @@ namespace VietTravel
             CSKHGridView.Columns["MaPhongBan"].Visible = false;
             CSKHGridView.Columns["MatKhau"].Visible = false;
             CSKHGridView.Columns["AnhThe"].Visible = false;
+            CSKHGridView.Columns["Hoten"].HeaderText = "Name Staff";
+            CSKHGridView.Columns["DateBirth"].HeaderText = "Date Of Birth";
+            CSKHGridView.Columns["PhoneNum"].HeaderText = "Mobile Phone";
+            CSKHGridView.Columns["DiachiCS"].HeaderText = "Address";
+            CSKHGridView.Columns["ChucVuCD"].HeaderText = "Regency";
+            CSKHGridView.AllowUserToAddRows = false;
+            CSKHGridView.Rows.RemoveAt(CSKHGridView.Rows.Count - 1);
 
             // Load Infor For Client
             string query4 = "select * from KhachHang";
@@ -91,10 +115,17 @@ namespace VietTravel
             DataTable data4 = new DataTable();
             adapter4.Fill(data4);
             InforCusGridView.DataSource = data4;
-            InforCusGridView.Columns["MaKhachHang"].Visible = false;
+            InforCusGridView.Columns["MaKH"].Visible = false;
+            InforCusGridView.Columns["MaKH"].Width = 30;
             InforCusGridView.Columns["MatKhau"].Visible = false;
             InforCusGridView.AutoGenerateColumns = false;
             InforCusGridView.ReadOnly = true;
+            InforCusGridView.Columns["MaKH"].HeaderText = "Ma";
+            InforCusGridView.Columns["HovaTen"].HeaderText = "Customer Name";
+            InforCusGridView.Columns["SoDienThoai"].HeaderText = "Phone Number";
+            InforCusGridView.Columns["DiaChi"].HeaderText = "Address";
+            InforCusGridView.AllowUserToAddRows = false;
+            InforCusGridView.Rows.RemoveAt(InforCusGridView.Rows.Count - 1);
 
             //Load Agency
             string query5 = "select * from AGENCYFORAdmin";
@@ -102,15 +133,64 @@ namespace VietTravel
             SqlDataAdapter adapter5 = new SqlDataAdapter(command5);
             DataTable data5 = new DataTable();
             adapter5.Fill(data5);
-            /*AgencyGribView.DataSource = data5;
-            AgencyGribView.Columns["matkhau"].Visible = false;
-            AgencyGribView.Columns["MaPhongBan"].Visible = false;
-            AgencyGribView.Columns["AnhThe"].Visible = false;
+            AgencyGribView.DataSource = data5;
             AgencyGribView.AutoGenerateColumns = false;
-            AgencyGribView.ReadOnly = true;*/
+            AgencyGribView.ReadOnly = true;
+            AgencyGribView.Columns["TenDaiLy"].HeaderText = "Agency Name";
+            AgencyGribView.Columns["DiaDiem"].HeaderText = "Office Location";
+            AgencyGribView.Columns["SoLuongChuyenDi"].HeaderText = "Number Trips";
+            AgencyGribView.Columns["SoLuotThich"].HeaderText = "Number Likes";
+            AgencyGribView.AllowUserToAddRows = false;
+            AgencyGribView.Rows.RemoveAt(AgencyGribView.Rows.Count - 1);
+
+            //Order Information
+            SqlConnection con = new SqlConnection(cStr);
+            string hienthi = "Select TenDiaDiem , SoLuong, NgayKhoiHanh from ChuyenDi";
+            SqlCommand command = new SqlCommand(hienthi, con);
+            SqlDataAdapter sql = new SqlDataAdapter(command);
+            DataTable data = new DataTable();
+            sql.Fill(data);
+            TripAvailableAgencyGridView.DataSource = data;
+            TripAvailableAgencyGridView.ReadOnly = true;
+            TripAvailableAgencyGridView.AutoGenerateColumns = false;
+            TripAvailableAgencyGridView.Columns["TenDiaDiem"].HeaderText = "Tourist Attraction";
+            TripAvailableAgencyGridView.Columns["SoLuong"].HeaderText = "Number Of Passengers";
+            TripAvailableAgencyGridView.Columns["NgayKhoiHanh"].HeaderText = "Departure Day";
+            TripAvailableAgencyGridView.Columns["NgayKhoiHanh"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            TripAvailableAgencyGridView.Columns["NgayKhoiHanh"].ValueType = typeof(DateTime);
+            TripAvailableAgencyGridView.AllowUserToAddRows = false;
+            TripAvailableAgencyGridView.Rows.RemoveAt(TripAvailableAgencyGridView.Rows.Count - 1);
         }
 
-        private void PrettyGribView_CellClick(object sender, DataGridViewCellEventArgs e)
+        public void Display (string TenDaiLy)
+        {
+            SqlConnection con = new SqlConnection(cStr);
+            string hienthi = "Select TenDiaDiem , SoLuong, NgayKhoiHanh from ChuyenDi where TenDaiLy in (select TenDaiLy from AgencyForAdmin where TenDaiLy = @tendaily)";
+            SqlCommand command = new SqlCommand(hienthi , con);
+            command.Parameters.AddWithValue("@tendaily", TenDaiLy);
+            SqlDataAdapter sql = new SqlDataAdapter(command);
+            DataTable data = new DataTable();
+            sql.Fill(data);
+            TripAvailableAgencyGridView.DataSource = data;
+            TripAvailableAgencyGridView.ReadOnly = true;
+            TripAvailableAgencyGridView.AutoGenerateColumns = false;
+            TripAvailableAgencyGridView.Columns["TenDiaDiem"].HeaderText = "Tourist Attraction";
+            TripAvailableAgencyGridView.Columns["SoLuong"].HeaderText = "Number Of Passengers";
+            TripAvailableAgencyGridView.Columns["NgayKhoiHanh"].HeaderText = "Departure Day";
+            TripAvailableAgencyGridView.Columns["NgayKhoiHanh"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            TripAvailableAgencyGridView.AllowUserToAddRows = false;
+            TripAvailableAgencyGridView.Rows.RemoveAt(TripAvailableAgencyGridView.Rows.Count - 1);
+        }
+        /*public void ThongTin(string Thongtin)
+        {
+            SqlConnection connection = new SqlConnection(cStr);
+            string query = "select MaHoaDon,MaChuyen , MaKH,  TenDiaDiem , HovaTen , Giaien , NgayKhoiHanh ,  From InforBookTrip  trip , ChuyenDi go , KhachHang cli where trip.MaChuyen = go.MaChuyen And cli.MaKH = trip.MaKH ";
+            SqlCommand command = new SqlCommand(query, connection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataTable a = new DataTable();
+            adapter.Fill(a);
+        }*/
+        public void PrettyGribView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
            if (e.RowIndex >= 0)
             {
@@ -124,40 +204,182 @@ namespace VietTravel
                 Mailspretty.Text = row.Cells["Emails"].Value.ToString();
                 Pretty.Image = Image.FromStream(stream);
                 this.DobPretty.Value = Convert.ToDateTime(row.Cells["Ngaysinh"].Value);
-            }
-           else if (Mailspretty.Text == "")
-            {
-                var res = MessageBox.Show("You Still complete fill in information this staff \nDo you want complete registration it now ?", "Warning" , MessageBoxButtons.YesNo , MessageBoxIcon.Warning);
-                switch (res)
+                if (Mailspretty.Text == "")
                 {
-                    case DialogResult.Yes:
-                        DangKyTaiKhoan bosung = new DangKyTaiKhoan();
-                        bosung.Show();
-                        bosung.GetLabel.Hide();
-                        bosung.GetLabel2.Hide();
-                        bosung.GetComboBox.Text = "Tourist Guide";
-                        bosung.GetTextBox.Text = "TRG29100512200X";
-                        bosung.GetComboBox.Visible = false;
-                        bosung.GetTextBox.Visible = false;
-                        this.Hide();
-                        break;
-                    case DialogResult.No:
-                        break;
+                    var res = MessageBox.Show("You Still complete fill in information this staff \nDo you want complete registration it now ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    switch (res)
+                    {
+                        case DialogResult.Yes:
+                            DangKyTaiKhoan bosung = new DangKyTaiKhoan();
+                            bosung.Show();
+                            bosung.GetLabel.Hide();
+                            bosung.GetLabel2.Hide();
+                            bosung.GetComboBox.Text = "Tourist Guide";
+                            bosung.GetTextBox.Text = "TRG29100512200X";
+                            bosung.GetComboBox.Visible = false;
+                            bosung.GetTextBox.Visible = false;
+                            bosung.GetButton.Text = "OK";
+                            this.Hide();
+                            break;
+                        case DialogResult.No:
+                            break;
+                    }
                 }
             }
+           
           
         }
 
-        private void NamePretty_TextChanged(object sender, EventArgs e)
+        public void NamePretty_TextChanged(object sender, EventArgs e)
         {
             (sender as Control).BackColor = Color.White;
             if (PrettyGribView.SelectedRows.Count >= 0)
             {
-                
+                for (int i = 0; i < PrettyGribView.Rows.Count; i++)
+                {
+                    if (PrettyGribView.Rows[i].Selected == true)
+                    {
+                        DataGridViewRow row = this.PrettyGribView.Rows[i];
+                        if (NamePretty.Text != row.Cells["HuongDanVien"].Value.ToString())
+                        {
+                            IsDirty = false;
+                        }
+                        else
+                        {
+                            IsDirty = true;
+                        }
+                    }
+                }
             } 
         }
 
-        private void AddPretty_Click(object sender, EventArgs e)
+        private void DobPretty_ValueChanged(object sender, EventArgs e)
+        {
+            if (PrettyGribView.Rows.Count >= 0)
+            {
+                for (int i = 0; i < PrettyGribView.Rows.Count; i++)
+                {
+                    if (PrettyGribView.Rows[i].Selected == true)
+                    {
+                        DataGridViewRow row = this.PrettyGribView.Rows[i];
+                        if (this.DobPretty.Value != Convert.ToDateTime(row.Cells["Ngaysinh"].Value.ToString()))
+                        {
+                            IsDirty = false;
+                        }
+                        else
+                        {
+                            IsDirty = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        public void Pretty_Click(object sender, EventArgs e)
+        {
+
+            //Dinh Dang Hinh Anh
+            /*            open.Filter = "Image Files(*.JPG ; *.jpeg ; *.gif ; *.bmp ; *.png) | *.jpg ; *.jpeg ; *.gif ; *.bmp ; *png";*/
+            OpenFileDialog create = new OpenFileDialog();
+
+            if (create.ShowDialog() == DialogResult.OK)
+            {
+                string pathImage = create.FileName.Replace(toannang, "");
+                Pretty.Image = new Bitmap(toannang + pathImage);
+                Pretty.Image.Tag = pathImage;
+                MessageBox.Show(Pretty.Image.Tag.ToString());
+            }
+        }
+
+        private void PhonePretty_TextChanged(object sender, EventArgs e)
+        {
+            if (PrettyGribView.Rows.Count >= 0)
+            {
+                for (int i = 0; i < PrettyGribView.Rows.Count; i++)
+                {
+                    if (PrettyGribView.Rows[i].Selected == true)
+                    {
+                        DataGridViewRow row = this.PrettyGribView.Rows[i];
+                        if (PhonePretty.Text != row.Cells["SoDienThoai"].Value.ToString())
+                        {
+                            IsDirty = false;
+                        }
+                        else
+                        {
+                            IsDirty = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void AddressPretty_TextChanged(object sender, EventArgs e)
+        {
+            if (PrettyGribView.Rows.Count >= 0)
+            {
+                for (int i = 0; i < PrettyGribView.Rows.Count; i++)
+                {
+                    if (PrettyGribView.Rows[i].Selected == true)
+                    {
+                        DataGridViewRow row = this.PrettyGribView.Rows[i];
+                        if (AddressPretty.Text != row.Cells["DiaChi"].Value.ToString())
+                        {
+                            IsDirty = false;
+                        }
+                        else
+                        {
+                            IsDirty = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void Mailspretty_TextChanged(object sender, EventArgs e)
+        {
+            if (PrettyGribView.Rows.Count >= 0)
+            {
+                for (int i = 0; i < PrettyGribView.Rows.Count; i++)
+                {
+                    if (PrettyGribView.Rows[i].Selected == true)
+                    {
+                        DataGridViewRow row = this.PrettyGribView.Rows[i];
+                        if (Mailspretty.Text != row.Cells["Emails"].Value.ToString())
+                        {
+                            IsDirty = false;
+                        }
+                        else
+                        {
+                            IsDirty = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void Pretty_BackgroundImageChanged(object sender, EventArgs e)
+        {
+            if (PrettyGribView.Rows.Count >= 0)
+            {
+                for (int i = 0; i < PrettyGribView.Rows.Count; i++)
+                {
+                    if (PrettyGribView.Rows[i].Selected == true)
+                    {
+                        //MessageBox.Show(Pretty.Image.Tag.ToString());
+                        DataGridViewRow row = this.PrettyGribView.Rows[i];
+                        var data = (Byte[])(row.Cells["AnhHuongDan"].Value);
+                        var stream = new MemoryStream(data);
+                        MessageBox.Show(stream.ToString());
+                        if (Pretty.Image.Tag != Image.FromStream(stream))
+                        {
+                            IsDirty = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        public void AddPretty_Click(object sender, EventArgs e)
         {
             DangkyNhanVien them = new DangkyNhanVien();
             them.GetLabel.Visible = true;
@@ -170,7 +392,7 @@ namespace VietTravel
             this.Hide();
         }
 
-        private void DeletePretty_Click(object sender, EventArgs e)
+        public void DeletePretty_Click(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(cStr);
             if (PrettyGribView.Rows.Count >= 0)
@@ -185,11 +407,18 @@ namespace VietTravel
                         switch (res)
                         {
                             case DialogResult.Yes:
+                                MessageBox.Show(row.Cells["MaHDV"].Value.ToString());
                                 string xoahuongdanvien = "Delete From HuongDanVien where Emails = @emails";
+                                string xoachuyendi = "delete From ChuyenDi where MaHDV = @mahdv";
                                 SqlCommand sqlCommand = new SqlCommand(xoahuongdanvien, con);
+                                SqlCommand sql = new SqlCommand(xoachuyendi, con);
+                                sql.Parameters.AddWithValue("@mahdv", row.Cells["MaHDV"].Value.ToString());
                                 sqlCommand.Parameters.AddWithValue("@emails", row.Cells["Emails"].Value.ToString());
                                 DataTable dataTable = new DataTable();
+                                DataTable data = new DataTable();
+                                SqlDataAdapter y = new SqlDataAdapter(sql);
                                 SqlDataAdapter c = new SqlDataAdapter(sqlCommand);
+                                y.Fill(data);
                                 c.Fill(dataTable);
                                 Form form = new TrangChu();
                                 form.Show();
@@ -204,26 +433,29 @@ namespace VietTravel
             }
             
         }
-        private void SavePretty_Click(object sender, EventArgs e)
+
+        public void SavePretty_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(toannang + Pretty.Image.Tag);
             if (IsDirty == false)
             {
+                MessageBox.Show(toannang + Pretty.Image.Tag.ToString());
                 string luu = toannang + Pretty.Image.Tag.ToString();
-            SqlConnection con = new SqlConnection(cStr);
-            con.Open();
+                SqlConnection con = new SqlConnection(cStr);
+                con.Open();
                 byte[] buffer = File.ReadAllBytes(luu);
-            string save = "Update HuongDanVien Set HuongDanVien = @tenhuongdanvien , NgaySinh = @ngaysinh , SoDienThoai = @sodienthoai , DiaChi = @diachi , Emails = @emails , AnhHuongDan = @anhhuongdan where HuongDanVien = @tenhuongdanvien";
-            SqlCommand command = new SqlCommand(save, con);
-            command.Parameters.AddWithValue("@tenhuongdanvien", NamePretty.Text);
-            command.Parameters.AddWithValue("@ngaysinh", DobPretty.Value);
-            command.Parameters.AddWithValue("@sodienthoai", PhonePretty.Text);
-            command.Parameters.AddWithValue("@diachi", AddressPretty.Text);
-            command.Parameters.AddWithValue("@emails", Mailspretty.Text);
+                string save = "Update HuongDanVien Set HuongDanVien = @tenhuongdanvien , NgaySinh = @ngaysinh , SoDienThoai = @sodienthoai , DiaChi = @diachi , Emails = @emails , AnhHuongDan = @anhhuongdan where HuongDanVien = @tenhuongdanvien";
+                SqlCommand command = new SqlCommand(save, con);
+                command.Parameters.AddWithValue("@tenhuongdanvien", NamePretty.Text);
+                command.Parameters.AddWithValue("@ngaysinh", DobPretty.Value);
+                command.Parameters.AddWithValue("@sodienthoai", PhonePretty.Text);
+                command.Parameters.AddWithValue("@diachi", AddressPretty.Text);
+                command.Parameters.AddWithValue("@emails", Mailspretty.Text);
                 var binary = command.Parameters.Add("@anhhuongdan", SqlDbType.VarBinary, -1);
                 binary.Value = buffer;
-            SqlDataAdapter adapter = new SqlDataAdapter(command);
-            DataTable capnhap = new DataTable();
-            adapter.Fill(capnhap);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataTable capnhap = new DataTable();
+                adapter.Fill(capnhap);
             }
             else
             {
@@ -231,22 +463,7 @@ namespace VietTravel
             }
         }
 
-        private void Pretty_Click(object sender, EventArgs e)
-        {
-
-            //Dinh Dang Hinh Anh
-/*            open.Filter = "Image Files(*.JPG ; *.jpeg ; *.gif ; *.bmp ; *.png) | *.jpg ; *.jpeg ; *.gif ; *.bmp ; *png";*/
-            OpenFileDialog create = new OpenFileDialog();
-
-            if (create.ShowDialog() == DialogResult.OK)
-            {
-                string pathImage = create.FileName.Replace(toannang, "");
-                Pretty.Image = new Bitmap(toannang + pathImage);
-                Pretty.Image.Tag = pathImage;
-            }
-        }
-
-        private void NhanVienKeToanGribView_CellClick(object sender, DataGridViewCellEventArgs e)
+        public void NhanVienKeToanGribView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
@@ -260,10 +477,31 @@ namespace VietTravel
                 NhanVienKT.Image = Image.FromStream(stream);
                 AddressKT.Text = row.Cells["AddressNV"].Value.ToString();
                 this.DobKT.Value = Convert.ToDateTime(row.Cells["DOB"].Value);
+                if (EmailsKT.Text == "")
+                {
+                    var res = MessageBox.Show("You Still complete fill in information this staff \nDo you want complete registration it now ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    switch (res)
+                    {
+                        case DialogResult.Yes:
+                            DangKyTaiKhoan bosung = new DangKyTaiKhoan();
+                            bosung.Show();
+                            bosung.GetLabel.Hide();
+                            bosung.GetLabel2.Hide();
+                            bosung.GetComboBox.Text = "Staff Accountant";
+                            bosung.GetTextBox.Text = "STC2812200319992000";
+                            bosung.GetComboBox.Visible = false;
+                            bosung.GetTextBox.Visible = false;
+                            bosung.GetButton.Text = "OK";
+                            this.Hide();
+                            break;
+                        case DialogResult.No:
+                            break;
+                    }
+                }
             }
         }
 
-        private void DeleteKT_Click(object sender, EventArgs e)
+        public void DeleteKT_Click(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(cStr);
             if (NhanVienKeToanGribView.Rows.Count >= 0)
@@ -274,7 +512,7 @@ namespace VietTravel
                     if (NhanVienKeToanGribView.Rows[i].Selected == true)
                     {
                         DataGridViewRow row = this.NhanVienKeToanGribView.Rows[i];
-                        var res = MessageBox.Show($"Do you want to remove ${row.Cells["Hoten"].Value.ToString()} from the system", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        var res = MessageBox.Show($"Do you want to remove Staff {row.Cells["Hoten"].Value.ToString()} from the system", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                         switch (res)
                         {
                             case DialogResult.Yes:
@@ -297,7 +535,7 @@ namespace VietTravel
             }
         }
 
-        private void DeleteCSKH_Click(object sender, EventArgs e)
+        public void DeleteCSKH_Click(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(cStr);
             if (CSKHGridView.Rows.Count >= 0)
@@ -308,13 +546,13 @@ namespace VietTravel
                     if (CSKHGridView.Rows[i].Selected == true)
                     {
                         DataGridViewRow row = this.CSKHGridView.Rows[i];
-                        var res = MessageBox.Show($"Do you want to remove ${row.Cells["HoTen"].Value.ToString()} from the system", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        var res = MessageBox.Show($"Do you want to remove Employee {row.Cells["HoTen"].Value.ToString()} from the system", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                         switch (res)
                         {
                             case DialogResult.Yes:
-                                string xoahuongdanvien = "Delete From CSKH where Emails = @emails";
+                                string xoahuongdanvien = "Delete From CSKH where PhoneNum = @phone";
                                 SqlCommand sqlCommand = new SqlCommand(xoahuongdanvien, con);
-                                sqlCommand.Parameters.AddWithValue("@emails", row.Cells["Emais"].Value.ToString());
+                                sqlCommand.Parameters.AddWithValue("@phone", row.Cells["PhoneNum"].Value.ToString());
                                 DataTable dataTable = new DataTable();
                                 SqlDataAdapter c = new SqlDataAdapter(sqlCommand);
                                 c.Fill(dataTable);
@@ -331,7 +569,7 @@ namespace VietTravel
             }
         }
 
-        private void TenKT_TextChanged(object sender, EventArgs e)
+        public void TenKT_TextChanged(object sender, EventArgs e)
         {
             if (NhanVienKeToanGribView.Rows.Count >= 0)
             {
@@ -349,7 +587,7 @@ namespace VietTravel
             }
         }
 
-        private void DobKT_ValueChanged(object sender, EventArgs e)
+        public void DobKT_ValueChanged(object sender, EventArgs e)
         {
             if (NhanVienKeToanGribView.Rows.Count >= 0)
             {
@@ -367,7 +605,7 @@ namespace VietTravel
             }
         }
 
-        private void SDTKt_TextChanged(object sender, EventArgs e)
+        public void SDTKt_TextChanged(object sender, EventArgs e)
         {
             if (NhanVienKeToanGribView.Rows.Count >= 0)
             {
@@ -385,7 +623,7 @@ namespace VietTravel
             }
         }
 
-        private void AddressKT_TextChanged(object sender, EventArgs e)
+        public void AddressKT_TextChanged(object sender, EventArgs e)
         {
             if (NhanVienKeToanGribView.Rows.Count >= 0)
             {
@@ -403,7 +641,7 @@ namespace VietTravel
             }
         }
 
-        private void EmailsKT_TextChanged(object sender, EventArgs e)
+        public void EmailsKT_TextChanged(object sender, EventArgs e)
         {
             if (NhanVienKeToanGribView.Rows.Count >= 0)
             {
@@ -421,7 +659,7 @@ namespace VietTravel
             }
         }
 
-        private void Boss_SelectedIndexChanged(object sender, EventArgs e)
+        public void Boss_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (NhanVienKeToanGribView.Rows.Count >= 0)
             {
@@ -439,7 +677,7 @@ namespace VietTravel
             }
         }
 
-        private void NhanVienKT_Click(object sender, EventArgs e)
+        public void NhanVienKT_Click(object sender, EventArgs e)
         {
             OpenFileDialog createnew = new OpenFileDialog();
             if (createnew.ShowDialog() == DialogResult.OK)
@@ -450,7 +688,7 @@ namespace VietTravel
             }
         }
 
-        private void SaveKT_Click(object sender, EventArgs e)
+        public void SaveKT_Click(object sender, EventArgs e)
         {
 
             if (IsDirty == false)
@@ -469,8 +707,6 @@ namespace VietTravel
                 var binary = command.Parameters.Add("@anhthe", SqlDbType.VarBinary ,-1);
                 binary.Value = buffer;
                 command.Parameters.AddWithValue("@emails", EmailsKT.Text);
-                command.ExecuteNonQuery();
-                NhanVienKT.Image = Image.FromStream(new MemoryStream((byte[])rawdata));
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 DataTable capnhap = new DataTable();
                 adapter.Fill(capnhap);
@@ -482,7 +718,7 @@ namespace VietTravel
             }
         }
 
-        private void CSKHGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        public void CSKHGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
@@ -493,14 +729,36 @@ namespace VietTravel
                 NameCSKH.Text = row.Cells["Hoten"].Value.ToString();
                 SDTCSKH.Text = row.Cells["PhoneNum"].Value.ToString();
                 DCCSKH.Text = row.Cells["DiaChiCS"].Value.ToString();
-                MailsCSKH.Text = row.Cells[0].Value.ToString();
+                MailsCSKH.Text = row.Cells["Emais"].Value.ToString();
                 ChamsocKH.Image = Image.FromStream(stream);
                 this.DOBCSKH.Value = Convert.ToDateTime(row.Cells["DateBirth"].Value);
                 Septong.Text = row.Cells["ChucVuCD"].Value.ToString();
+                if (MailsCSKH.Text == "")
+                {
+                    var res = MessageBox.Show("You Still complete fill in information this staff \nDo you want complete registration it now ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    switch (res)
+                    {
+                        case DialogResult.Yes:
+                            DangKyTaiKhoan bosung = new DangKyTaiKhoan();
+                            bosung.Show();
+                            bosung.GetLabel.Hide();
+                            bosung.GetLabel2.Hide();
+                            bosung.GetComboBox.Text = "Customer Care Staff";
+                            bosung.GetTextBox.Text = "CCS16102000X";
+                            bosung.GetComboBox.Visible = false;
+                            bosung.GetTextBox.Visible = false;
+                            bosung.GetButton.Text = "OK";
+                            bosung.GetComboBox.Enabled = false;
+                            this.Hide();
+                            break;
+                        case DialogResult.No:
+                            break;
+                    }
+                }
             }
         }
 
-        private void AddKT_Click(object sender, EventArgs e)
+        public void AddKT_Click(object sender, EventArgs e)
         {
             DangkyNhanVien form = new DangkyNhanVien();
             form.GetLabel.Visible = true;
@@ -513,7 +771,7 @@ namespace VietTravel
             this.Hide();
         }
 
-        private void AddCSKH_Click(object sender, EventArgs e)
+        public void AddCSKH_Click(object sender, EventArgs e)
         {
             DangkyNhanVien form = new DangkyNhanVien();
             form.GetLabel.Visible = true;
@@ -526,7 +784,7 @@ namespace VietTravel
             this.Hide();
         }
 
-        private void NhanVienKT_BackgroundImageChanged(object sender, EventArgs e)
+        public void NhanVienKT_BackgroundImageChanged(object sender, EventArgs e)
         {
             if (NhanVienKeToanGribView.Rows.Count >= 0)
             {
@@ -544,6 +802,121 @@ namespace VietTravel
                     }
                 }
             }
+        }
+
+        private void AddClient_Click(object sender, EventArgs e)
+        {
+            ThemKhachHang them = new ThemKhachHang();
+            them.Show();
+            this.Hide();
+        }
+
+        private void AgencyGribView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.AgencyGribView.Rows[e.RowIndex];
+                for (int i = 0; i < AgencyGribView.Rows.Count; i++)
+                {
+                    if (row.Selected == true)
+                    {
+                        string ten = row.Cells["TenDaiLy"].Value.ToString();
+                        Display(ten);
+                    }
+                    else if (i + 1 == AgencyGribView.Rows.Count)
+                    {
+                        AgencyGribView.Rows[i].Selected = true;
+                    }
+                }
+            }
+        }
+
+        private void EditClient_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Form form = System.Windows.Forms.Application.OpenForms["ChinhSuaKhachHang"];
+            if (InforCusGridView.Rows.Count >= 0)
+            {
+                for(int i = 0; i <InforCusGridView.Rows.Count; i++)
+                {
+                    if (InforCusGridView.Rows[i].Selected == true)
+                    {
+                        DataGridViewRow row = this.InforCusGridView.Rows[i];
+                        ChinhSuaKhachHang a = new ChinhSuaKhachHang(row);
+                        a.Show();
+                        this.Hide();
+                    }
+                }
+            }
+        }
+
+        private void DeleteClient_Click(object sender, EventArgs e)
+        {
+
+            SqlConnection con = new SqlConnection(cStr);
+            if (InforCusGridView.Rows.Count >= 0)
+            {
+                for (int i = 0; i < InforCusGridView.Rows.Count; i++)
+                {
+
+                    if (InforCusGridView.Rows[i].Selected == true)
+                    {
+                        DataGridViewRow row = this.InforCusGridView.Rows[i];
+                        var res = MessageBox.Show($"Do you want to remove Customers {row.Cells["HovaTen"].Value.ToString()} from the system", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        switch (res)
+                        {
+                            case DialogResult.Yes:
+                                string xoahuongHoadon = "exec XoaKhachHang @emails";
+                            //    SqlCommand sql = new SqlCommand(xoahuongHoadon, con);
+                                SqlCommand sqlCommand = new SqlCommand(xoahuongHoadon, con);
+                                sqlCommand.Parameters.AddWithValue("@emails", Convert.ToInt32(row.Cells["MaKH"].Value.ToString()));
+                                DataTable dataTable = new DataTable();
+                                SqlDataAdapter c = new SqlDataAdapter(sqlCommand);
+                                c.Fill(dataTable);
+                                Form form = new TrangChu();
+                                form.Show();
+                                this.Hide();
+                                break;
+                            case DialogResult.No:
+                                break;
+                        }
+                    }
+                }
+
+            }
+        }
+        public void HienThiHoaDom(int makh)
+        {
+            SqlConnection con = new SqlConnection(cStr);
+            string hienthi = "Select tendaily , tendiadiem, NgayKHoiHanh , giaien   from ChuyenDi cd, InforBookTrip ib , KhachHang kh where cd.MaChuyen = ib.MaChuyen And kh.MaKH = ib.MaKH and kh.MaKh = @makh";
+            SqlCommand a = new SqlCommand(hienthi, con);
+            a.Parameters.AddWithValue("@makh", makh);
+            SqlDataAdapter adapter = new SqlDataAdapter(a);
+            DataTable data = new DataTable();
+            adapter.Fill(data);
+            OrderOfCusGridView.DataSource = data;
+            OrderOfCusGridView.ReadOnly = true;
+            OrderOfCusGridView.Columns["tendiadiem"].HeaderText = "Location Name";
+            OrderOfCusGridView.Columns["tendaily"].HeaderText = "Agency Name";
+            OrderOfCusGridView.Columns["NgayKhoiHanh"].HeaderText = "Departure day";
+            OrderOfCusGridView.Columns["giaien"].HeaderText = "Total Cost";
+            OrderOfCusGridView.AllowUserToAddRows = false;
+            OrderOfCusGridView.AutoGenerateColumns = false;
+        }
+
+        private void TripAvailableAgencyGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void InforCusGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int index = e.RowIndex;
+            if(index >= 0)
+            {
+                int makh = Convert.ToInt32(InforCusGridView.Rows[index].Cells["MaKH"].Value.ToString());
+                HienThiHoaDom(makh);
+            }
+            
         }
     }
 }

@@ -230,6 +230,7 @@ namespace VietTravel
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DangKyTaiKhoan";
             this.Text = "Đăng Ký Tài Khoản";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DangKyTaiKhoan_FormClosing);
             this.Load += new System.EventHandler(this.DangKyTaiKhoan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.phongBanBindingSource2)).EndInit();
