@@ -26,12 +26,34 @@ namespace VietTravel
         public ComboBox phongban { get { return this.PhongBan; } }
         public Label GetLabel { get { return this.label7; } }
         public TextBox sodt { get { return this.phonenumber; } }
+        public TextBox tenst { get { return this.NameFull; } }
+        public TextBox diast { get { return this.address; } }
+        public DateTime bornst { get { return this.dayofbirth.Value;} }
+        public Image pri { get { return this.privacy.Image; } }
+        public Button pro { get { return this.done_button; } }
 
+
+        public DangkyNhanVien(DataGridViewRow row)
+        {
+            InitializeComponent();
+            var date = (Byte[])(row.Cells["AnhHuongDan"].Value);
+            var stream = new MemoryStream(date);
+            NameFull.Text = row.Cells["HuongDanVien"].Value.ToString();
+            dayofbirth.Value = Convert.ToDateTime(row.Cells["Ngaysinh"].Value);
+            phonenumber.Text = row.Cells["SoDienThoai"].Value.ToString();
+            address.Text = row.Cells["DiaChi"].Value.ToString();
+            PhongBan.Text = "Tourist Guide";
+            privacy.Image = Image.FromStream(stream);
+            label6.Visible = false;
+            Chucvu.Visible = false;
+        }
         public DangkyNhanVien()
         {
-            
+
             InitializeComponent();
         }
+
+
 
         private void privacy_Click(object sender, EventArgs e)
         {
@@ -101,94 +123,135 @@ namespace VietTravel
 
         private void done_button_Click(object sender, EventArgs e)
         {
+            System.Windows.Forms.Form Sam = System.Windows.Forms.Application.OpenForms["TrangChu"];
             SqlConnection con = new SqlConnection(cStr);
             con.Open();
-            if (PhongBan.Text.Equals("Tourist Guide"))
+            if (done_button.Text == "Done")
             {
-                string file = Global + privacy.Image.Tag.ToString();
-                byte[] buffer = File.ReadAllBytes(file);
-                string query = "insert into HuongDanVien (HuongDanVien , Ngaysinh , SoDienThoai , DiaChi , Emails, MatKhau,MaPhongBan ,  AnhHuongDan) values (@hoten , @dob , @sdt , @diachi , null , null , 'TRG29100512200X' , @image)";
-                SqlCommand command1 = new SqlCommand(query, con);
-                command1.Parameters.AddWithValue("@hoten", NameFull.Text);
-                command1.Parameters.AddWithValue("@dob", dayofbirth.Value);
-                command1.Parameters.AddWithValue("@sdt", phonenumber.Text);
-                command1.Parameters.AddWithValue("@diachi", address.Text);
-                var binary = command1.Parameters.Add("@image", SqlDbType.VarBinary, -1);
-                binary.Value = buffer;
-                SqlDataAdapter adapter = new SqlDataAdapter(command1);
-                DataTable data = new DataTable();
-                adapter.Fill(data);
-                MessageBox.Show("In order to complete the employee information registration you need to complete creating an account for the employee", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                DangKyTaiKhoan taiKhoan = new DangKyTaiKhoan();
-                taiKhoan.Show();
-                taiKhoan.GetLabel.Hide();
-                taiKhoan.GetLabel2.Hide();
-                taiKhoan.GetComboBox.Text = "Tourist Guide";
-                taiKhoan.GetComboBox.Enabled = false;
-                taiKhoan.GetTextBox.Text = "TRG29100512200X";
-                taiKhoan.GetComboBox.Visible = false;
-                taiKhoan.GetTextBox.Visible = false;
-                taiKhoan.GetButton.Text = "Done";
-                this.Hide();
+                if (privacy.Image != ((TrangChu)Sam).pretty)
+                {
+                    string file = Global + privacy.Image.Tag.ToString();
+                    byte[] buffer = File.ReadAllBytes(file);
+                    string update = "update HuongDanVien set HuongDanVien =@ten , DiaChi = @dc , SoDienThoai = @sdt , Ngaysinh = @ngaysinh  , AnhHuongDan =@anh where Emails =@mails";
+                    SqlCommand command = new SqlCommand(update, con);
+                    command.Parameters.AddWithValue("@ten", NameFull.Text);
+                    command.Parameters.AddWithValue("@dc", address.Text);
+                    command.Parameters.AddWithValue("@sdt", phonenumber.Text);
+                    command.Parameters.AddWithValue("@ngaysinh", Convert.ToDateTime(dayofbirth.Value));
+                    var binary = command.Parameters.Add("@anh", SqlDbType.VarBinary, -1);
+                    binary.Value = buffer;
+                    command.Parameters.AddWithValue("@mails",((TrangChu)Sam).mailspr.Text);
+                    SqlDataAdapter ae = new SqlDataAdapter(command);
+                    DataTable ie = new DataTable();
+                    ae.Fill(ie);
+                    MessageBox.Show("Successful employee information update");
 
+                }
+                else if (privacy.Image == ((TrangChu)Sam).pretty)
+                {
+                    string update = "update HuongDanVien set HuongDanVien =@ten , DiaChi = @dc , SoDienThoai = @sdt , Ngaysinh = @ngaysinh where Emails =@mails";
+                    SqlCommand command = new SqlCommand(update, con);
+                    command.Parameters.AddWithValue("@ten", NameFull.Text);
+                    command.Parameters.AddWithValue("@dc", address.Text);
+                    command.Parameters.AddWithValue("@sdt", phonenumber.Text);
+                    command.Parameters.AddWithValue("@mails", ((TrangChu)Sam).mailspr.Text);
+                    SqlDataAdapter ae = new SqlDataAdapter(command);
+                    DataTable ie = new DataTable();
+                    ae.Fill(ie);
+                    MessageBox.Show("Successful employee information update");
+
+
+                }
             }
-            else if(PhongBan.Text.Equals("Customer Care Staff"))
+            else if (done_button.Text == "OK")
             {
-                string path = toanphan + privacy.Image.Tag.ToString();
-                byte[] buffer = File.ReadAllBytes(path);
-                string query4 = "Insert into CSKH (emais, hoten , DateBirth , PhoneNum , DiachiCS , ChucVuCD , AnhThe , MaPhongBan, MatKhau) values (null , @hoten , @datebirth , @phonenum , @Diachi , @chucvu , @anh , 'CCS16102000X' , null)";
-                SqlCommand command = new SqlCommand(query4, con);
-                command.Parameters.AddWithValue("@hoten", NameFull.Text);
-                command.Parameters.AddWithValue("@datebirth", dayofbirth.Value);
-                command.Parameters.AddWithValue("@phonenum", phonenumber.Text);
-                command.Parameters.AddWithValue("@Diachi", address.Text);
-                command.Parameters.AddWithValue("@Chucvu", Chucvu.Text);
-                var res = command.Parameters.Add("@anh", SqlDbType.VarBinary, -1);
-                res.Value = buffer;
-                SqlDataAdapter sql = new SqlDataAdapter(command);
-                DataTable data = new DataTable();
-                sql.Fill(data);
-                MessageBox.Show("In order to complete the employee information registration you need to complete creating an account for the employee", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                DangKyTaiKhoan taiKhoan = new DangKyTaiKhoan();
-                taiKhoan.Show();
-                taiKhoan.GetLabel.Hide();
-                taiKhoan.GetLabel2.Hide();
-                taiKhoan.GetComboBox.Text = "Staff Accountant";
-                taiKhoan.GetComboBox.Enabled = false;
-                taiKhoan.GetTextBox.Text = "STC2812200319992000";
-                taiKhoan.GetComboBox.Visible = false;
-                taiKhoan.GetTextBox.Visible = false;
-                taiKhoan.GetButton.Text = "Done";
-                this.Hide();
-            }
-            else if (PhongBan.Text.Equals("Staff Accountant"))
-            {
-                string hinhanh = toanbo + privacy.Image.Tag.ToString();
-                byte[] buffer = File.ReadAllBytes(hinhanh);
-                string query = "Insert into NhanVienKeToan (hoten , dob , emails , phone, Addressnv, chucvu , MaPhongBan, matkhau ,anhcanhan) values  (@hoten ,  @dob , null , @phone ,  @addressnv ,  @chucvu , 'STC2812200319992000' , null ,  @anhthe)";
-                SqlCommand command3 = new SqlCommand(query, con);
-                command3.Parameters.AddWithValue("@hoten", NameFull.Text);
-                command3.Parameters.AddWithValue("@dob", dayofbirth.Value);
-                command3.Parameters.AddWithValue("@phone", phonenumber.Text);
-                command3.Parameters.AddWithValue("@addressnv", address.Text);
-                command3.Parameters.AddWithValue("@chucvu", Chucvu.Text);
-                var nhiphan = command3.Parameters.Add("@anhthe", SqlDbType.VarBinary, -1);
-                nhiphan.Value = buffer;
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(command3);
-                DataTable data = new DataTable();
-                dataAdapter.Fill(data);
-                MessageBox.Show("In order to complete the employee information registration you need to complete creating an account for the employee", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                DangKyTaiKhoan taiKhoan = new DangKyTaiKhoan();
-                taiKhoan.Show();
-                taiKhoan.GetLabel.Hide();
-                taiKhoan.GetLabel2.Hide();
-                taiKhoan.GetComboBox.Text = "Staff Accountant";
-                taiKhoan.GetComboBox.Enabled = false;
-                taiKhoan.GetTextBox.Text = "STC2812200319992000";
-                taiKhoan.GetComboBox.Visible = false;
-                taiKhoan.GetTextBox.Visible = false;
-                taiKhoan.GetButton.Text = "Done";
-                this.Hide();
+                if (PhongBan.Text.Equals("Tourist Guide"))
+                {
+                    string file = Global + privacy.Image.Tag.ToString();
+                    byte[] buffer = File.ReadAllBytes(file);
+                    string query = "insert into HuongDanVien (HuongDanVien , Ngaysinh , SoDienThoai , DiaChi , Emails, MatKhau,MaPhongBan ,  AnhHuongDan) values (@hoten , @dob , @sdt , @diachi , null , null , 'TRG29100512200X' , @image)";
+                    SqlCommand command1 = new SqlCommand(query, con);
+                    command1.Parameters.AddWithValue("@hoten", NameFull.Text);
+                    command1.Parameters.AddWithValue("@dob", dayofbirth.Value);
+                    command1.Parameters.AddWithValue("@sdt", phonenumber.Text);
+                    command1.Parameters.AddWithValue("@diachi", address.Text);
+                    var binary = command1.Parameters.Add("@image", SqlDbType.VarBinary, -1);
+                    binary.Value = buffer;
+                    SqlDataAdapter adapter = new SqlDataAdapter(command1);
+                    DataTable data = new DataTable();
+                    adapter.Fill(data);
+                    MessageBox.Show("In order to complete the employee information registration you need to complete creating an account for the employee", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DangKyTaiKhoan taiKhoan = new DangKyTaiKhoan();
+                    taiKhoan.Show();
+                    taiKhoan.GetLabel.Hide();
+                    taiKhoan.GetLabel2.Hide();
+                    taiKhoan.GetComboBox.Text = "Tourist Guide";
+                    taiKhoan.GetComboBox.Enabled = false;
+                    taiKhoan.GetTextBox.Text = "TRG29100512200X";
+                    taiKhoan.GetComboBox.Visible = false;
+                    taiKhoan.GetTextBox.Visible = false;
+                    taiKhoan.GetButton.Text = "Done";
+                    this.Hide();
+
+                }
+                else if (PhongBan.Text.Equals("Customer Care Staff"))
+                {
+                    string path = toanphan + privacy.Image.Tag.ToString();
+                    byte[] buffer = File.ReadAllBytes(path);
+                    string query4 = "Insert into CSKH (emais, hoten , DateBirth , PhoneNum , DiachiCS , ChucVuCD , AnhThe , MaPhongBan, MatKhau) values (null , @hoten , @datebirth , @phonenum , @Diachi , @chucvu , @anh , 'CCS16102000X' , null)";
+                    SqlCommand command = new SqlCommand(query4, con);
+                    command.Parameters.AddWithValue("@hoten", NameFull.Text);
+                    command.Parameters.AddWithValue("@datebirth", dayofbirth.Value);
+                    command.Parameters.AddWithValue("@phonenum", phonenumber.Text);
+                    command.Parameters.AddWithValue("@Diachi", address.Text);
+                    command.Parameters.AddWithValue("@Chucvu", Chucvu.Text);
+                    var res = command.Parameters.Add("@anh", SqlDbType.VarBinary, -1);
+                    res.Value = buffer;
+                    SqlDataAdapter sql = new SqlDataAdapter(command);
+                    DataTable data = new DataTable();
+                    sql.Fill(data);
+                    MessageBox.Show("In order to complete the employee information registration you need to complete creating an account for the employee", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DangKyTaiKhoan taiKhoan = new DangKyTaiKhoan();
+                    taiKhoan.Show();
+                    taiKhoan.GetLabel.Hide();
+                    taiKhoan.GetLabel2.Hide();
+                    taiKhoan.GetComboBox.Text = "Staff Accountant";
+                    taiKhoan.GetComboBox.Enabled = false;
+                    taiKhoan.GetTextBox.Text = "STC2812200319992000";
+                    taiKhoan.GetComboBox.Visible = false;
+                    taiKhoan.GetTextBox.Visible = false;
+                    taiKhoan.GetButton.Text = "Done";
+                    this.Hide();
+                }
+                else if (PhongBan.Text.Equals("Staff Accountant"))
+                {
+                    string hinhanh = toanbo + privacy.Image.Tag.ToString();
+                    byte[] buffer = File.ReadAllBytes(hinhanh);
+                    string query = "Insert into NhanVienKeToan (hoten , dob , emails , phone, Addressnv, chucvu , MaPhongBan, matkhau ,anhcanhan) values  (@hoten ,  @dob , null , @phone ,  @addressnv ,  @chucvu , 'STC2812200319992000' , null ,  @anhthe)";
+                    SqlCommand command3 = new SqlCommand(query, con);
+                    command3.Parameters.AddWithValue("@hoten", NameFull.Text);
+                    command3.Parameters.AddWithValue("@dob", dayofbirth.Value);
+                    command3.Parameters.AddWithValue("@phone", phonenumber.Text);
+                    command3.Parameters.AddWithValue("@addressnv", address.Text);
+                    command3.Parameters.AddWithValue("@chucvu", Chucvu.Text);
+                    var nhiphan = command3.Parameters.Add("@anhthe", SqlDbType.VarBinary, -1);
+                    nhiphan.Value = buffer;
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(command3);
+                    DataTable data = new DataTable();
+                    dataAdapter.Fill(data);
+                    MessageBox.Show("In order to complete the employee information registration you need to complete creating an account for the employee", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DangKyTaiKhoan taiKhoan = new DangKyTaiKhoan();
+                    taiKhoan.Show();
+                    taiKhoan.GetLabel.Hide();
+                    taiKhoan.GetLabel2.Hide();
+                    taiKhoan.GetComboBox.Text = "Staff Accountant";
+                    taiKhoan.GetComboBox.Enabled = false;
+                    taiKhoan.GetTextBox.Text = "STC2812200319992000";
+                    taiKhoan.GetComboBox.Visible = false;
+                    taiKhoan.GetTextBox.Visible = false;
+                    taiKhoan.GetButton.Text = "Done";
+                    this.Hide();
+                }
             }
 
 
@@ -196,9 +259,23 @@ namespace VietTravel
 
         private void DangkyNhanVien_Load(object sender, EventArgs e)
         {
+            
+            System.Windows.Forms.Form oris = System.Windows.Forms.Application.OpenForms["TrangChu"];
             // TODO: This line of code loads data into the 'quanLyDuLichDataSet.PhongBan' table. You can move, or remove it, as needed.
             this.phongBanTableAdapter.Fill(this.quanLyDuLichDataSet.PhongBan);
+            if (done_button.Text == "Done")
+            {
+                NameFull.Text = ((TrangChu)oris).prname.Text;
+                dayofbirth.Value = Convert.ToDateTime(((TrangChu)oris).datepr.ToString());
+            }
 
+        }
+
+        private void DangkyNhanVien_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            TrangChu olris = new TrangChu();
+            olris.Show();
+            this.Hide();
         }
     }
 }

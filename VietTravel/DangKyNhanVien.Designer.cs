@@ -279,6 +279,7 @@ namespace VietTravel
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DangkyNhanVien";
             this.Text = "Registration";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DangkyNhanVien_FormClosed);
             this.Load += new System.EventHandler(this.DangkyNhanVien_Load);
             ((System.ComponentModel.ISupportInitialize)(this.privacy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -85,11 +85,17 @@
     <Compile Include="DangKyTaiKhoan.Designer.cs">
       <DependentUpon>DangKyTaiKhoan.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoadingForm.cs">
+    <Compile Include="EditAgency.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoadingForm.Designer.cs">
-      <DependentUpon>LoadingForm.cs</DependentUpon>
+    <Compile Include="EditAgency.Designer.cs">
+      <DependentUpon>EditAgency.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditTrip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditTrip.Designer.cs">
+      <DependentUpon>EditTrip.cs</DependentUpon>
     </Compile>
     <Compile Include="NhanVienTrangChu.cs">
       <SubType>Form</SubType>
@@ -101,6 +107,26 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>QuanLyDuLichDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLyDuLichDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyDuLichDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLyDuLichDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyDuLichDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLyDuLichDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyDuLichDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLyDuLichDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyDuLichDataSet4.xsd</DependentUpon>
     </Compile>
     <Compile Include="SignIn.cs">
       <SubType>Form</SubType>
@@ -140,8 +166,11 @@
     <EmbeddedResource Include="DangKyTaiKhoan.resx">
       <DependentUpon>DangKyTaiKhoan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LoadingForm.resx">
-      <DependentUpon>LoadingForm.cs</DependentUpon>
+    <EmbeddedResource Include="EditAgency.resx">
+      <DependentUpon>EditAgency.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditTrip.resx">
+      <DependentUpon>EditTrip.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NhanVienTrangChu.resx">
       <DependentUpon>NhanVienTrangChu.cs</DependentUpon>
@@ -184,6 +213,50 @@
     </None>
     <None Include="QuanLyDuLichDataSet.xss">
       <DependentUpon>QuanLyDuLichDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyDuLichDataSet1.xsc">
+      <DependentUpon>QuanLyDuLichDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyDuLichDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuanLyDuLichDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QuanLyDuLichDataSet1.xss">
+      <DependentUpon>QuanLyDuLichDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyDuLichDataSet2.xsc">
+      <DependentUpon>QuanLyDuLichDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyDuLichDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuanLyDuLichDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QuanLyDuLichDataSet2.xss">
+      <DependentUpon>QuanLyDuLichDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyDuLichDataSet3.xsc">
+      <DependentUpon>QuanLyDuLichDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyDuLichDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuanLyDuLichDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QuanLyDuLichDataSet3.xss">
+      <DependentUpon>QuanLyDuLichDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyDuLichDataSet4.xsc">
+      <DependentUpon>QuanLyDuLichDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyDuLichDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuanLyDuLichDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QuanLyDuLichDataSet4.xss">
+      <DependentUpon>QuanLyDuLichDataSet4.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

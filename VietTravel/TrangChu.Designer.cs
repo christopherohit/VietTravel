@@ -166,6 +166,7 @@ namespace VietTravel
             // 
             this.Pretty.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.Pretty.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Pretty.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Pretty.Location = new System.Drawing.Point(774, 238);
             this.Pretty.Name = "Pretty";
             this.Pretty.Size = new System.Drawing.Size(200, 142);
@@ -177,6 +178,7 @@ namespace VietTravel
             // 
             // DobPretty
             // 
+            this.DobPretty.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DobPretty.Location = new System.Drawing.Point(774, 113);
             this.DobPretty.Name = "DobPretty";
             this.DobPretty.Size = new System.Drawing.Size(200, 20);
@@ -220,18 +222,18 @@ namespace VietTravel
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(695, 143);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(78, 13);
+            this.label13.Size = new System.Drawing.Size(75, 13);
             this.label13.TabIndex = 29;
-            this.label13.Text = "Số Điện Thoại:";
+            this.label13.Text = "Mobile Phone:";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(695, 175);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(44, 13);
+            this.label14.Size = new System.Drawing.Size(48, 13);
             this.label14.TabIndex = 25;
-            this.label14.Text = "Địa Chỉ:";
+            this.label14.Text = "Address:";
             // 
             // label15
             // 
@@ -254,23 +256,25 @@ namespace VietTravel
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(695, 113);
+            this.label17.Location = new System.Drawing.Point(696, 119);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(56, 13);
+            this.label17.Size = new System.Drawing.Size(33, 13);
             this.label17.TabIndex = 28;
-            this.label17.Text = "Ngày Sinh";
+            this.label17.Text = "DOB:";
+            this.label17.Click += new System.EventHandler(this.label17_Click);
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(695, 87);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(62, 13);
+            this.label18.Size = new System.Drawing.Size(57, 13);
             this.label18.TabIndex = 24;
-            this.label18.Text = "Họ Và Tên:";
+            this.label18.Text = "Full Name:";
             // 
             // DeletePretty
             // 
+            this.DeletePretty.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DeletePretty.Location = new System.Drawing.Point(437, 41);
             this.DeletePretty.Name = "DeletePretty";
             this.DeletePretty.Size = new System.Drawing.Size(75, 23);
@@ -281,6 +285,7 @@ namespace VietTravel
             // 
             // SavePretty
             // 
+            this.SavePretty.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SavePretty.Location = new System.Drawing.Point(242, 41);
             this.SavePretty.Name = "SavePretty";
             this.SavePretty.Size = new System.Drawing.Size(75, 23);
@@ -291,6 +296,7 @@ namespace VietTravel
             // 
             // AddPretty
             // 
+            this.AddPretty.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddPretty.Location = new System.Drawing.Point(42, 41);
             this.AddPretty.Name = "AddPretty";
             this.AddPretty.Size = new System.Drawing.Size(75, 23);
@@ -358,6 +364,7 @@ namespace VietTravel
             // 
             // DeleteKT
             // 
+            this.DeleteKT.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DeleteKT.Location = new System.Drawing.Point(437, 41);
             this.DeleteKT.Name = "DeleteKT";
             this.DeleteKT.Size = new System.Drawing.Size(75, 23);
@@ -368,16 +375,17 @@ namespace VietTravel
             // 
             // SaveKT
             // 
+            this.SaveKT.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SaveKT.Location = new System.Drawing.Point(242, 41);
             this.SaveKT.Name = "SaveKT";
             this.SaveKT.Size = new System.Drawing.Size(75, 23);
             this.SaveKT.TabIndex = 22;
             this.SaveKT.Text = "Edit";
             this.SaveKT.UseVisualStyleBackColor = true;
-            this.SaveKT.Click += new System.EventHandler(this.SaveKT_Click);
             // 
             // AddKT
             // 
+            this.AddKT.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddKT.Location = new System.Drawing.Point(42, 41);
             this.AddKT.Name = "AddKT";
             this.AddKT.Size = new System.Drawing.Size(75, 23);
@@ -390,6 +398,7 @@ namespace VietTravel
             // 
             this.NhanVienKT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.NhanVienKT.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.NhanVienKT.Cursor = System.Windows.Forms.Cursors.Hand;
             this.NhanVienKT.Location = new System.Drawing.Point(785, 276);
             this.NhanVienKT.Name = "NhanVienKT";
             this.NhanVienKT.Size = new System.Drawing.Size(200, 142);
@@ -401,6 +410,7 @@ namespace VietTravel
             // 
             // DobKT
             // 
+            this.DobKT.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DobKT.Location = new System.Drawing.Point(785, 116);
             this.DobKT.Name = "DobKT";
             this.DobKT.Size = new System.Drawing.Size(200, 20);
@@ -543,6 +553,7 @@ namespace VietTravel
             // 
             // Septong
             // 
+            this.Septong.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Septong.FormattingEnabled = true;
             this.Septong.Items.AddRange(new object[] {
             "None",
@@ -570,6 +581,7 @@ namespace VietTravel
             // 
             // DeleteCSKH
             // 
+            this.DeleteCSKH.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DeleteCSKH.Location = new System.Drawing.Point(437, 25);
             this.DeleteCSKH.Name = "DeleteCSKH";
             this.DeleteCSKH.Size = new System.Drawing.Size(75, 23);
@@ -580,6 +592,7 @@ namespace VietTravel
             // 
             // SaveCSKH
             // 
+            this.SaveCSKH.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SaveCSKH.Location = new System.Drawing.Point(242, 25);
             this.SaveCSKH.Name = "SaveCSKH";
             this.SaveCSKH.Size = new System.Drawing.Size(75, 23);
@@ -589,6 +602,7 @@ namespace VietTravel
             // 
             // AddCSKH
             // 
+            this.AddCSKH.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddCSKH.Location = new System.Drawing.Point(42, 25);
             this.AddCSKH.Name = "AddCSKH";
             this.AddCSKH.Size = new System.Drawing.Size(75, 23);
@@ -601,6 +615,7 @@ namespace VietTravel
             // 
             this.ChamsocKH.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ChamsocKH.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ChamsocKH.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ChamsocKH.Location = new System.Drawing.Point(782, 273);
             this.ChamsocKH.Name = "ChamsocKH";
             this.ChamsocKH.Size = new System.Drawing.Size(200, 142);
@@ -610,6 +625,7 @@ namespace VietTravel
             // 
             // DOBCSKH
             // 
+            this.DOBCSKH.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DOBCSKH.Location = new System.Drawing.Point(782, 100);
             this.DOBCSKH.Name = "DOBCSKH";
             this.DOBCSKH.Size = new System.Drawing.Size(200, 20);
@@ -725,6 +741,7 @@ namespace VietTravel
             // 
             // DeleteClient
             // 
+            this.DeleteClient.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DeleteClient.Location = new System.Drawing.Point(895, 41);
             this.DeleteClient.Name = "DeleteClient";
             this.DeleteClient.Size = new System.Drawing.Size(75, 23);
@@ -735,6 +752,7 @@ namespace VietTravel
             // 
             // EditClient
             // 
+            this.EditClient.Cursor = System.Windows.Forms.Cursors.Hand;
             this.EditClient.Location = new System.Drawing.Point(709, 41);
             this.EditClient.Name = "EditClient";
             this.EditClient.Size = new System.Drawing.Size(75, 23);
@@ -745,6 +763,7 @@ namespace VietTravel
             // 
             // AddClient
             // 
+            this.AddClient.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddClient.Location = new System.Drawing.Point(500, 41);
             this.AddClient.Name = "AddClient";
             this.AddClient.Size = new System.Drawing.Size(75, 23);
@@ -776,6 +795,7 @@ namespace VietTravel
             // 
             // Daily
             // 
+            this.Daily.BackColor = System.Drawing.Color.White;
             this.Daily.Controls.Add(this.DeleteAgency);
             this.Daily.Controls.Add(this.EditAgency);
             this.Daily.Controls.Add(this.AddAgency);
@@ -786,35 +806,40 @@ namespace VietTravel
             this.Daily.Size = new System.Drawing.Size(1000, 421);
             this.Daily.TabIndex = 4;
             this.Daily.Text = "Agency Management";
-            this.Daily.UseVisualStyleBackColor = true;
             this.Daily.Click += new System.EventHandler(this.Daily_Click);
             // 
             // DeleteAgency
             // 
+            this.DeleteAgency.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DeleteAgency.Location = new System.Drawing.Point(450, 26);
             this.DeleteAgency.Name = "DeleteAgency";
             this.DeleteAgency.Size = new System.Drawing.Size(75, 23);
             this.DeleteAgency.TabIndex = 8;
             this.DeleteAgency.Text = "Delete";
             this.DeleteAgency.UseVisualStyleBackColor = true;
+            this.DeleteAgency.Click += new System.EventHandler(this.DeleteAgency_Click);
             // 
             // EditAgency
             // 
+            this.EditAgency.Cursor = System.Windows.Forms.Cursors.Hand;
             this.EditAgency.Location = new System.Drawing.Point(255, 26);
             this.EditAgency.Name = "EditAgency";
             this.EditAgency.Size = new System.Drawing.Size(75, 23);
             this.EditAgency.TabIndex = 9;
             this.EditAgency.Text = "Edit";
             this.EditAgency.UseVisualStyleBackColor = true;
+            this.EditAgency.Click += new System.EventHandler(this.EditAgency_Click);
             // 
             // AddAgency
             // 
+            this.AddAgency.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AddAgency.Location = new System.Drawing.Point(55, 26);
             this.AddAgency.Name = "AddAgency";
             this.AddAgency.Size = new System.Drawing.Size(75, 23);
             this.AddAgency.TabIndex = 10;
             this.AddAgency.Text = "Add ";
             this.AddAgency.UseVisualStyleBackColor = true;
+            this.AddAgency.Click += new System.EventHandler(this.AddAgency_Click);
             // 
             // TripAvailableAgencyGridView
             // 
@@ -826,6 +851,7 @@ namespace VietTravel
             this.TripAvailableAgencyGridView.Size = new System.Drawing.Size(353, 347);
             this.TripAvailableAgencyGridView.TabIndex = 5;
             this.TripAvailableAgencyGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TripAvailableAgencyGridView_CellClick);
+            this.TripAvailableAgencyGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TripAvailableAgencyGridView_CellDoubleClick);
             // 
             // AgencyGribView
             // 
@@ -882,6 +908,7 @@ namespace VietTravel
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TrangChu";
             this.Text = "Navigation Panel";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TrangChu_FormClosing);
             this.Load += new System.EventHandler(this.TrangChu_Load);
             this.tabControl1.ResumeLayout(false);
             this.HuongDanVien.ResumeLayout(false);

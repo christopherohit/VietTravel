@@ -26,7 +26,15 @@ namespace VietTravel
         public TextBox sdt { get { return this.PhonePretty; } set { PhonePretty = value; } }
         public TextBox sdt2 { get { return this.SDTCSKH; } }
         public TextBox sdt3 { get { return this.SDTKt; } }
+        public Image pretty { get { return this.Pretty.Image; } }
         public DataGridView grid { get { return this.InforCusGridView; } }
+        public DataGridView view { get { return this.TripAvailableAgencyGridView; } }
+        public DataGridView iii { get { return this.AgencyGribView; } }
+        public TextBox prname { get { return this.NamePretty; } }
+        public TextBox Sdtpr { get { return this.PhonePretty; } }
+        public DateTime datepr { get { return this.DobPretty.Value; } }
+        public TextBox dcpr { get { return this.AddressPretty; } }
+        public TextBox mailspr { get { return this.Mailspretty; } }
         public TrangChu()
         {
             InitializeComponent();
@@ -62,10 +70,6 @@ namespace VietTravel
             PrettyGribView.Columns["NgaySinh"].HeaderText = "Date Of Birth";
             PrettyGribView.Columns["SoDienThoai"].HeaderText = "Mobile Phone";
             PrettyGribView.Columns["DiaChi"].HeaderText = "Address";
-            PrettyGribView.Columns["Emails"].HeaderText = "Emails";
-            PrettyGribView.AllowUserToAddRows = false;
-            PrettyGribView.Rows.RemoveAt(PrettyGribView.Rows.Count - 1);
-
             // Load Infor for KT
             string query2 = "Select * from NhanVienKeToan";
             SqlCommand command2 = new SqlCommand(query2, con1);
@@ -84,8 +88,6 @@ namespace VietTravel
             NhanVienKeToanGribView.Columns["Phone"].HeaderText = "Mobile Phone";
             NhanVienKeToanGribView.Columns["AddressNV"].HeaderText = "Address";
             NhanVienKeToanGribView.Columns["ChucVu"].HeaderText = "Regency";
-            NhanVienKeToanGribView.AllowUserToAddRows = false;
-            NhanVienKeToanGribView.Rows.RemoveAt(NhanVienKeToanGribView.Rows.Count - 1);
 
             // Load Infor For CSKH
             string query3 = "select * from CSKH";
@@ -105,8 +107,6 @@ namespace VietTravel
             CSKHGridView.Columns["PhoneNum"].HeaderText = "Mobile Phone";
             CSKHGridView.Columns["DiachiCS"].HeaderText = "Address";
             CSKHGridView.Columns["ChucVuCD"].HeaderText = "Regency";
-            CSKHGridView.AllowUserToAddRows = false;
-            CSKHGridView.Rows.RemoveAt(CSKHGridView.Rows.Count - 1);
 
             // Load Infor For Client
             string query4 = "select * from KhachHang";
@@ -124,8 +124,6 @@ namespace VietTravel
             InforCusGridView.Columns["HovaTen"].HeaderText = "Customer Name";
             InforCusGridView.Columns["SoDienThoai"].HeaderText = "Phone Number";
             InforCusGridView.Columns["DiaChi"].HeaderText = "Address";
-            InforCusGridView.AllowUserToAddRows = false;
-            InforCusGridView.Rows.RemoveAt(InforCusGridView.Rows.Count - 1);
 
             //Load Agency
             string query5 = "select * from AGENCYFORAdmin";
@@ -140,11 +138,9 @@ namespace VietTravel
             AgencyGribView.Columns["DiaDiem"].HeaderText = "Office Location";
             AgencyGribView.Columns["SoLuongChuyenDi"].HeaderText = "Number Trips";
             AgencyGribView.Columns["SoLuotThich"].HeaderText = "Number Likes";
-            AgencyGribView.AllowUserToAddRows = false;
-            AgencyGribView.Rows.RemoveAt(AgencyGribView.Rows.Count - 1);
 
             //Order Information
-            SqlConnection con = new SqlConnection(cStr);
+/*            SqlConnection con = new SqlConnection(cStr);
             string hienthi = "Select TenDiaDiem , SoLuong, NgayKhoiHanh from ChuyenDi";
             SqlCommand command = new SqlCommand(hienthi, con);
             SqlDataAdapter sql = new SqlDataAdapter(command);
@@ -157,29 +153,56 @@ namespace VietTravel
             TripAvailableAgencyGridView.Columns["SoLuong"].HeaderText = "Number Of Passengers";
             TripAvailableAgencyGridView.Columns["NgayKhoiHanh"].HeaderText = "Departure Day";
             TripAvailableAgencyGridView.Columns["NgayKhoiHanh"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            TripAvailableAgencyGridView.Columns["NgayKhoiHanh"].ValueType = typeof(DateTime);*/
+
+            string hienthichuyen = "Select * from ChuyenDi";
+            SqlCommand cm = new SqlCommand(hienthichuyen, con1);
+            SqlDataAdapter sql2 = new SqlDataAdapter(cm);
+            DataTable dat = new DataTable();
+            sql2.Fill(dat);
+            TripAvailableAgencyGridView.DataSource = dat;
+            TripAvailableAgencyGridView.Columns["TenDaiLy"].Visible = false;
+            TripAvailableAgencyGridView.Columns["MaChuyen"].Visible = false;
+            TripAvailableAgencyGridView.Columns["TinhTrang"].Visible = false;
+            TripAvailableAgencyGridView.Columns["DichVuFree"].Visible = false;
+            TripAvailableAgencyGridView.Columns["TenSoHuu"].Visible = false;
+            TripAvailableAgencyGridView.Columns["LuotThich"].Visible = false;
+            TripAvailableAgencyGridView.Columns["Giaien"].Visible = false;
+            TripAvailableAgencyGridView.Columns["TenDiaDiem"].HeaderText = "Tourist Attraction";
+            TripAvailableAgencyGridView.Columns["TenDiaDiem"].DisplayIndex = 0;
+            TripAvailableAgencyGridView.Columns["SoLuong"].HeaderText = "Number Of Passengers";
+            TripAvailableAgencyGridView.Columns["NgayKhoiHanh"].HeaderText = "Departure Day";
+            TripAvailableAgencyGridView.Columns["NgayKhoiHanh"].DefaultCellStyle.Format = "dd/MM/yyyy";
             TripAvailableAgencyGridView.Columns["NgayKhoiHanh"].ValueType = typeof(DateTime);
-            TripAvailableAgencyGridView.AllowUserToAddRows = false;
-            TripAvailableAgencyGridView.Rows.RemoveAt(TripAvailableAgencyGridView.Rows.Count - 1);
+            TripAvailableAgencyGridView.ReadOnly = true;
+            TripAvailableAgencyGridView.AutoGenerateColumns = false;
         }
 
         public void Display (string TenDaiLy)
         {
             SqlConnection con = new SqlConnection(cStr);
-            string hienthi = "Select TenDiaDiem , SoLuong, NgayKhoiHanh from ChuyenDi where TenDaiLy in (select TenDaiLy from AgencyForAdmin where TenDaiLy = @tendaily)";
-            SqlCommand command = new SqlCommand(hienthi , con);
+            string hienthi = "Select * from ChuyenDi where TenDaiLy in (select TenDaiLy from AgencyForAdmin where TenDaiLy = @tendaily)";
+            SqlCommand command = new SqlCommand(hienthi, con);
             command.Parameters.AddWithValue("@tendaily", TenDaiLy);
             SqlDataAdapter sql = new SqlDataAdapter(command);
             DataTable data = new DataTable();
             sql.Fill(data);
             TripAvailableAgencyGridView.DataSource = data;
-            TripAvailableAgencyGridView.ReadOnly = true;
-            TripAvailableAgencyGridView.AutoGenerateColumns = false;
+            TripAvailableAgencyGridView.Columns["TenDaiLy"].Visible = false;
+            TripAvailableAgencyGridView.Columns["MaChuyen"].Visible = false;
+            TripAvailableAgencyGridView.Columns["TinhTrang"].Visible = false;
+            TripAvailableAgencyGridView.Columns["DichVuFree"].Visible = false;
+            TripAvailableAgencyGridView.Columns["TenSoHuu"].Visible = false;
+            TripAvailableAgencyGridView.Columns["LuotThich"].Visible = false;
+            TripAvailableAgencyGridView.Columns["MaHDV"].Visible = false;
+            TripAvailableAgencyGridView.Columns["Giaien"].Visible = false;
             TripAvailableAgencyGridView.Columns["TenDiaDiem"].HeaderText = "Tourist Attraction";
+            TripAvailableAgencyGridView.Columns["TenDiaDiem"].DisplayIndex = 0;
             TripAvailableAgencyGridView.Columns["SoLuong"].HeaderText = "Number Of Passengers";
             TripAvailableAgencyGridView.Columns["NgayKhoiHanh"].HeaderText = "Departure Day";
             TripAvailableAgencyGridView.Columns["NgayKhoiHanh"].DefaultCellStyle.Format = "dd/MM/yyyy";
-            TripAvailableAgencyGridView.AllowUserToAddRows = false;
-            TripAvailableAgencyGridView.Rows.RemoveAt(TripAvailableAgencyGridView.Rows.Count - 1);
+            TripAvailableAgencyGridView.ReadOnly = true;
+            TripAvailableAgencyGridView.AutoGenerateColumns = false;
         }
         /*public void ThongTin(string Thongtin)
         {
@@ -434,35 +457,6 @@ namespace VietTravel
             
         }
 
-        public void SavePretty_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(toannang + Pretty.Image.Tag);
-            if (IsDirty == false)
-            {
-                MessageBox.Show(toannang + Pretty.Image.Tag.ToString());
-                string luu = toannang + Pretty.Image.Tag.ToString();
-                SqlConnection con = new SqlConnection(cStr);
-                con.Open();
-                byte[] buffer = File.ReadAllBytes(luu);
-                string save = "Update HuongDanVien Set HuongDanVien = @tenhuongdanvien , NgaySinh = @ngaysinh , SoDienThoai = @sodienthoai , DiaChi = @diachi , Emails = @emails , AnhHuongDan = @anhhuongdan where HuongDanVien = @tenhuongdanvien";
-                SqlCommand command = new SqlCommand(save, con);
-                command.Parameters.AddWithValue("@tenhuongdanvien", NamePretty.Text);
-                command.Parameters.AddWithValue("@ngaysinh", DobPretty.Value);
-                command.Parameters.AddWithValue("@sodienthoai", PhonePretty.Text);
-                command.Parameters.AddWithValue("@diachi", AddressPretty.Text);
-                command.Parameters.AddWithValue("@emails", Mailspretty.Text);
-                var binary = command.Parameters.Add("@anhhuongdan", SqlDbType.VarBinary, -1);
-                binary.Value = buffer;
-                SqlDataAdapter adapter = new SqlDataAdapter(command);
-                DataTable capnhap = new DataTable();
-                adapter.Fill(capnhap);
-            }
-            else
-            {
-                MessageBox.Show("Nothing To Save");
-            }
-        }
-
         public void NhanVienKeToanGribView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -688,7 +682,7 @@ namespace VietTravel
             }
         }
 
-        public void SaveKT_Click(object sender, EventArgs e)
+        /*public void SaveKT_Click(object sender, EventArgs e)
         {
 
             if (IsDirty == false)
@@ -716,7 +710,9 @@ namespace VietTravel
             {
                 MessageBox.Show("Nothing change To Saved");
             }
-        }
+
+
+        }*/
 
         public void CSKHGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -815,19 +811,11 @@ namespace VietTravel
         {
             if (e.RowIndex >= 0)
             {
-                DataGridViewRow row = this.AgencyGribView.Rows[e.RowIndex];
-                for (int i = 0; i < AgencyGribView.Rows.Count; i++)
-                {
-                    if (row.Selected == true)
-                    {
-                        string ten = row.Cells["TenDaiLy"].Value.ToString();
-                        Display(ten);
-                    }
-                    else if (i + 1 == AgencyGribView.Rows.Count)
-                    {
-                        AgencyGribView.Rows[i].Selected = true;
-                    }
-                }
+                
+                    string ten = AgencyGribView.Rows[e.RowIndex].Cells["TenDaiLy"].Value.ToString();
+                    Display(ten);
+                   
+                
             }
         }
 
@@ -899,8 +887,9 @@ namespace VietTravel
             OrderOfCusGridView.Columns["tendaily"].HeaderText = "Agency Name";
             OrderOfCusGridView.Columns["NgayKhoiHanh"].HeaderText = "Departure day";
             OrderOfCusGridView.Columns["giaien"].HeaderText = "Total Cost";
-            OrderOfCusGridView.AllowUserToAddRows = false;
             OrderOfCusGridView.AutoGenerateColumns = false;
+            OrderOfCusGridView.Columns["NgayKhoiHanh"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            OrderOfCusGridView.Columns["NgayKhoiHanh"].ValueType = typeof(DateTime);
         }
 
         private void TripAvailableAgencyGridView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -917,6 +906,124 @@ namespace VietTravel
                 HienThiHoaDom(makh);
             }
             
+        }
+
+        private void TripAvailableAgencyGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (TripAvailableAgencyGridView.Rows.Count >= 0)
+            {
+                for (int i =0; i < TripAvailableAgencyGridView.Rows.Count; i++)
+                {
+                    if (TripAvailableAgencyGridView.Rows[i].Selected == true)
+                    {
+                        DataGridViewRow row = this.TripAvailableAgencyGridView.Rows[i];
+                        EditTrip a = new EditTrip(row);
+                        a.Show();
+                        this.Hide();
+                    }
+                }
+            }
+        }
+
+        private void DeleteAgency_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(cStr);
+            if (AgencyGribView.Rows.Count > 0)
+            {
+                for (int i = 0; i < AgencyGribView.Rows.Count; i++)
+                {
+                    if (AgencyGribView.Rows[i].Selected == true)
+                    {
+                        DataGridViewRow row = this.AgencyGribView.Rows[i];
+                        var res = MessageBox.Show($"Dou you want to delete Agency {row.Cells["TenDaiLy"].Value.ToString()} and all of trip inside it ?", "Warnning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (res == DialogResult.Yes)
+                        {
+                            string sql = "exec XoaDaiLy @ma";
+                            SqlCommand a = new SqlCommand(sql, con);
+                            a.Parameters.AddWithValue("@ma", row.Cells["TenDaiLy"].Value.ToString());
+                            SqlDataAdapter b = new SqlDataAdapter(a);
+                            DataTable data = new DataTable();
+                            b.Fill(data);
+                            Form form = new TrangChu();
+                            form.Show();
+                            this.Hide();
+                            break;
+                        }
+                        else if (res == DialogResult.No)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void EditAgency_Click(object sender, EventArgs e)
+        {
+            if (AgencyGribView.Rows.Count > 0)
+            {
+                for (int i = 0; i < AgencyGribView.Rows.Count; i++)
+                {
+                    if (AgencyGribView.Rows[i].Selected == true)
+                    {
+                        DataGridViewRow row = this.AgencyGribView.Rows[i];
+                        EditAgency aaaa = new EditAgency(row);
+                        aaaa.Show();
+                        this.Hide();
+                        
+                    }
+                }
+            }
+        }
+
+        private void TrangChu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var res = MessageBox.Show("Do you want to exit ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (res == DialogResult.Yes)
+            {
+                System.Environment.Exit(1);
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void SavePretty_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Form or = System.Windows.Forms.Application.OpenForms["DangKyNhanVien"];
+            if (PrettyGribView.Rows.Count > 0)
+            {
+                for (int i = 1; i < PrettyGribView.Rows.Count; i++)
+                {
+                    if (PrettyGribView.Rows[i].Selected == true)
+                    {
+                        DataGridViewRow row = this.PrettyGribView.Rows[i];
+
+                        DangkyNhanVien moi = new DangkyNhanVien(row);
+                        moi.Show();
+                        this.Hide();
+                        moi.pro.Text = "Done";
+
+                    }
+                }
+            }
+        }
+
+        private void AddAgency_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Form oop = System.Windows.Forms.Application.OpenForms["EditAgency"];
+            EditAgency list = new EditAgency();
+            list.Show();
+            this.Hide();
+            list.done.Text = "Done";
+            list.vohieuhoa.Enabled = false;
+
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

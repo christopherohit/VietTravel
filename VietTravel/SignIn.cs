@@ -115,22 +115,12 @@ namespace VietTravel
                         DataTable i = new DataTable();
                         da.Fill(i);
                         MessageBox.Show($"Hello Tourist Guide {i.Rows[0].ItemArray[0].ToString()}! Hope you have a good day", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadingForm q = new LoadingForm();
-                        q.Show();
+                        NhanVienTrangChu ios = new NhanVienTrangChu();
+                        ios.Show();
                         this.Hide();
-                        NhanVienTrangChu l = new NhanVienTrangChu();
-                        for (int k = 0; k <= 3; k++)
-                        {
-                            Thread.Sleep(800);
-                            int count = k + 1;
-                            if (count == 3)
-                            {
-                                l.Show();
-                                q.Close();
-                            }
-                        }
 
-                    }else if(tab.Rows.Count > 0)
+                    }
+                    else if(tab.Rows.Count > 0)
                     {
                         string layen = "select Hoten from NhanVienKeToan Where Emails = @emails";
                         SqlCommand sqll2 = new SqlCommand(layen, con);
@@ -139,20 +129,10 @@ namespace VietTravel
                         DataTable r = new DataTable();
                         ada.Fill(r);
                         MessageBox.Show($"Hello Accountant {r.Rows[0].ItemArray[0].ToString()}! Hope you have a good day", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadingForm q = new LoadingForm();
-                        q.Show();
+                        NhanVienTrangChu ios = new NhanVienTrangChu();
+                        ios.Show();
                         this.Hide();
-                        NhanVienTrangChu l = new NhanVienTrangChu();
-                        for (int k = 0; k <= 3; k++)
-                        {
-                            Thread.Sleep(800);
-                            int count = k + 1;
-                            if (count == 3)
-                            {
-                                l.Show();
-                                q.Close();
-                            }
-                        }
+                        
                     }
                     else if (BAP.Rows.Count > 0)
                     {
@@ -163,20 +143,9 @@ namespace VietTravel
                         DataTable r = new DataTable();
                         ada.Fill(r);
                         MessageBox.Show($"Hello Customer Care Staff {r.Rows[0].ItemArray[0].ToString()}! Hope you have a good day", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadingForm q = new LoadingForm();
-                        q.Show();
+                        NhanVienTrangChu ios = new NhanVienTrangChu();
+                        ios.Show();
                         this.Hide();
-                        NhanVienTrangChu l = new NhanVienTrangChu();
-                        for (int k = 0; k <= 3; k++)
-                        {
-                            Thread.Sleep(800);
-                            int count = k + 1;
-                            if (count == 3)
-                            {
-                                l.Show();
-                                q.Close();
-                            }
-                        }
                     }
                     else
                     {
@@ -199,7 +168,15 @@ namespace VietTravel
 
         private void Signin_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            var res = MessageBox.Show("Do you want to exit?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (res == DialogResult.Yes)
+            {
+                System.Environment.Exit(1);
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
 
         private void HelpBut_Click(object sender, EventArgs e)
