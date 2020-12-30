@@ -55,6 +55,12 @@
     <Compile Include="CheckAdmin.Designer.cs">
       <DependentUpon>CheckAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChinhSuaNanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChinhSuaNanVien.Designer.cs">
+      <DependentUpon>ChinhSuaNanVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChinhSuaKhachHang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,12 +102,6 @@
     </Compile>
     <Compile Include="EditTrip.Designer.cs">
       <DependentUpon>EditTrip.cs</DependentUpon>
-    </Compile>
-    <Compile Include="NhanVienTrangChu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="NhanVienTrangChu.Designer.cs">
-      <DependentUpon>NhanVienTrangChu.cs</DependentUpon>
     </Compile>
     <Compile Include="QuanLyDuLichDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -151,6 +151,9 @@
     <EmbeddedResource Include="CheckAdmin.resx">
       <DependentUpon>CheckAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChinhSuaNanVien.resx">
+      <DependentUpon>ChinhSuaNanVien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChinhSuaKhachHang.resx">
       <DependentUpon>ChinhSuaKhachHang.cs</DependentUpon>
     </EmbeddedResource>
@@ -171,9 +174,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditTrip.resx">
       <DependentUpon>EditTrip.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NhanVienTrangChu.resx">
-      <DependentUpon>NhanVienTrangChu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SignIn.resx">
       <DependentUpon>SignIn.cs</DependentUpon>

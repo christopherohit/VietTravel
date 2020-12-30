@@ -65,6 +65,7 @@ namespace VietTravel
             // 
             // reset
             // 
+            this.reset.Cursor = System.Windows.Forms.Cursors.Hand;
             this.reset.Location = new System.Drawing.Point(555, 294);
             this.reset.Name = "reset";
             this.reset.Size = new System.Drawing.Size(75, 23);
@@ -75,6 +76,7 @@ namespace VietTravel
             // 
             // done_button
             // 
+            this.done_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.done_button.Location = new System.Drawing.Point(433, 294);
             this.done_button.Name = "done_button";
             this.done_button.Size = new System.Drawing.Size(75, 23);
@@ -87,6 +89,7 @@ namespace VietTravel
             // 
             this.privacy.BackColor = System.Drawing.Color.Silver;
             this.privacy.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.privacy.Cursor = System.Windows.Forms.Cursors.Hand;
             this.privacy.Location = new System.Drawing.Point(447, 55);
             this.privacy.Name = "privacy";
             this.privacy.Size = new System.Drawing.Size(183, 173);
@@ -97,6 +100,7 @@ namespace VietTravel
             // 
             // dayofbirth
             // 
+            this.dayofbirth.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dayofbirth.Location = new System.Drawing.Point(117, 101);
             this.dayofbirth.Name = "dayofbirth";
             this.dayofbirth.Size = new System.Drawing.Size(200, 20);
@@ -208,6 +212,7 @@ namespace VietTravel
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(12, 4);
             this.pictureBox1.Name = "pictureBox1";

@@ -76,6 +76,7 @@ namespace VietTravel
             // 
             // InBut
             // 
+            this.InBut.Cursor = System.Windows.Forms.Cursors.Hand;
             this.InBut.Location = new System.Drawing.Point(218, 178);
             this.InBut.Name = "InBut";
             this.InBut.Size = new System.Drawing.Size(75, 23);

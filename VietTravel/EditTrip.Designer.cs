@@ -204,6 +204,7 @@ namespace VietTravel
             // 
             // HuongDanVien
             // 
+            this.HuongDanVien.Cursor = System.Windows.Forms.Cursors.Hand;
             this.HuongDanVien.DataSource = this.huongDanvienBindingSource;
             this.HuongDanVien.DisplayMember = "HuongDanVien";
             this.HuongDanVien.FormattingEnabled = true;
@@ -225,6 +226,7 @@ namespace VietTravel
             // 
             // ChoO
             // 
+            this.ChoO.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ChoO.DataSource = this.aCCOMODATIONBindingSource;
             this.ChoO.DisplayMember = "TenSoHuu";
             this.ChoO.FormattingEnabled = true;
@@ -246,6 +248,7 @@ namespace VietTravel
             // 
             // NgayXuatPhat
             // 
+            this.NgayXuatPhat.Cursor = System.Windows.Forms.Cursors.Hand;
             this.NgayXuatPhat.Location = new System.Drawing.Point(665, 128);
             this.NgayXuatPhat.Name = "NgayXuatPhat";
             this.NgayXuatPhat.Size = new System.Drawing.Size(200, 20);
@@ -253,6 +256,7 @@ namespace VietTravel
             // 
             // DiaDiem
             // 
+            this.DiaDiem.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DiaDiem.DataSource = this.tRIPAVAILABLEBindingSource;
             this.DiaDiem.DisplayMember = "TenDiaDiem";
             this.DiaDiem.FormattingEnabled = true;
@@ -274,6 +278,7 @@ namespace VietTravel
             // 
             // TinhTrang
             // 
+            this.TinhTrang.Cursor = System.Windows.Forms.Cursors.Hand;
             this.TinhTrang.FormattingEnabled = true;
             this.TinhTrang.Items.AddRange(new object[] {
             "Hot Sale",
@@ -299,6 +304,7 @@ namespace VietTravel
             // 
             this.AnhChuyen.BackColor = System.Drawing.Color.Gray;
             this.AnhChuyen.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.AnhChuyen.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AnhChuyen.Location = new System.Drawing.Point(83, 255);
             this.AnhChuyen.Name = "AnhChuyen";
             this.AnhChuyen.Size = new System.Drawing.Size(151, 105);
@@ -335,6 +341,7 @@ namespace VietTravel
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(12, 9);
             this.pictureBox1.Name = "pictureBox1";
@@ -346,6 +353,7 @@ namespace VietTravel
             // 
             // button1
             // 
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.Location = new System.Drawing.Point(786, 337);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);

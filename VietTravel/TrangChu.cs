@@ -35,6 +35,9 @@ namespace VietTravel
         public DateTime datepr { get { return this.DobPretty.Value; } }
         public TextBox dcpr { get { return this.AddressPretty; } }
         public TextBox mailspr { get { return this.Mailspretty; } }
+        public DataGridView viewo { get { return this.PrettyGribView; } }
+        public TextBox mailskt { get { return this.EmailsKT; } }
+        public TextBox mailscs { get { return this.MailsCSKH; } }
         public TrangChu()
         {
             InitializeComponent();
@@ -101,12 +104,12 @@ namespace VietTravel
             CSKHGridView.Columns["MaHDV"].Visible = false;
             CSKHGridView.Columns["MaPhongBan"].Visible = false;
             CSKHGridView.Columns["MatKhau"].Visible = false;
-            CSKHGridView.Columns["AnhThe"].Visible = false;
+            CSKHGridView.Columns["AnhCaNhan"].Visible = false;
             CSKHGridView.Columns["Hoten"].HeaderText = "Name Staff";
-            CSKHGridView.Columns["DateBirth"].HeaderText = "Date Of Birth";
-            CSKHGridView.Columns["PhoneNum"].HeaderText = "Mobile Phone";
-            CSKHGridView.Columns["DiachiCS"].HeaderText = "Address";
-            CSKHGridView.Columns["ChucVuCD"].HeaderText = "Regency";
+            CSKHGridView.Columns["DOB"].HeaderText = "Date Of Birth";
+            CSKHGridView.Columns["phone"].HeaderText = "Mobile Phone";
+            CSKHGridView.Columns["AddressNV"].HeaderText = "Address";
+            CSKHGridView.Columns["ChucVu"].HeaderText = "Regency";
 
             // Load Infor For Client
             string query4 = "select * from KhachHang";
@@ -720,15 +723,15 @@ namespace VietTravel
             {
 
                 DataGridViewRow row = this.CSKHGridView.Rows[e.RowIndex];
-                var data = (Byte[])(row.Cells["AnhThe"].Value);
+                var data = (Byte[])(row.Cells["AnhCaNhan"].Value);
                 var stream = new MemoryStream(data);
                 NameCSKH.Text = row.Cells["Hoten"].Value.ToString();
-                SDTCSKH.Text = row.Cells["PhoneNum"].Value.ToString();
-                DCCSKH.Text = row.Cells["DiaChiCS"].Value.ToString();
-                MailsCSKH.Text = row.Cells["Emais"].Value.ToString();
+                SDTCSKH.Text = row.Cells["phone"].Value.ToString();
+                DCCSKH.Text = row.Cells["AddressNV"].Value.ToString();
+                MailsCSKH.Text = row.Cells["Emails"].Value.ToString();
                 ChamsocKH.Image = Image.FromStream(stream);
-                this.DOBCSKH.Value = Convert.ToDateTime(row.Cells["DateBirth"].Value);
-                Septong.Text = row.Cells["ChucVuCD"].Value.ToString();
+                this.DOBCSKH.Value = Convert.ToDateTime(row.Cells["DOB"].Value);
+                Septong.Text = row.Cells["ChucVu"].Value.ToString();
                 if (MailsCSKH.Text == "")
                 {
                     var res = MessageBox.Show("You Still complete fill in information this staff \nDo you want complete registration it now ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -905,6 +908,25 @@ namespace VietTravel
                 int makh = Convert.ToInt32(InforCusGridView.Rows[index].Cells["MaKH"].Value.ToString());
                 HienThiHoaDom(makh);
             }
+            if (InforCusGridView.Rows.Count > 0)
+            {
+                for(int i = 0; i < InforCusGridView.Rows.Count; i++)
+                {
+                    if (InforCusGridView.Rows[i].Selected == true)
+                    {
+                        DataGridViewRow row = this.InforCusGridView.Rows[i];
+                        if(row.Cells["MatKhau"].Value.ToString() == "")
+                        {
+                            var res = MessageBox.Show("This client is initialized but has not yet set a password. \nDo you want to do it for them?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                            if (res == DialogResult.Yes)
+                            {
+                                Confirm_Registration Ser = new Confirm_Registration();
+                                Ser.tio.Text = "OK";
+                            }
+                        }
+                    }
+                }
+            }
             
         }
 
@@ -1024,6 +1046,41 @@ namespace VietTravel
         private void label17_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void SaveKT_Click(object sender, EventArgs e)
+        {
+            if (NhanVienKeToanGribView.Rows.Count > 0)
+            {
+                for (int i = 0; i < NhanVienKeToanGribView.Rows.Count; i++)
+                {
+                    if (NhanVienKeToanGribView.Rows[i].Selected == true)
+                    {
+                        DataGridViewRow row = this.NhanVienKeToanGribView.Rows[i];
+                        ChinhSuaNanVien cs = new ChinhSuaNanVien(row);
+                        cs.Show();
+                        this.Hide();
+                    }
+                }
+            }
+        }
+
+        private void SaveCSKH_Click(object sender, EventArgs e)
+        {
+            if (CSKHGridView.Rows.Count > 0)
+            {
+                for (int i = 0; i < CSKHGridView.Rows.Count; i++)
+                {
+                    if (CSKHGridView.Rows[i].Selected == true)
+                    {
+                        DataGridViewRow row = this.CSKHGridView.Rows[i];
+                        ChinhSuaNanVien aaaaa = new ChinhSuaNanVien(row);
+                        aaaaa.Show();
+                        this.Hide();
+                        aaaaa.button.Text = "Done";
+                    }
+                }
+            }
         }
     }
 }

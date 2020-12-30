@@ -84,7 +84,7 @@ namespace VietTravel
                     SqlDataAdapter o = new SqlDataAdapter(sql2);
                     DataTable tab = new DataTable();
                     o.Fill(tab);
-                    string kiemCSKH = "Select * from CSKH where Emais = @emails and MatKhau = @matkhau";
+                    string kiemCSKH = "Select * from CSKH where Emails = @emails and MatKhau = @matkhau";
                     SqlCommand sql3 = new SqlCommand(kiemCSKH, con);
                     sql3.Parameters.AddWithValue("@emails", nickname);
                     sql3.Parameters.AddWithValue("@matkhau", password);
@@ -115,9 +115,8 @@ namespace VietTravel
                         DataTable i = new DataTable();
                         da.Fill(i);
                         MessageBox.Show($"Hello Tourist Guide {i.Rows[0].ItemArray[0].ToString()}! Hope you have a good day", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        NhanVienTrangChu ios = new NhanVienTrangChu();
-                        ios.Show();
-                        this.Hide();
+
+
 
                     }
                     else if(tab.Rows.Count > 0)
@@ -129,9 +128,7 @@ namespace VietTravel
                         DataTable r = new DataTable();
                         ada.Fill(r);
                         MessageBox.Show($"Hello Accountant {r.Rows[0].ItemArray[0].ToString()}! Hope you have a good day", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        NhanVienTrangChu ios = new NhanVienTrangChu();
-                        ios.Show();
-                        this.Hide();
+
                         
                     }
                     else if (BAP.Rows.Count > 0)
@@ -143,9 +140,7 @@ namespace VietTravel
                         DataTable r = new DataTable();
                         ada.Fill(r);
                         MessageBox.Show($"Hello Customer Care Staff {r.Rows[0].ItemArray[0].ToString()}! Hope you have a good day", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        NhanVienTrangChu ios = new NhanVienTrangChu();
-                        ios.Show();
-                        this.Hide();
+
                     }
                     else
                     {

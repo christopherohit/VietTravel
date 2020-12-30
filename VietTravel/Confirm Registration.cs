@@ -15,6 +15,7 @@ namespace VietTravel
     {
         string cStr = "Data Source=DESKTOP-7CBSM7T\\HENDRICHS;Initial Catalog=QuanLyDuLich;Integrated Security=True";
 
+        public Button tio { get { return this.complete; } }
         public Confirm_Registration()
         {
             InitializeComponent();
@@ -29,42 +30,86 @@ namespace VietTravel
         {
             SqlConnection con = new SqlConnection(cStr);
             System.Windows.Forms.Form a = System.Windows.Forms.Application.OpenForms["ThemKhachHang"];
-            if (pass.Text == "" || checkpass.Text == "")
+            if (complete.Text == "Done")
             {
-                if (pass.Text == "")
+                if (pass.Text == "" || checkpass.Text == "")
                 {
-                    MessageBox.Show("Please Fill In Blank");
-                }
-                if (checkpass.Text == "")
-                {
-                    MessageBox.Show("Please Fill In Blank");
+                    if (pass.Text == "")
+                    {
+                        MessageBox.Show("Please Fill In Blank");
+                    }
+                    if (checkpass.Text == "")
+                    {
+                        MessageBox.Show("Please Fill In Blank");
 
+                    }
                 }
-            }
-            else if (pass.Text != checkpass.Text)
-            {
-                MessageBox.Show("Your Confirm Password not same your password. \nPlease re-check it", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (pass.Text.Length < 6)
-            {
-                if (pass.Text.Length < 6)
+                else if (pass.Text != checkpass.Text)
                 {
-                    MessageBox.Show("Inconsistent password length, \nLength should be less than 20 and longer than 3 letters \nPlease try again");
+                    MessageBox.Show("Your Confirm Password not same your password. \nPlease re-check it", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                else if (pass.Text.Length < 6)
+                {
+                    if (pass.Text.Length < 6)
+                    {
+                        MessageBox.Show("Inconsistent password length, \nLength should be less than 20 and longer than 3 letters \nPlease try again");
+                    }
+                }
+                else
+                {
+                    string update = "update KhachHang set Matkhau = @matkhau where Emails = @emails";
+                    SqlCommand command = new SqlCommand(update, con);
+                    command.Parameters.AddWithValue("emails", ((ThemKhachHang)a).Emails.Text);
+                    command.Parameters.AddWithValue("@matkhau", pass.Text);
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable data = new DataTable();
+                    adapter.Fill(data);
+                    MessageBox.Show("Completety Registration");
+                    TrangChu trangChu = new TrangChu();
+                    trangChu.Show();
+                    this.Hide();
+                }
+
             }
-            else
+            else if (complete.Text == "OK")
             {
-                string update = "update KhachHang set Matkhau = @matkhau where Emails = @emails";
-                SqlCommand command = new SqlCommand(update, con);
-                command.Parameters.AddWithValue("emails", ((ThemKhachHang)a).Emails.Text);
-                command.Parameters.AddWithValue("@matkhau", pass.Text);
-                SqlDataAdapter adapter = new SqlDataAdapter(command);
-                DataTable data = new DataTable();
-                adapter.Fill(data);
-                MessageBox.Show("Completety Registration");
-                TrangChu trangChu = new TrangChu();
-                trangChu.Show();
-                this.Hide();
+                if (pass.Text == "" || checkpass.Text == "")
+                {
+                    if (pass.Text == "")
+                    {
+                        MessageBox.Show("Please Fill In Blank");
+                    }
+                    if (checkpass.Text == "")
+                    {
+                        MessageBox.Show("Please Fill In Blank");
+
+                    }
+                }
+                else if (pass.Text != checkpass.Text)
+                {
+                    MessageBox.Show("Your Confirm Password not same your password. \nPlease re-check it", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (pass.Text.Length < 6)
+                {
+                    if (pass.Text.Length < 6)
+                    {
+                        MessageBox.Show("Inconsistent password length, \nLength should be less than 20 and longer than 3 letters \nPlease try again");
+                    }
+                }
+                else
+                {
+                    string update = "update KhachHang set Matkhau = @matkhau where Emails = @emails";
+                    SqlCommand command = new SqlCommand(update, con);
+                    command.Parameters.AddWithValue("emails", ((ThemKhachHang)a).Emails.Text);
+                    command.Parameters.AddWithValue("@matkhau", pass.Text);
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable data = new DataTable();
+                    adapter.Fill(data);
+                    MessageBox.Show("Completety Registration");
+                    TrangChu trangChu = new TrangChu();
+                    trangChu.Show();
+                    this.Hide();
+                }
             }
         }
 

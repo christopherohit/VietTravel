@@ -98,6 +98,7 @@ namespace VietTravel
             // 
             // CheckBut
             // 
+            this.CheckBut.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CheckBut.Location = new System.Drawing.Point(354, 120);
             this.CheckBut.Name = "CheckBut";
             this.CheckBut.Size = new System.Drawing.Size(75, 23);

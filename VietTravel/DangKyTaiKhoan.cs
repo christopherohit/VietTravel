@@ -131,7 +131,7 @@ namespace VietTravel
                     }
                     else if (Major.Text == "Customer Care Staff")
                     {
-                        string kiemthu3 = "select * from CSKH where emais = @emails";
+                        string kiemthu3 = "select * from CSKH where Emails = @emails";
                         SqlCommand command = new SqlCommand(kiemthu3, con);
                         command.Parameters.AddWithValue("@emails", MailsAcc.Text);
                         SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
@@ -143,7 +143,7 @@ namespace VietTravel
                         }
                         else
                         {
-                            string capnhat3 = "Update CSKH set Emais = @emails , Matkhau = @pass  where PhoneNum = @sdt";
+                            string capnhat3 = "Update CSKH set Emails = @emails , Matkhau = @pass  where phone = @sdt";
                             SqlCommand sqlCommand = new SqlCommand(capnhat3, con);
                             sqlCommand.Parameters.AddWithValue("@emails", MailsAcc.Text);
                             sqlCommand.Parameters.AddWithValue("@pass", PassBox.Text);
@@ -249,7 +249,7 @@ namespace VietTravel
                     else if (Major.Text == "Customer Care Staff")
                     {
                         MessageBox.Show("s");
-                        string kiemthu3 = "select * from CSKH where emais = @emails";
+                        string kiemthu3 = "select * from CSKH where Emails = @emails";
                         SqlCommand command = new SqlCommand(kiemthu3, con);
                         command.Parameters.AddWithValue("@emails", MailsAcc.Text);
                         SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
@@ -262,7 +262,7 @@ namespace VietTravel
                         else
                         {
                             MessageBox.Show("s");
-                            string capnhat3 = "Update CSKH set Emais = @emails , Matkhau = @pass  where PhoneNum = @sdt";
+                            string capnhat3 = "Update CSKH set Emails = @emails , Matkhau = @pass  where phone = @sdt";
                             SqlCommand sqlCommand = new SqlCommand(capnhat3);
                             sqlCommand.Parameters.AddWithValue("@emails", MailsAcc.Text);
                             sqlCommand.Parameters.AddWithValue("@pass", PassBox.Text);
@@ -430,7 +430,7 @@ namespace VietTravel
                             }
                             else
                             {
-                                string kiemtracskh = "select * from CSKH where Emais = @emails";
+                                string kiemtracskh = "select * from CSKH where Emails = @emails";
                                 SqlCommand sqlCommand = new SqlCommand(kiemtracskh, con);
                                 sqlCommand.Parameters.AddWithValue("@emails", MailsAcc.Text);
                                 DataTable table = new DataTable();
@@ -445,7 +445,7 @@ namespace VietTravel
                                 }
                                 else
                                 {
-                                    string nhapCSKH = "Insert into CSKH (Emais , HoTen , DateBirth , PhoneNum , DiaChiCS , ChucVuCD , AnhThe , MaPhongBan , MatKhau) select @emails , null , null , null , null , null , null , 'CCS16102000X' , @matkhau ";
+                                    string nhapCSKH = "Insert into CSKH (Emails , HoTen , DOB , phone , AddressNV , ChucVu , AnhCaNhan , MaPhongBan , MatKhau) select @emails , null , null , null , null , null , null , 'CCS16102000X' , @matkhau ";
                                     SqlCommand sql = new SqlCommand(nhapCSKH, con);
                                     sql.Parameters.AddWithValue("@emails", MailsAcc.Text);
                                     sql.Parameters.AddWithValue("@matkhau", PassBox.Text);
@@ -491,46 +491,65 @@ namespace VietTravel
             {
                 PassHide.Visible = false;
                 label6.Visible = false;
-                
+                ContinueBut.Enabled = false;
             }
             else if (Major.Text.Equals("Tourist Guide"))
             {
                 if (ContinueBut.Text.Equals("OK") || ContinueBut.Text.Equals("Done"))
                 {
-                    PassHide.Visible = false;
-                    label6.Visible = false;
+                    PassHide.Visible = true;
+                    label6.Visible = true;
+                    ContinueBut.Enabled = true;
+
                 }
             }
             else if (Major.Text.Equals("Staff Accountant"))
             {
                 if(ContinueBut.Text.Equals("OK") || ContinueBut.Text.Equals("Done"))
                 {
-                    PassHide.Visible = false;
-                    label6.Visible = false;
+                    PassHide.Visible = true;
+                    label6.Visible = true;
+                    ContinueBut.Enabled = true;
                 }
             }
             else if (Major.Text.Equals("Customer Care Staff"))
             {
                 if(ContinueBut.Text.Equals("OK") || ContinueBut.Text.Equals("Done"))
                 {
-                    PassHide.Visible = false;
-                    label6.Visible = false;
+                    PassHide.Visible = true;
+                    label6.Visible = true;
+                    ContinueBut.Enabled = true;
                 }
             }
         }
 
         private void DangKyTaiKhoan_FormClosing(object sender, FormClosingEventArgs e)
         {
-            dynamic res = MessageBox.Show("Do you want to exit this form ?", "VieTravel", MessageBoxButtons.YesNo);
-            if (res == DialogResult.Yes)
+            if (ContinueBut.Text == "OK")
             {
-                Signin to = new Signin();
-                to.Show();
+                TrangChu IU = new TrangChu();
+                IU.Show();
                 this.Hide();
             }
-            if(res == DialogResult.No)
+            else if (ContinueBut.Text == "Done")
             {
-                e.Cancel = true;
+                TrangChu IU = new TrangChu();
+                IU.Show();
+                this.Hide();
+            }
+            else
+            {
+                dynamic res = MessageBox.Show("Do you want to exit this form ?", "VieTravel", MessageBoxButtons.YesNo);
+                if (res == DialogResult.Yes)
+                {
+                    Signin to = new Signin();
+                    to.Show();
+                    this.Hide();
+                }
+                if (res == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
             }
         }
     }

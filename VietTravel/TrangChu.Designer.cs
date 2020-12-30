@@ -382,6 +382,7 @@ namespace VietTravel
             this.SaveKT.TabIndex = 22;
             this.SaveKT.Text = "Edit";
             this.SaveKT.UseVisualStyleBackColor = true;
+            this.SaveKT.Click += new System.EventHandler(this.SaveKT_Click);
             // 
             // AddKT
             // 
@@ -599,6 +600,7 @@ namespace VietTravel
             this.SaveCSKH.TabIndex = 7;
             this.SaveCSKH.Text = "Edit";
             this.SaveCSKH.UseVisualStyleBackColor = true;
+            this.SaveCSKH.Click += new System.EventHandler(this.SaveCSKH_Click);
             // 
             // AddCSKH
             // 

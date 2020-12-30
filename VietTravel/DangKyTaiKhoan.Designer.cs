@@ -50,12 +50,16 @@ namespace VietTravel
             this.label6 = new System.Windows.Forms.Label();
             this.ContinueBut = new System.Windows.Forms.Button();
             this.phongBanBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.phongBanBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quanLyDuLichDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quanLyDuLichDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.phongBanBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.phongBanBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -196,6 +200,7 @@ namespace VietTravel
             // 
             // ContinueBut
             // 
+            this.ContinueBut.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ContinueBut.Location = new System.Drawing.Point(605, 288);
             this.ContinueBut.Name = "ContinueBut";
             this.ContinueBut.Size = new System.Drawing.Size(75, 23);
@@ -209,11 +214,45 @@ namespace VietTravel
             this.phongBanBindingSource1.DataMember = "PhongBan";
             this.phongBanBindingSource1.DataSource = this.quanLyDuLichDataSet;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(1, 73);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(280, 160);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox2.TabIndex = 8;
+            this.pictureBox2.TabStop = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(9, 301);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(66, 13);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "More info at:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label8.ForeColor = System.Drawing.Color.Blue;
+            this.label8.Location = new System.Drawing.Point(71, 301);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(195, 13);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "https://travel.com.vn/Hotel/Destination";
+            // 
             // DangKyTaiKhoan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(698, 323);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.ContinueBut);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.Major);
@@ -238,6 +277,7 @@ namespace VietTravel
             ((System.ComponentModel.ISupportInitialize)(this.quanLyDuLichDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.phongBanBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.phongBanBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -264,5 +304,8 @@ namespace VietTravel
         private System.Windows.Forms.BindingSource phongBanBindingSource1;
         private QuanLyDuLichDataSet quanLyDuLichDataSet1;
         private System.Windows.Forms.BindingSource phongBanBindingSource2;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }

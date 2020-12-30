@@ -17,6 +17,7 @@ namespace VietTravel
         string cStr = "Data Source=DESKTOP-7CBSM7T\\HENDRICHS;Initial Catalog=QuanLyDuLich;Integrated Security=True";
         string toannang = Path.GetFullPath("/VietTravel/Used/Place/");
         public Button button { get { return this.button1; } }
+        bool IsDirty { get; set; }
         public EditTrip(DataGridViewRow row)
         {
             InitializeComponent();
@@ -57,53 +58,13 @@ namespace VietTravel
                 label12.Visible = false;
                 textBox1.Visible = false;
             }
+            IsDirty = true;
         }
-        /*public EditTrip(DataGridViewRow rails)
-        {
-            InitializeComponent();
-            HienThi();
-            DiaDiem.Text = rails.Cells["TenDiaDiem"].Value.ToString();
-            SqlConnection a = new SqlConnection(cStr);
-            string kiem = "select HuongDanVien from HuongDanVien where MaHDV = @ma";
-            string chinhanh = "select phongcanh from TRIPAVAILABLE where TenDiaDiem = @ten";
-            SqlCommand sql = new SqlCommand(chinhanh, a);
-            sql.Parameters.AddWithValue("@ten", DiaDiem.Text);
-            SqlDataAdapter adapter = new SqlDataAdapter(sql);
-            DataTable table = new DataTable();
-            adapter.Fill(table);
-            SqlCommand b = new SqlCommand(kiem, a);
-            b.Parameters.AddWithValue("@ma", rails.Cells["MaHDV"].Value.ToString());
-            SqlDataAdapter r = new SqlDataAdapter(b);
-            DataTable g = new DataTable();
-            r.Fill(g);
-            var data = (Byte[])(table.Rows[0].ItemArray[0]);
-            var stream = new MemoryStream(data);
-            MC.Text = rails.Cells["MaChuyen"].Value.ToString();
-            ChoO.Text = rails.Cells["TENSOHUU"].Value.ToString();
-            NgayXuatPhat.Value = Convert.ToDateTime(rails.Cells["NgayKhoiHanh"].Value);
-            soluong.Text = rails.Cells["SoLuong"].Value.ToString();
-            TinhTrang.Text = rails.Cells["TinhTrang"].Value.ToString();
-            DichVu.Text = rails.Cells["DichVuFree"].Value.ToString();
-            TongTien.Text = rails.Cells["Giaien"].Value.ToString();
-            HuongDanVien.Text = g.Rows[0].ItemArray[0].ToString();
-            AnhChuyen.Image = Image.FromStream(stream);
-            if (button1.Text == "Done")
-            {
-                MC.Enabled = true;
-
-            }
-            else
-            {
-                MC.Enabled = false;
-                label12.Visible = false;
-                textBox1.Visible = false;
-            }
-        }*/
-
         public EditTrip()
         {
             InitializeComponent();
             HienThi();
+            IsDirty = true;
 
         }
 
@@ -144,6 +105,7 @@ namespace VietTravel
                 string pathImage = AD.FileName.Replace(toannang, "");
                 AnhChuyen.Image = new Bitmap(toannang + pathImage);
                 AnhChuyen.Image.Tag = pathImage;
+                IsDirty = false;
             }
         }
         private void button1_Click(object sender, EventArgs e)
@@ -209,51 +171,44 @@ namespace VietTravel
                         }
                         else
                         {
-
-                            string luu = toannang + AnhChuyen.Image.Tag.ToString();
-                            Byte[] buffer = File.ReadAllBytes(luu);
-                            string suaanh = "select cd.TenDiaDiem from ChuyenDi cd , TRIPAVAILABLE tp where cd.TenDiaDiem = tp.TenDiaDiem and tp.PhongCanh = @anh";
-                            SqlCommand Samira = new SqlCommand(suaanh, con);
-                            var nhiphan = Samira.Parameters.Add("@anh", SqlDbType.VarBinary, -1);
-                            nhiphan.Value = buffer;
-                            SqlDataAdapter anivi = new SqlDataAdapter(Samira);
-                            DataTable via = new DataTable();
-                            anivi.Fill(via);
-                            string cap = "insert into ChuyenDi (MaChuyen,TenDiaDiem , SoLuong , TinhTrang , DichVuFree , TenSoHuu , Giaien , MgayKhoiHanh , LuotThich,MaHDV ) values (@ma , @tendiadiem , @soluong , @tinhtrang , @dichvu , @tensohuu , @gia , @ngaydi , @yeucau , @matg)";
-                            string list = "select tr.MaHDV from ChuyenDi tr , HuongDanVien hdv where tr.MaHDV = hdv.MaHDV and hdv.HuongDanVien = @ten";
-                            SqlCommand sql = new SqlCommand(list, con);
-                            sql.Parameters.AddWithValue("@ten", HuongDanVien.Text);
-                            SqlDataAdapter a = new SqlDataAdapter(sql);
-                            DataTable o = new DataTable();
-                            a.Fill(o);
-                            MessageBox.Show(o.Rows[0].ItemArray[0].ToString());
-                            SqlCommand Yoo = new SqlCommand(cap, con);
-                            Yoo.Parameters.AddWithValue("@ma", MC.Text);
-                            Yoo.Parameters.AddWithValue("@tendiadiem", Convert.ToString(via.Rows[0].ItemArray[0].ToString()));
-                            Yoo.Parameters.AddWithValue("@soluong", soluong.Text);
-                            Yoo.Parameters.AddWithValue("@tinhtrang", TinhTrang.Text);
-                            Yoo.Parameters.AddWithValue("@dichvu", DichVu.Text);
-                            Yoo.Parameters.AddWithValue("@tensohuu" , ChoO.Text);
-                            Yoo.Parameters.AddWithValue("@gia", TongTien.Text);
-                            Yoo.Parameters.AddWithValue("@ngay", Convert.ToDateTime(NgayXuatPhat.Value.ToString()));
-                            Yoo.Parameters.AddWithValue("@yeucau", textBox1.Text);
-                            Yoo.Parameters.AddWithValue("@matg", Convert.ToInt32(o.Rows[0].ItemArray[0].ToString()));
-                            SqlDataAdapter ori = new SqlDataAdapter(Yoo);
-                            DataTable azir = new DataTable();
-                            ori.Fill(azir);
-                            MessageBox.Show("Added Trip Success");
-                            var res = MessageBox.Show("Do you want to return Main Form ?", "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                            if (res == DialogResult.Yes)
+                            if(IsDirty == true)
                             {
-                                TrangChu chu = new TrangChu();
-                                chu.Show();
-                                this.Hide();
+                                MessageBox.Show("You have not yet selected a photo for the trip location", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                             else
                             {
-                                EditTrip eee = new EditTrip();
-                                eee.Show();
-                                this.Hide();
+                                string luu = toannang + AnhChuyen.Image.Tag.ToString();
+                                Byte[] buffer = File.ReadAllBytes(luu);
+                                string suaanh = "select cd.TenDiaDiem from ChuyenDi cd , TRIPAVAILABLE tp where cd.TenDiaDiem = tp.TenDiaDiem and tp.PhongCanh = @anh";
+                                SqlCommand Samira = new SqlCommand(suaanh, con);
+                                var binary = Samira.Parameters.Add("@anh", SqlDbType.VarBinary, -1);
+                                binary.Value = buffer;
+                                SqlDataAdapter anivi = new SqlDataAdapter(Samira);
+                                DataTable via = new DataTable();
+                                anivi.Fill(via);
+                                string cap = "insert into ChuyenDi (MaChuyen,TenDiaDiem , SoLuong , TinhTrang , DichVuFree , TenSoHuu , Giaien , MgayKhoiHanh , LuotThich,MaHDV ) values (@ma , @tendiadiem , @soluong , @tinhtrang , @dichvu , @tensohuu , @gia , @ngaydi , @yeucau , @matg)";
+                                string list = "select tr.MaHDV from ChuyenDi tr , HuongDanVien hdv where tr.MaHDV = hdv.MaHDV and hdv.HuongDanVien = @ten";
+                                SqlCommand sql = new SqlCommand(list, con);
+                                sql.Parameters.AddWithValue("@ten", HuongDanVien.Text);
+                                SqlDataAdapter a = new SqlDataAdapter(sql);
+                                DataTable o = new DataTable();
+                                a.Fill(o);
+                                MessageBox.Show(o.Rows[0].ItemArray[0].ToString());
+                                SqlCommand Yoo = new SqlCommand(cap, con);
+                                Yoo.Parameters.AddWithValue("@ma", MC.Text);
+                                Yoo.Parameters.AddWithValue("@tendiadiem", Convert.ToString(via.Rows[0].ItemArray[0].ToString()));
+                                Yoo.Parameters.AddWithValue("@soluong", soluong.Text);
+                                Yoo.Parameters.AddWithValue("@tinhtrang", TinhTrang.Text);
+                                Yoo.Parameters.AddWithValue("@dichvu", DichVu.Text);
+                                Yoo.Parameters.AddWithValue("@tensohuu", ChoO.Text);
+                                Yoo.Parameters.AddWithValue("@gia", TongTien.Text);
+                                Yoo.Parameters.AddWithValue("@ngay", Convert.ToDateTime(NgayXuatPhat.Value.ToString()));
+                                Yoo.Parameters.AddWithValue("@yeucau", textBox1.Text);
+                                Yoo.Parameters.AddWithValue("@matg", Convert.ToInt32(o.Rows[0].ItemArray[0].ToString()));
+                                SqlDataAdapter ori = new SqlDataAdapter(Yoo);
+                                DataTable azir = new DataTable();
+                                ori.Fill(azir);
+                                MessageBox.Show("Added Trip Success");
                             }
                         }
                     }
@@ -302,9 +257,10 @@ namespace VietTravel
                         }
                         else
                         {
-                            string luu = toannang + AnhChuyen.Image.Tag.ToString();
-                            if (luu != null)
+                            
+                            if (IsDirty == false)
                             {
+                                string luu = toannang + AnhChuyen.Image.Tag.ToString();
                                 byte[] buffer = File.ReadAllBytes(luu);
                                 string capnhap = "update ChuyenDi set  SoLuong = @soluong , TinhTrang = @tinhtrang , TenDiaDiem = @diadiem , MaHDV = @mhdv , DichVuFree = @service , TenSoHuu = @cho , giaien = @gia , ngaykhoihanh = @ngay , where MaChuyen = @ma ";
                                 string list = "select tr.MaHDV from ChuyenDi tr , HuongDanVien hdv where tr.MaHDV = hdv.MaHDV and hdv.HuongDanVien = @ten";
@@ -335,17 +291,6 @@ namespace VietTravel
                                 DataTable table = new DataTable();
                                 port.Fill(table);
                                 MessageBox.Show("Update Successfully");
-                                var res = MessageBox.Show("Do you want to comback Main form?", "Warning", MessageBoxButtons.YesNo);
-                                if (res == DialogResult.Yes)
-                                {
-                                    TrangChu a = new TrangChu();
-                                    a.Show();
-                                    this.Hide();
-                                }
-                                else
-                                {
-                                    this.Show();
-                                }
                             }
                             else
                             {
@@ -367,18 +312,6 @@ namespace VietTravel
                                 SqlDataAdapter port = new SqlDataAdapter(als);
                                 DataTable table = new DataTable();
                                 port.Fill(table);
-                                MessageBox.Show("Update Successfully");
-                                var res = MessageBox.Show("Do you want to comback Main form?", "Warning", MessageBoxButtons.YesNo);
-                                if (res == DialogResult.Yes)
-                                {
-                                    TrangChu a = new TrangChu();
-                                    a.Show();
-                                    this.Hide();
-                                }
-                                else
-                                {
-                                    this.Show();
-                                }
                             }
                         }
 
@@ -428,9 +361,10 @@ namespace VietTravel
                         }
                         else
                         {
-                            string luu = toannang + AnhChuyen.Image.Tag.ToString();
-                            if (luu != null)
+                            
+                            if (IsDirty == false)
                             {
+                                string luu = toannang + AnhChuyen.Image.Tag.ToString();
                                 byte[] buffer = File.ReadAllBytes(luu);
                                 string capnhap = "update ChuyenDi set  SoLuong = @soluong , TinhTrang = @tinhtrang , TenDiaDiem = @diadiem , MaHDV = @mhdv , DichVuFree = @service , TenSoHuu = @cho , giaien = @gia , ngaykhoihanh = @ngay , where MaChuyen = @ma ";
                                 string list = "select tr.MaHDV from ChuyenDi tr , HuongDanVien hdv where tr.MaHDV = hdv.MaHDV and hdv.HuongDanVien = @ten";
@@ -461,17 +395,6 @@ namespace VietTravel
                                 DataTable table = new DataTable();
                                 port.Fill(table);
                                 MessageBox.Show("Update Successfully");
-                                var res = MessageBox.Show("Do you want to comback Main form?", "Warning", MessageBoxButtons.YesNo);
-                                if (res == DialogResult.Yes)
-                                {
-                                    TrangChu a = new TrangChu();
-                                    a.Show();
-                                    this.Hide();
-                                }
-                                else
-                                {
-                                    this.Show();
-                                }
                             }
                             else
                             {
@@ -494,17 +417,6 @@ namespace VietTravel
                                 DataTable table = new DataTable();
                                 port.Fill(table);
                                 MessageBox.Show("Update Successfully");
-                                var res = MessageBox.Show("Do you want to comback Main form?", "Warning", MessageBoxButtons.YesNo);
-                                if (res == DialogResult.Yes)
-                                {
-                                    TrangChu a = new TrangChu();
-                                    a.Show();
-                                    this.Hide();
-                                }
-                                else
-                                {
-                                    this.Show();
-                                }
                             }
                         }
 
