@@ -49,6 +49,11 @@ namespace VietTravel
             this.AddPretty = new System.Windows.Forms.Button();
             this.PrettyGribView = new System.Windows.Forms.DataGridView();
             this.NhanVienKeToan = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.Boss = new System.Windows.Forms.ComboBox();
             this.DeleteKT = new System.Windows.Forms.Button();
             this.SaveKT = new System.Windows.Forms.Button();
@@ -59,17 +64,18 @@ namespace VietTravel
             this.AddressKT = new System.Windows.Forms.TextBox();
             this.SDTKt = new System.Windows.Forms.TextBox();
             this.TenKT = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.NhanVienKeToanGribView = new System.Windows.Forms.DataGridView();
             this.CSKH = new System.Windows.Forms.TabPage();
-            this.Septong = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
+            this.Septong = new System.Windows.Forms.ComboBox();
             this.DeleteCSKH = new System.Windows.Forms.Button();
             this.SaveCSKH = new System.Windows.Forms.Button();
             this.AddCSKH = new System.Windows.Forms.Button();
@@ -79,12 +85,6 @@ namespace VietTravel
             this.DCCSKH = new System.Windows.Forms.TextBox();
             this.SDTCSKH = new System.Windows.Forms.TextBox();
             this.NameCSKH = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.CSKHGridView = new System.Windows.Forms.DataGridView();
             this.KhachHang = new System.Windows.Forms.TabPage();
             this.DeleteClient = new System.Windows.Forms.Button();
@@ -318,6 +318,11 @@ namespace VietTravel
             // 
             // NhanVienKeToan
             // 
+            this.NhanVienKeToan.Controls.Add(this.label7);
+            this.NhanVienKeToan.Controls.Add(this.label8);
+            this.NhanVienKeToan.Controls.Add(this.label10);
+            this.NhanVienKeToan.Controls.Add(this.label11);
+            this.NhanVienKeToan.Controls.Add(this.label12);
             this.NhanVienKeToan.Controls.Add(this.Boss);
             this.NhanVienKeToan.Controls.Add(this.DeleteKT);
             this.NhanVienKeToan.Controls.Add(this.SaveKT);
@@ -328,20 +333,60 @@ namespace VietTravel
             this.NhanVienKeToan.Controls.Add(this.AddressKT);
             this.NhanVienKeToan.Controls.Add(this.SDTKt);
             this.NhanVienKeToan.Controls.Add(this.TenKT);
-            this.NhanVienKeToan.Controls.Add(this.label7);
-            this.NhanVienKeToan.Controls.Add(this.label8);
             this.NhanVienKeToan.Controls.Add(this.label9);
             this.NhanVienKeToan.Controls.Add(this.label19);
-            this.NhanVienKeToan.Controls.Add(this.label10);
-            this.NhanVienKeToan.Controls.Add(this.label11);
-            this.NhanVienKeToan.Controls.Add(this.label12);
             this.NhanVienKeToan.Controls.Add(this.NhanVienKeToanGribView);
             this.NhanVienKeToan.Location = new System.Drawing.Point(4, 22);
             this.NhanVienKeToan.Name = "NhanVienKeToan";
             this.NhanVienKeToan.Size = new System.Drawing.Size(1000, 421);
             this.NhanVienKeToan.TabIndex = 2;
-            this.NhanVienKeToan.Text = "Staff Accountant";
+            this.NhanVienKeToan.Text = "Executive officer";
             this.NhanVienKeToan.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(706, 146);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(75, 13);
+            this.label7.TabIndex = 34;
+            this.label7.Text = "Mobile Phone:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(706, 178);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(48, 13);
+            this.label8.TabIndex = 31;
+            this.label8.Text = "Address:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(706, 209);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(40, 13);
+            this.label10.TabIndex = 32;
+            this.label10.Text = "Emails:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(707, 122);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(33, 13);
+            this.label11.TabIndex = 33;
+            this.label11.Text = "DOB:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(706, 90);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(57, 13);
+            this.label12.TabIndex = 30;
+            this.label12.Text = "Full Name:";
             // 
             // Boss
             // 
@@ -450,24 +495,6 @@ namespace VietTravel
             this.TenKT.TabIndex = 18;
             this.TenKT.TextChanged += new System.EventHandler(this.TenKT_TextChanged);
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(706, 146);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(78, 13);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Số Điện Thoại:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(706, 178);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(44, 13);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Địa Chỉ:";
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -482,36 +509,9 @@ namespace VietTravel
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(706, 244);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(51, 13);
+            this.label19.Size = new System.Drawing.Size(53, 13);
             this.label19.TabIndex = 12;
-            this.label19.Text = "Chức Vụ:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(706, 209);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(40, 13);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "Emails:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(706, 116);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(56, 13);
-            this.label11.TabIndex = 13;
-            this.label11.Text = "Ngày Sinh";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(706, 90);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(62, 13);
-            this.label12.TabIndex = 9;
-            this.label12.Text = "Họ Và Tên:";
+            this.label19.Text = "Regency:";
             // 
             // NhanVienKeToanGribView
             // 
@@ -526,8 +526,14 @@ namespace VietTravel
             // 
             // CSKH
             // 
-            this.CSKH.Controls.Add(this.Septong);
+            this.CSKH.Controls.Add(this.label1);
+            this.CSKH.Controls.Add(this.label2);
+            this.CSKH.Controls.Add(this.label3);
+            this.CSKH.Controls.Add(this.label4);
+            this.CSKH.Controls.Add(this.label5);
+            this.CSKH.Controls.Add(this.label6);
             this.CSKH.Controls.Add(this.label20);
+            this.CSKH.Controls.Add(this.Septong);
             this.CSKH.Controls.Add(this.DeleteCSKH);
             this.CSKH.Controls.Add(this.SaveCSKH);
             this.CSKH.Controls.Add(this.AddCSKH);
@@ -537,20 +543,77 @@ namespace VietTravel
             this.CSKH.Controls.Add(this.DCCSKH);
             this.CSKH.Controls.Add(this.SDTCSKH);
             this.CSKH.Controls.Add(this.NameCSKH);
-            this.CSKH.Controls.Add(this.label3);
-            this.CSKH.Controls.Add(this.label4);
-            this.CSKH.Controls.Add(this.label6);
-            this.CSKH.Controls.Add(this.label5);
-            this.CSKH.Controls.Add(this.label2);
-            this.CSKH.Controls.Add(this.label1);
             this.CSKH.Controls.Add(this.CSKHGridView);
             this.CSKH.Location = new System.Drawing.Point(4, 22);
             this.CSKH.Name = "CSKH";
             this.CSKH.Padding = new System.Windows.Forms.Padding(3);
             this.CSKH.Size = new System.Drawing.Size(1000, 421);
             this.CSKH.TabIndex = 0;
-            this.CSKH.Text = "Customer Care Staff";
+            this.CSKH.Text = "Human Resources Department";
             this.CSKH.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(704, 130);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(75, 13);
+            this.label1.TabIndex = 41;
+            this.label1.Text = "Mobile Phone:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(704, 162);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 13);
+            this.label2.TabIndex = 38;
+            this.label2.Text = "Address:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(704, 193);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(40, 13);
+            this.label3.TabIndex = 39;
+            this.label3.Text = "Emails:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(705, 106);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(33, 13);
+            this.label4.TabIndex = 40;
+            this.label4.Text = "DOB:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(704, 74);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(57, 13);
+            this.label5.TabIndex = 37;
+            this.label5.Text = "Full Name:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(704, 260);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(38, 13);
+            this.label6.TabIndex = 35;
+            this.label6.Text = "Photo:";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(704, 228);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(53, 13);
+            this.label20.TabIndex = 36;
+            this.label20.Text = "Regency:";
             // 
             // Septong
             // 
@@ -570,15 +633,6 @@ namespace VietTravel
             this.Septong.Name = "Septong";
             this.Septong.Size = new System.Drawing.Size(200, 21);
             this.Septong.TabIndex = 26;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(703, 230);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(51, 13);
-            this.label20.TabIndex = 25;
-            this.label20.Text = "Chức Vụ:";
             // 
             // DeleteCSKH
             // 
@@ -660,61 +714,6 @@ namespace VietTravel
             this.NameCSKH.Name = "NameCSKH";
             this.NameCSKH.Size = new System.Drawing.Size(200, 20);
             this.NameCSKH.TabIndex = 4;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(703, 130);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Số Điện Thoại:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(703, 162);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Địa Chỉ:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(703, 273);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 13);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Photo:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(703, 193);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Emails:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(703, 100);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Ngày Sinh";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(703, 74);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Họ Và Tên:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // CSKHGridView
             // 
@@ -944,9 +943,6 @@ namespace VietTravel
         private System.Windows.Forms.TabPage HuongDanVien;
         private System.Windows.Forms.TabPage NhanVienKeToan;
         private System.Windows.Forms.TabPage CSKH;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView CSKHGridView;
         private System.Windows.Forms.TabPage KhachHang;
         private System.Windows.Forms.Button DeleteCSKH;
@@ -958,9 +954,6 @@ namespace VietTravel
         private System.Windows.Forms.TextBox DCCSKH;
         private System.Windows.Forms.TextBox SDTCSKH;
         private System.Windows.Forms.TextBox NameCSKH;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Button DeletePretty;
@@ -976,12 +969,7 @@ namespace VietTravel
         private System.Windows.Forms.TextBox AddressKT;
         private System.Windows.Forms.TextBox SDTKt;
         private System.Windows.Forms.TextBox TenKT;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridView NhanVienKeToanGribView;
         private System.Windows.Forms.DataGridView OrderOfCusGridView;
         private System.Windows.Forms.DataGridView InforCusGridView;
@@ -1012,6 +1000,17 @@ namespace VietTravel
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
         private System.Windows.Forms.OpenFileDialog openFileDialog3;
         private System.Windows.Forms.ComboBox Septong;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label20;
     }
 }

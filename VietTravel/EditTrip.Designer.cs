@@ -69,6 +69,7 @@ namespace VietTravel
             this.label12 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.huongDanvienBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quanLyDuLichDataSet4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aCCOMODATIONBindingSource)).BeginInit();
@@ -354,7 +355,7 @@ namespace VietTravel
             // button1
             // 
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Location = new System.Drawing.Point(786, 337);
+            this.button1.Location = new System.Drawing.Point(683, 337);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 35;
@@ -388,11 +389,22 @@ namespace VietTravel
             this.pictureBox2.TabIndex = 37;
             this.pictureBox2.TabStop = false;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(790, 337);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 38;
+            this.button2.Text = "Back";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // EditTrip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(873, 372);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
@@ -479,5 +491,6 @@ namespace VietTravel
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button button2;
     }
 }

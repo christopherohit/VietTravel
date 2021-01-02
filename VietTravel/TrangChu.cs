@@ -73,6 +73,8 @@ namespace VietTravel
             PrettyGribView.Columns["NgaySinh"].HeaderText = "Date Of Birth";
             PrettyGribView.Columns["SoDienThoai"].HeaderText = "Mobile Phone";
             PrettyGribView.Columns["DiaChi"].HeaderText = "Address";
+            PrettyGribView.Columns["NgaySinh"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            PrettyGribView.Columns["NgaySinh"].ValueType = typeof(DateTime);
             // Load Infor for KT
             string query2 = "Select * from NhanVienKeToan";
             SqlCommand command2 = new SqlCommand(query2, con1);
@@ -91,6 +93,8 @@ namespace VietTravel
             NhanVienKeToanGribView.Columns["Phone"].HeaderText = "Mobile Phone";
             NhanVienKeToanGribView.Columns["AddressNV"].HeaderText = "Address";
             NhanVienKeToanGribView.Columns["ChucVu"].HeaderText = "Regency";
+            NhanVienKeToanGribView.Columns["DOb"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            NhanVienKeToanGribView.Columns["DOB"].ValueType = typeof(DateTime);
 
             // Load Infor For CSKH
             string query3 = "select * from CSKH";
@@ -110,6 +114,8 @@ namespace VietTravel
             CSKHGridView.Columns["phone"].HeaderText = "Mobile Phone";
             CSKHGridView.Columns["AddressNV"].HeaderText = "Address";
             CSKHGridView.Columns["ChucVu"].HeaderText = "Regency";
+            CSKHGridView.Columns["DOB"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            CSKHGridView.Columns["DOB"].ValueType = typeof(DateTime);
 
             // Load Infor For Client
             string query4 = "select * from KhachHang";
@@ -171,6 +177,7 @@ namespace VietTravel
             TripAvailableAgencyGridView.Columns["TenSoHuu"].Visible = false;
             TripAvailableAgencyGridView.Columns["LuotThich"].Visible = false;
             TripAvailableAgencyGridView.Columns["Giaien"].Visible = false;
+            TripAvailableAgencyGridView.Columns["MaHDV"].Visible = false;
             TripAvailableAgencyGridView.Columns["TenDiaDiem"].HeaderText = "Tourist Attraction";
             TripAvailableAgencyGridView.Columns["TenDiaDiem"].DisplayIndex = 0;
             TripAvailableAgencyGridView.Columns["SoLuong"].HeaderText = "Number Of Passengers";
@@ -1084,3 +1091,4 @@ namespace VietTravel
         }
     }
 }
+//5600

@@ -1,0 +1,54 @@
+[33mcommit 77124f7b3e3f1eb3740fef36e8814e41dab25eee[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: christopherohit <55018999+christopherohit@users.noreply.github.com>
+Date:   Wed Dec 30 19:12:34 2020 +0700
+
+    Add SQL file into Project and Add Data inside System
+
+[33mcommit df47d1565ce2f8df9897e1d673cbf5428182626f[m
+Author: christopherohit <55018999+christopherohit@users.noreply.github.com>
+Date:   Wed Dec 30 19:07:00 2020 +0700
+
+    86% Project Have a bug at feature add trip in agency
+
+[33mcommit 646edb2c9250ca92d4e65da80dd3302d54cb4324[m
+Author: christopherohit <55018999+christopherohit@users.noreply.github.com>
+Date:   Wed Dec 30 02:10:48 2020 +0700
+
+    78% Programming Have Some Big Bug Which I can't Fix
+
+[33mcommit 0b6c9aa3797de1f37b92806e666d6447bf2f8b1f[m
+Author: christopherohit <55018999+christopherohit@users.noreply.github.com>
+Date:   Sun Dec 27 15:24:32 2020 +0700
+
+    Giai Doan 3
+
+[33mcommit e677f7f901f6f41f14d277ada26b36c21dbdeee4[m
+Author: christopherohit <55018999+christopherohit@users.noreply.github.com>
+Date:   Wed Dec 23 21:26:43 2020 +0700
+
+    Fix Some Bug And Have A Big Bug
+
+[33mcommit eba83f0ce268d4bbe965a8334996029a123f6be0[m
+Merge: 7afedb6 4061f78
+Author: christopherohit <55018999+christopherohit@users.noreply.github.com>
+Date:   Wed Dec 23 21:26:20 2020 +0700
+
+    Fix Some Bug And Have A Big Bug NullException
+
+[33mcommit 7afedb6ef9d099b325a181ab8894e8f26df338e9[m
+Author: christopherohit <55018999+christopherohit@users.noreply.github.com>
+Date:   Wed Dec 23 17:52:26 2020 +0700
+
+    Change and Fix Some Bug Have a Big Bug at Main FormAdd project files.
+
+[33mcommit 4061f780ccb6e320e85d807703b17675405de52f[m
+Author: christopherohit <55018999+christopherohit@users.noreply.github.com>
+Date:   Wed Dec 23 17:52:26 2020 +0700
+
+    Add project files.
+
+[33mcommit 17f01c89a5c0ae88a1a02f8d46358e198ef7eb24[m
+Author: christopherohit <55018999+christopherohit@users.noreply.github.com>
+Date:   Wed Dec 23 17:51:57 2020 +0700
+
+    Add .gitignore and .gitattributes.

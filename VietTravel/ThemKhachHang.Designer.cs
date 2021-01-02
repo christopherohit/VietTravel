@@ -161,7 +161,7 @@ namespace VietTravel
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ThemKhachHang";
             this.Text = "Add Customer";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ThemKhachHang_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ThemKhachHang_FormClosing_1);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

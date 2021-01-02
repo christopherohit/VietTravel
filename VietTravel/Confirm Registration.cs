@@ -111,21 +111,45 @@ namespace VietTravel
                     this.Hide();
                 }
             }
+            else if (complete.Text == "Complete")
+            {
+                System.Windows.Forms.Form asdd = System.Windows.Forms.Application.OpenForms["MainHDV"];
+                string update = "update KhachHang set Matkhau = @matkhau where Emails = @emails";
+                SqlCommand command = new SqlCommand(update, con);
+                command.Parameters.AddWithValue("emails", ((ThemKhachHang)a).Emails.Text);
+                command.Parameters.AddWithValue("@matkhau", pass.Text);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataTable data = new DataTable();
+                adapter.Fill(data);
+                MessageBox.Show("Completety Registration");
+                asdd.Show();
+                this.Hide();
+            }
         }
 
         private void Confirm_Registration_FormClosing(object sender, FormClosingEventArgs e)
         {
-            dynamic res = MessageBox.Show("Do you want to exit registration ?", "Exit Registration", MessageBoxButtons.YesNo);
-            if (res == DialogResult.Yes)
+            System.Windows.Forms.Form lji = System.Windows.Forms.Application.OpenForms["MainHDV"];
+            if (complete.Text == "Complete")
             {
-                TrangChu taolai = new TrangChu();
-                taolai.Show();
+                lji.Show();
                 this.Hide();
             }
-            if (res == DialogResult.No)
+            else
             {
-                e.Cancel = true;
+                dynamic res = MessageBox.Show("Do you want to exit registration ?", "Exit Registration", MessageBoxButtons.YesNo);
+                if (res == DialogResult.Yes)
+                {
+                    TrangChu taolai = new TrangChu();
+                    taolai.Show();
+                    this.Hide();
+                }
+                if (res == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
             }
         }
     }
 }
+//155

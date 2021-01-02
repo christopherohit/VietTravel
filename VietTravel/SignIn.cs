@@ -14,6 +14,7 @@ namespace VietTravel
 {
     public partial class Signin : Form
     {
+        public TextBox TextBox { get { return this.UserBox; } }
         public Signin()
         {
             InitializeComponent();
@@ -42,7 +43,7 @@ namespace VietTravel
                 UserBox.BackColor = Color.White;
                 PassBox.BackColor = Color.White;
             }
-            else if (UserBox.Text.Length <= 3 || UserBox.Text.Length >= 20)
+            else if (UserBox.Text.Length <= 3 || UserBox.Text.Length >= 50)
             {
 
                 MessageBox.Show("Inconsistent account length, \nLength should be less than 20 and longer than 3 letters \nPlease try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -114,9 +115,17 @@ namespace VietTravel
                         SqlDataAdapter da = new SqlDataAdapter(sql1);
                         DataTable i = new DataTable();
                         da.Fill(i);
+                        string ad = "select * From HuongDanVien where Emails = @emails";
+                        SqlCommand ips = new SqlCommand(ad, con);
+                        ips.Parameters.AddWithValue("@emails", nickname);
+                        SqlDataAdapter adapter = new SqlDataAdapter(ips);
+                        DataTable ovn = new DataTable();
+                        adapter.Fill(ovn);
                         MessageBox.Show($"Hello Tourist Guide {i.Rows[0].ItemArray[0].ToString()}! Hope you have a good day", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
+                        MainHDV ior = new MainHDV(ovn);
+                        ior.Show();
+                        this.Hide();
+                        ior.op.Text = $"Tourist Guide {i.Rows[0].ItemArray[0].ToString()}";
 
                     }
                     else if(tab.Rows.Count > 0)
@@ -127,9 +136,19 @@ namespace VietTravel
                         SqlDataAdapter ada = new SqlDataAdapter(sqll2);
                         DataTable r = new DataTable();
                         ada.Fill(r);
-                        MessageBox.Show($"Hello Accountant {r.Rows[0].ItemArray[0].ToString()}! Hope you have a good day", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        string iosda = "Select * from NhanVienKeToan where Emails = @mails";
+                        SqlCommand sqlCommand = new SqlCommand(iosda, con);
+                        sqlCommand.Parameters.AddWithValue("@mails", nickname);
+                        SqlDataAdapter riu = new SqlDataAdapter(sqlCommand);
+                        DataTable data1 = new DataTable();
+                        riu.Fill(data1);
+                        MessageBox.Show($"Hello Executive Staff {r.Rows[0].ItemArray[0].ToString()}! Hope you have a good day", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MainHDV iosef = new MainHDV(data1);
+                        iosef.Show();
+                        this.Hide();
+                        iosef.op.Text = $"Staff Executive Staff {r.Rows[0].ItemArray[0].ToString()}";
 
-                        
+
                     }
                     else if (BAP.Rows.Count > 0)
                     {
@@ -139,8 +158,16 @@ namespace VietTravel
                         SqlDataAdapter ada = new SqlDataAdapter(sqll2);
                         DataTable r = new DataTable();
                         ada.Fill(r);
+                        string ad = "select * From CSKH where Emails = @emails";
+                        SqlCommand ips = new SqlCommand(ad, con);
+                        ips.Parameters.AddWithValue("@emails", nickname);
+                        SqlDataAdapter adapter = new SqlDataAdapter(ips);
+                        DataTable ovn = new DataTable();
                         MessageBox.Show($"Hello Customer Care Staff {r.Rows[0].ItemArray[0].ToString()}! Hope you have a good day", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                        MainHDV ior = new MainHDV(ovn);
+                        ior.Show();
+                        this.Hide();
+                        ior.op.Text = $"Customer Care Staff {r.Rows[0].ItemArray[0].ToString()}";
                     }
                     else
                     {
@@ -166,7 +193,7 @@ namespace VietTravel
             var res = MessageBox.Show("Do you want to exit?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (res == DialogResult.Yes)
             {
-                System.Environment.Exit(1);
+                System.Environment.Exit(-1);
             }
             else
             {
@@ -180,3 +207,4 @@ namespace VietTravel
         }
     }
 }
+//211

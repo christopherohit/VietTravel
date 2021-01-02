@@ -229,7 +229,7 @@ namespace VietTravel
             this.Next.Name = "Next";
             this.Next.Size = new System.Drawing.Size(75, 23);
             this.Next.TabIndex = 49;
-            this.Next.Text = "Done";
+            this.Next.Text = "OK";
             this.Next.UseVisualStyleBackColor = true;
             this.Next.Click += new System.EventHandler(this.button1_Click);
             // 

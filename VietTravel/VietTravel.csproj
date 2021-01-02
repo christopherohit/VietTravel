@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AllClient.Designer.cs">
+      <DependentUpon>AllClient.cs</DependentUpon>
+    </Compile>
     <Compile Include="CheckAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +109,33 @@
     <Compile Include="EditTrip.Designer.cs">
       <DependentUpon>EditTrip.cs</DependentUpon>
     </Compile>
+    <Compile Include="Future.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Future.Designer.cs">
+      <DependentUpon>Future.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListStaff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListStaff.Designer.cs">
+      <DependentUpon>ListStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainHDV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainHDV.Designer.cs">
+      <DependentUpon>MainHDV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldTrip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OldTrip.Designer.cs">
+      <DependentUpon>OldTrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PicBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="QuanLyDuLichDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -128,6 +161,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuanLyDuLichDataSet4.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Request.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Request.Designer.cs">
+      <DependentUpon>Request.cs</DependentUpon>
+    </Compile>
     <Compile Include="SignIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +187,15 @@
     <Compile Include="TrangChu.Designer.cs">
       <DependentUpon>TrangChu.cs</DependentUpon>
     </Compile>
+    <Compile Include="TripAvai.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TripAvai.Designer.cs">
+      <DependentUpon>TripAvai.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AllClient.resx">
+      <DependentUpon>AllClient.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CheckAdmin.resx">
       <DependentUpon>CheckAdmin.cs</DependentUpon>
     </EmbeddedResource>
@@ -175,6 +223,21 @@
     <EmbeddedResource Include="EditTrip.resx">
       <DependentUpon>EditTrip.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Future.resx">
+      <DependentUpon>Future.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListStaff.resx">
+      <DependentUpon>ListStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainHDV.resx">
+      <DependentUpon>MainHDV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OldTrip.resx">
+      <DependentUpon>OldTrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Request.resx">
+      <DependentUpon>Request.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SignIn.resx">
       <DependentUpon>SignIn.cs</DependentUpon>
     </EmbeddedResource>
@@ -192,6 +255,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TrangChu.resx">
       <DependentUpon>TrangChu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TripAvai.resx">
+      <DependentUpon>TripAvai.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

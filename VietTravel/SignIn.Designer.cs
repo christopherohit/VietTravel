@@ -42,37 +42,37 @@ namespace VietTravel
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(139, 96);
+            this.label1.Location = new System.Drawing.Point(156, 96);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 13);
+            this.label1.Size = new System.Drawing.Size(50, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Tên Đăng Nhập:";
+            this.label1.Text = "Account:";
             // 
             // UserBox
             // 
-            this.UserBox.Location = new System.Drawing.Point(232, 93);
+            this.UserBox.Location = new System.Drawing.Point(218, 93);
             this.UserBox.Name = "UserBox";
             this.UserBox.Size = new System.Drawing.Size(137, 20);
             this.UserBox.TabIndex = 1;
-            this.UserBox.Text = "QuinnTran";
+            this.UserBox.Text = "muskbe@icloud.com";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(139, 130);
+            this.label2.Location = new System.Drawing.Point(156, 130);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Mật Khẩu:";
+            this.label2.Text = "Password:";
             // 
             // PassBox
             // 
-            this.PassBox.Location = new System.Drawing.Point(232, 127);
+            this.PassBox.Location = new System.Drawing.Point(218, 127);
             this.PassBox.Name = "PassBox";
             this.PassBox.PasswordChar = '*';
             this.PassBox.Size = new System.Drawing.Size(137, 20);
             this.PassBox.TabIndex = 1;
-            this.PassBox.Text = "20032000";
+            this.PassBox.Text = "Adminpassword";
             // 
             // InBut
             // 
@@ -81,7 +81,7 @@ namespace VietTravel
             this.InBut.Name = "InBut";
             this.InBut.Size = new System.Drawing.Size(75, 23);
             this.InBut.TabIndex = 2;
-            this.InBut.Text = "Đăng Nhập";
+            this.InBut.Text = "Sign In";
             this.InBut.UseVisualStyleBackColor = true;
             this.InBut.Click += new System.EventHandler(this.InBut_Click);
             // 

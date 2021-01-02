@@ -40,6 +40,7 @@ namespace VietTravel
 
         private void ContinueBut_Click(object sender, EventArgs e)
         {
+            System.Windows.Forms.Form lost = System.Windows.Forms.Application.OpenForms["MainHDV"];
             System.Windows.Forms.Form dknhanvien = System.Windows.Forms.Application.OpenForms["DangKyNhanVien"];
             SqlConnection con = new SqlConnection(cStr);
             System.Windows.Forms.Form trangchu = System.Windows.Forms.Application.OpenForms["TrangChu"];
@@ -154,6 +155,117 @@ namespace VietTravel
                             MessageBox.Show("Registration Completely !");
                             TrangChu abc = new TrangChu();
                             abc.Show();
+                            this.Hide();
+                        }
+                    }
+                }
+            }
+            else if (ContinueBut.Text == "Finish")
+            {
+                if (MailsAcc.Text == "" || PassBox.Text == "")
+                {
+                    MessageBox.Show("Please fill in blank space", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (MailsAcc.Text.Length < 10 || PassBox.Text.Length < 10)
+                {
+                    if (MailsAcc.Text.Length < 10)
+                    {
+                        MessageBox.Show("Your Name Just Fill In Too Short \n Please Try Again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MailsAcc.Text = string.Empty;
+                    }
+                    else if (PassBox.Text.Length < 10)
+                    {
+                        MessageBox.Show("Your Password Which You Just Fill In Too Short \nWe Required You Should Set The Password Which Have More And More Characters \nThanks You.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        PassBox.BackColor = Color.White;
+                        PassBox.Text = string.Empty;
+                    }
+                }
+                else if (PassBox.Text != ConfPass.Text)
+                {
+                    MessageBox.Show("Your Confirm Password not same your password. \nPlease re-check it", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ConfPass.Text = string.Empty;
+                }
+                else if (MailsAcc.Text != "")
+                {
+                    if (Major.Text == "Tourist Guide")
+                    {
+                        string kiem = "select * from HuongDanVien where Emails = @emails";
+                        SqlCommand command = new SqlCommand(kiem, con);
+                        command.Parameters.AddWithValue("@emails", MailsAcc.Text);
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        DataTable data = new DataTable();
+                        adapter.Fill(data);
+                        if (data.Rows.Count > 0)
+                        {
+                            MessageBox.Show("Someone was used this emails, Please check it again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            
+                            string capnhap = "update HuongDanVien set Emails = @emails , MatKhau = @matkhau where SoDienThoai = @sdt";
+                            SqlCommand command1 = new SqlCommand(capnhap, con);
+                            command1.Parameters.AddWithValue("@emails", MailsAcc.Text);
+                            command1.Parameters.AddWithValue("@matkhau", PassBox.Text);
+                            command1.Parameters.AddWithValue("sdt", ((DangkyNhanVien)dknhanvien).sodt.Text);
+                            SqlDataAdapter adapter1 = new SqlDataAdapter(command1);
+                            DataTable data1 = new DataTable();
+                            adapter1.Fill(data1);
+                            MessageBox.Show("Registration Completely !");
+                            lost.Show();
+                            this.Hide();
+                        }
+                    }
+                    else if (Major.Text == "Staff Accountant")
+                    {
+                        string kiem2 = "select * from NhanVienKeToan where Emails = @emails";
+                        SqlCommand command = new SqlCommand(kiem2, con);
+                        command.Parameters.AddWithValue("@emails", MailsAcc.Text);
+                        SqlDataAdapter sqlData = new SqlDataAdapter(command);
+                        DataTable data = new DataTable();
+                        sqlData.Fill(data);
+                        if (data.Rows.Count > 0)
+                        {
+                            MessageBox.Show("Someone was used this emails, Please check it again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            string capnhat2 = "update NhanVienKeToan set Emails = @emails , matkhau = @matkhau where phone = @sdt";
+                            SqlCommand sql = new SqlCommand(capnhat2, con);
+                            sql.Parameters.AddWithValue("@emails", MailsAcc.Text);
+                            sql.Parameters.AddWithValue("@matkhau", PassBox.Text);
+                            sql.Parameters.AddWithValue("@sdt", ((DangkyNhanVien)dknhanvien).sodt.Text);
+                            SqlDataAdapter dataAdapter = new SqlDataAdapter(sql);
+                            DataTable table = new DataTable();
+                            dataAdapter.Fill(table);
+                            MessageBox.Show("Registration Completely !");
+                            lost.Show();
+                            this.Hide();
+                        }
+                    }
+                    else if (Major.Text == "Customer Care Staff")
+                    {
+                        string kiemthu3 = "select * from CSKH where Emails = @emails";
+                        SqlCommand command = new SqlCommand(kiemthu3, con);
+                        command.Parameters.AddWithValue("@emails", MailsAcc.Text);
+                        SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                        DataTable dataTable = new DataTable();
+                        dataAdapter.Fill(dataTable);
+                        if (dataTable.Rows.Count > 0)
+                        {
+                            MessageBox.Show("Someone was used this emails, Please check it again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            string capnhat3 = "Update CSKH set Emails = @emails , Matkhau = @pass  where phone = @sdt";
+                            SqlCommand sqlCommand = new SqlCommand(capnhat3);
+                            sqlCommand.Parameters.AddWithValue("@emails", MailsAcc.Text);
+                            sqlCommand.Parameters.AddWithValue("@pass", PassBox.Text);
+                            sqlCommand.Parameters.AddWithValue("@sdt", ((DangkyNhanVien)dknhanvien).sodt.Text);
+                            SqlDataAdapter sql = new SqlDataAdapter(sqlCommand);
+                            DataTable data = new DataTable();
+                            sql.Fill(data);
+                            MessageBox.Show("Registration Completely !");
+                            lost.Show();
                             this.Hide();
                         }
                     }
@@ -554,6 +666,6 @@ namespace VietTravel
         }
     }
 }
-
+//670
 
 
