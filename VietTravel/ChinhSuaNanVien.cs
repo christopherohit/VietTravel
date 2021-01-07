@@ -67,6 +67,7 @@ namespace VietTravel
         private void ChinhSuaDaiLy_FormClosed(object sender, FormClosedEventArgs e)
         {
             System.Windows.Forms.Form QQ = System.Windows.Forms.Application.OpenForms["MainHDV"];
+            System.Windows.Forms.Form Sam = System.Windows.Forms.Application.OpenForms["ListStaff"];
             if (Next.Text == "Completely")
             {
                 QQ.Show();
@@ -75,6 +76,16 @@ namespace VietTravel
             else if (Next.Text == "Accept")
             {
                 QQ.Show();
+                this.Hide();
+            }
+            else if (Next.Text == "Finish")
+            {
+                Sam.Show();
+                this.Hide();
+            }
+            else if (Next.Text == "Next")
+            {
+                Sam.Show();
                 this.Hide();
             }
             else
@@ -253,6 +264,67 @@ namespace VietTravel
                 }
             }
             else if (Next.Text == "Accept")
+            {
+                if (NameFull.Text == "" || address.Text == "" || phonenumber.Text == "")
+                {
+                    if (NameFull.Text == "")
+                    {
+                        MessageBox.Show("Fill in Blank Space", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else if (address.Text == "")
+                    {
+                        MessageBox.Show("Fill in Blank Space", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else if (phonenumber.Text == "")
+                    {
+                        MessageBox.Show("Fill in Blank Space", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    if (IsDirty == false)
+                    {
+                        string file = toanbo + privacy.Image.Tag.ToString();
+                        byte[] buffer = File.ReadAllBytes(file);
+                        string update = "update NhanVienKeToan set Hoten =@ten , AddressNV = @dc , phone = @sdt , DOB = @ngaysinh  , AnhCaNhan =@anh , ChucVu=@cv where Emails =@mails";
+                        SqlCommand command = new SqlCommand(update, con);
+                        command.Parameters.AddWithValue("@ten", NameFull.Text);
+                        command.Parameters.AddWithValue("@dc", address.Text);
+                        command.Parameters.AddWithValue("@sdt", phonenumber.Text);
+                        command.Parameters.AddWithValue("@ngaysinh", Convert.ToDateTime(dayofbirth.Value));
+                        command.Parameters.AddWithValue("@cv", Chucvu.Text);
+                        var binary = command.Parameters.Add("@anh", SqlDbType.VarBinary, -1);
+                        binary.Value = buffer;
+                        command.Parameters.AddWithValue("@mails", ((Signin)Sam2).TextBox.Text);
+                        SqlDataAdapter ae = new SqlDataAdapter(command);
+                        DataTable ie = new DataTable();
+                        ae.Fill(ie);
+                        MessageBox.Show("Successful employee information update");
+                        Sam3.Show();
+                        this.Hide();
+
+                    }
+                    else
+                    {
+                        string update = "update NhanVienKeToan set Hoten =@ten , AddressNV = @dc , phone = @sdt , DOB = @ngaysinh  , ChucVu = @cv where Emails =@mails";
+                        SqlCommand command = new SqlCommand(update, con);
+                        command.Parameters.AddWithValue("@ten", NameFull.Text);
+                        command.Parameters.AddWithValue("@dc", address.Text);
+                        command.Parameters.AddWithValue("@sdt", phonenumber.Text);
+                        command.Parameters.AddWithValue("@ngaysinh", Convert.ToDateTime(dayofbirth.Value));
+                        command.Parameters.AddWithValue("@cv", Chucvu.Text);
+                        command.Parameters.AddWithValue("@mails", ((Signin)Sam2).TextBox.Text);
+                        SqlDataAdapter ae = new SqlDataAdapter(command);
+                        DataTable ie = new DataTable();
+                        ae.Fill(ie);
+                        MessageBox.Show("Successful employee information update");
+                        Sam3.Show();
+                        this.Hide();
+
+                    }
+                }
+            }
+            else if (Next.Text == "Next")
             {
                 if (NameFull.Text == "" || address.Text == "" || phonenumber.Text == "")
                 {

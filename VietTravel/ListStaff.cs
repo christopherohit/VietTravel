@@ -48,6 +48,7 @@ namespace VietTravel
             System.Windows.Forms.Form ios = System.Windows.Forms.Application.OpenForms["MainHDV"];
             ios.Show();
             this.Hide();
+            ((MainHDV)ios).lju.Enabled = true;
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -111,6 +112,19 @@ namespace VietTravel
             dataGridView3.Columns["DOB"].DefaultCellStyle.Format = "dd/MM/yyyy";
             dataGridView3.Columns["DOB"].ValueType = typeof(DateTime);
 
+            System.Windows.Forms.Form ios = System.Windows.Forms.Application.OpenForms["ListStaff"];
+            System.Windows.Forms.Form iso = System.Windows.Forms.Application.OpenForms["SignIn"];
+            string set = "Select * from CSKH where Emails = @mails";
+            SqlCommand yiu = new SqlCommand(set, con);
+            yiu.Parameters.AddWithValue("@mails", ((Signin)iso).TextBox.Text);
+            SqlDataAdapter op = new SqlDataAdapter(yiu);
+            DataTable loi = new DataTable();
+            op.Fill(loi);
+            if(loi.Rows.Count > 0)
+            {
+                groupBox2.Enabled = false;
+
+            }
             
         }
 
@@ -126,6 +140,7 @@ namespace VietTravel
             System.Windows.Forms.Form asd = System.Windows.Forms.Application.OpenForms["MainHDV"];
             asd.Show();
             this.Hide();
+            ((MainHDV)asd).lju.Enabled = true;
         }
 
         private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
@@ -165,7 +180,7 @@ namespace VietTravel
                         a.Show();
                         this.Hide();
                         a.pic.Visible = false;
-                        a.button.Text = "Accept";
+                        a.button.Text = "Next";
                         a.chucvu.Enabled = true;
                     }
                 }
@@ -206,12 +221,12 @@ namespace VietTravel
                         switch (res)
                         {
                             case DialogResult.Yes:
-                                string xoa = "delete from HuongDanVien where Emails = @mails";
-                                SqlCommand sql = new SqlCommand(xoa, con);
-                                sql.Parameters.AddWithValue("@mails", row.Cells["Emails"].Value.ToString());
-                                SqlDataAdapter pil = new SqlDataAdapter(sql);
-                                DataTable io = new DataTable();
-                                pil.Fill(io);
+                                string xoaHuongDanVien = "Exec XoaNhanVien @ma";
+                                SqlCommand sqlCommand = new SqlCommand(xoaHuongDanVien, con);
+                                sqlCommand.Parameters.AddWithValue("@ma", row.Cells["MaHDV"].Value.ToString());
+                                DataTable data = new DataTable();
+                                SqlDataAdapter c = new SqlDataAdapter(sqlCommand);
+                                c.Fill(data);
                                 ListStaff pl = new ListStaff();
                                 pl.Show();
                                 this.Hide();
@@ -238,9 +253,9 @@ namespace VietTravel
                         switch (res)
                         {
                             case DialogResult.Yes:
-                                string xoa = "Delete from NhanVienKeToan where Emails =@mails";
+                                string xoa = "Delete from NhanVienKeToan where phone =@mails";
                                 SqlCommand sql = new SqlCommand(xoa, con);
-                                sql.Parameters.AddWithValue("@mails", row.Cells["Emails"].Value.ToString());
+                                sql.Parameters.AddWithValue("@mails", row.Cells["Phone"].Value.ToString());
                                 SqlDataAdapter ui = new SqlDataAdapter(sql);
                                 DataTable iu = new DataTable();
                                 ui.Fill(iu);
@@ -290,9 +305,9 @@ namespace VietTravel
                         switch (res)
                         {
                             case DialogResult.Yes:
-                                string xoa = "Delete from CSKH where Emails =@mails";
+                                string xoa = "Delete from CSKH where phone =@mails";
                                 SqlCommand sql = new SqlCommand(xoa, con);
-                                sql.Parameters.AddWithValue("@mails", row.Cells["Emails"].Value.ToString());
+                                sql.Parameters.AddWithValue("@mails", row.Cells["phone"].Value.ToString());
                                 SqlDataAdapter ui = new SqlDataAdapter(sql);
                                 DataTable iu = new DataTable();
                                 ui.Fill(iu);
@@ -320,6 +335,80 @@ namespace VietTravel
             eoi.Show();
             this.Hide();
         }
+
+        private void dataGridView3_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView3.Rows.Count > 0)
+            {
+                for (int i = 0; i < dataGridView3.Rows.Count; i++)
+                {
+                    if (dataGridView3.Rows[i].Selected == true)
+                    {
+                        DataGridViewRow row = this.dataGridView3.Rows[i];
+                        if (row.Cells["Emails"].Value.ToString() == "")
+                        {
+                            dynamic re = MessageBox.Show("This information of this staff not completely, Do you want to completely set up it?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                            switch (re)
+                            {
+                                case DialogResult.Yes:
+                                    DangKyTaiKhoan tu = new DangKyTaiKhoan();
+                                    tu.Show();
+                                    this.Hide();
+                                    tu.GetButton.Text = "Great";
+                                    tu.GetComboBox.Text = "Customer Care Staff";
+                                    tu.GetTextBox.Text = "CCS16102000X";
+                                    tu.GetTextBox.Enabled = false;
+                                    tu.GetComboBox.Enabled = false;
+                                    break;
+                                case DialogResult.No:
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView2.Rows.Count > 0)
+            {
+                for (int i = 0; i < dataGridView2.Rows.Count; i++)
+                {
+                    if (dataGridView2.Rows[i].Selected == true)
+                    {
+                        DataGridViewRow row = this.dataGridView2.Rows[i];
+                        if (row.Cells["Emails"].Value.ToString() == null)
+                        {
+                            dynamic re = MessageBox.Show("This information of this staff not completely, Do you want to completely set up it?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                            switch (re)
+                            {
+                                case DialogResult.Yes:
+                                    DangKyTaiKhoan tu = new DangKyTaiKhoan();
+                                    tu.Show();
+                                    this.Hide();
+                                    tu.GetButton.Text = "Great";
+                                    tu.GetComboBox.Text = "Staff Accountant";
+                                    tu.GetTextBox.Text = "STC2812200319992000";
+                                    tu.GetTextBox.Enabled = false;
+                                    tu.GetComboBox.Enabled = false;
+                                    break;
+                                case DialogResult.No:
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void groupBox2_MouseHover(object sender, EventArgs e)
+        {
+            if( groupBox2.Enabled == false)
+            {
+                MessageBox.Show("This feature is not available in your department", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
-//325
+//391

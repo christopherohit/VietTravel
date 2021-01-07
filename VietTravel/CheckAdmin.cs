@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Threading;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace VietTravel
 {
@@ -30,13 +31,13 @@ namespace VietTravel
             {
                 Form chapnhan = new DangKyTaiKhoan();
                 chapnhan.Show();
-                this.Close();
+                this.Hide();
             }
             else if(passcheck.Text == adminsignup)
             {
                 Form dangkyadmi = new DangKyAdmin();
                 dangkyadmi.Show();
-                this.Close();
+                this.Hide();
             }
             else
             {
@@ -46,9 +47,9 @@ namespace VietTravel
 
         private void CheckAdmin_FormClosing(object sender, FormClosingEventArgs e)
         {
-            /*Form trolai = new Signin();
+            Form trolai = new Signin();
             trolai.Show();
-            this.Hide();*/
+            this.Hide();
             
         }
 

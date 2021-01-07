@@ -31,9 +31,9 @@ namespace VietTravel
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainHDV));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.AllTrip = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.Client = new System.Windows.Forms.Button();
             this.OnTrip = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -43,8 +43,8 @@ namespace VietTravel
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.picBox1 = new VietTravel.PicBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox1)).BeginInit();
@@ -52,7 +52,6 @@ namespace VietTravel
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.AllTrip);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button4);
@@ -63,20 +62,10 @@ namespace VietTravel
             this.groupBox1.Controls.Add(this.Edit);
             this.groupBox1.Location = new System.Drawing.Point(12, 62);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(441, 216);
+            this.groupBox1.Size = new System.Drawing.Size(378, 216);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Function Table";
-            // 
-            // button3
-            // 
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.Location = new System.Drawing.Point(257, 152);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(92, 35);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "Edit Client";
-            this.button3.UseVisualStyleBackColor = true;
             // 
             // AllTrip
             // 
@@ -98,6 +87,18 @@ namespace VietTravel
             this.button2.TabIndex = 0;
             this.button2.Text = "Create Trip";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button4
+            // 
+            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button4.Location = new System.Drawing.Point(257, 152);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(92, 35);
+            this.button4.TabIndex = 0;
+            this.button4.Text = "Revenue Extract";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Exact_Click);
             // 
             // Client
             // 
@@ -195,6 +196,16 @@ namespace VietTravel
             this.label3.TabIndex = 5;
             this.label3.Text = "...";
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(798, 287);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "Sign Out";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // picBox1
             // 
             this.picBox1.Location = new System.Drawing.Point(18, 13);
@@ -204,23 +215,14 @@ namespace VietTravel
             this.picBox1.TabIndex = 6;
             this.picBox1.TabStop = false;
             // 
-            // button4
-            // 
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.Location = new System.Drawing.Point(343, 88);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(92, 35);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "Revenue Extract";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.Client_Click);
-            // 
             // MainHDV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(885, 319);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.picBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -248,7 +250,6 @@ namespace VietTravel
         private System.Windows.Forms.Button SoldOut;
         private System.Windows.Forms.Button Edit;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
@@ -256,5 +257,6 @@ namespace VietTravel
         private System.Windows.Forms.Label label3;
         private PicBox picBox1;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
     }
 }

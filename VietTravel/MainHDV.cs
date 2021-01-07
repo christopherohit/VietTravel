@@ -17,13 +17,14 @@ namespace VietTravel
         string conStr = "Data Source=DESKTOP-7CBSM7T\\HENDRICHS;Initial Catalog=QuanLyDuLich;Integrated Security=True";
 
         public Label op { get { return this.label3; } }
+        public GroupBox lju { get { return this.groupBox1; } }
         bool IsDirty { get; set; }
         public PictureBox asd { get { return this.picBox1; } }
-        public MainHDV(DataTable ovn)
+        public MainHDV(DataTable data1)
         {
             SqlConnection con = new SqlConnection(conStr);
             InitializeComponent();
-            var data = (Byte[])(ovn.Rows[0].ItemArray[6]);
+            var data = (Byte[])(data1.Rows[0].ItemArray[6]);
             var stream = new MemoryStream(data);
             picBox1.Image = Image.FromStream(stream);
             IsDirty = true;
@@ -278,6 +279,30 @@ namespace VietTravel
                 tur.Show();
                 this.Hide();
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Signin tis = new Signin();
+            tis.TextBox.Text = string.Empty;
+            tis.Pass.Text = string.Empty;
+            tis.Show();
+            this.Hide();
+            tis.ciris.Text = "Login";
+        }
+
+        private void Exact_Click(object sender, EventArgs e)
+        {
+            Report it = new Report();
+            it.Show();
+            this.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            TRipAdmin hinj = new TRipAdmin();
+            hinj.Show();
+            this.Hide();
         }
     }
 }

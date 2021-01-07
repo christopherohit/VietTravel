@@ -132,6 +132,7 @@ namespace VietTravel
             System.Windows.Forms.Form Sam = System.Windows.Forms.Application.OpenForms["TrangChu"];
             System.Windows.Forms.Form wee = System.Windows.Forms.Application.OpenForms["ListStaff"];
             System.Windows.Forms.Form choi = System.Windows.Forms.Application.OpenForms["SignIn"];
+            System.Windows.Forms.Form Sam1 = System.Windows.Forms.Application.OpenForms["DangKyTaiKhoan"];
             SqlConnection con = new SqlConnection(cStr);
             con.Open();
             if (done_button.Text == "Done")
@@ -516,7 +517,193 @@ namespace VietTravel
                     }
                 }
             }
+            else if (done_button.Text == "Success")
+            {
+                if (PhongBan.Text == "Tourist Guide")
+                {
+                    if (NameFull.Text == "" || address.Text == "" || phonenumber.Text == "")
+                    {
+                        if (NameFull.Text == "")
+                        {
+                            MessageBox.Show("Fill in Blank Space", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else if (address.Text == "")
+                        {
+                            MessageBox.Show("Fill in Blank Space", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else if (phonenumber.Text == "")
+                        {
+                            MessageBox.Show("Fill in Blank Space", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        if (IsDirty == false)
+                        {
+                            string file = Global + privacy.Image.Tag.ToString();
+                            byte[] buffer = File.ReadAllBytes(file);
+                            string update = "update HuongDanVien set HuongDanVien =@ten , DiaChi = @dc , SoDienThoai = @sdt , Ngaysinh = @ngaysinh  , AnhHuongDan =@anh where Emails =@mails";
+                            SqlCommand command = new SqlCommand(update, con);
+                            command.Parameters.AddWithValue("@ten", NameFull.Text);
+                            command.Parameters.AddWithValue("@dc", address.Text);
+                            command.Parameters.AddWithValue("@sdt", phonenumber.Text);
+                            command.Parameters.AddWithValue("@ngaysinh", Convert.ToDateTime(dayofbirth.Value));
+                            var binary = command.Parameters.Add("@anh", SqlDbType.VarBinary, -1);
+                            binary.Value = buffer;
+                            command.Parameters.AddWithValue("@mails", ((DangKyTaiKhoan)Sam1).GetTxtBox.Text);
+                            SqlDataAdapter ae = new SqlDataAdapter(command);
+                            DataTable ie = new DataTable();
+                            ae.Fill(ie);
+                            MessageBox.Show("Successful employee information update");
+                            choi.Show();
+                            this.Hide();
 
+                        }
+                        else
+                        {
+                            string update = "update HuongDanVien set HuongDanVien =@ten , DiaChi = @dc , SoDienThoai = @sdt , Ngaysinh = @ngaysinh where Emails =@mails";
+                            SqlCommand command = new SqlCommand(update, con);
+                            command.Parameters.AddWithValue("@ten", NameFull.Text);
+                            command.Parameters.AddWithValue("@dc", address.Text);
+                            command.Parameters.AddWithValue("@sdt", phonenumber.Text);
+                            command.Parameters.AddWithValue("@ngaysinh", Convert.ToDateTime(dayofbirth.Value));
+                            command.Parameters.AddWithValue("@mails", ((TrangChu)Sam).mailspr.Text);
+                            SqlDataAdapter ae = new SqlDataAdapter(command);
+                            DataTable ie = new DataTable();
+                            ae.Fill(ie);
+                            MessageBox.Show("Successful employee information update");
+                            TrangChu asd = new TrangChu();
+                            asd.Show();
+                            this.Hide();
+
+                        }
+                    }
+                }
+                else if (PhongBan.Text == "Staff Accountant")
+                {
+                    if (NameFull.Text == "" || address.Text == "" || phonenumber.Text == "")
+                    {
+                        if (NameFull.Text == "")
+                        {
+                            MessageBox.Show("Fill in Blank Space", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else if (address.Text == "")
+                        {
+                            MessageBox.Show("Fill in Blank Space", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else if (phonenumber.Text == "")
+                        {
+                            MessageBox.Show("Fill in Blank Space", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        if (IsDirty == false)
+                        {
+                            string file = toanbo + privacy.Image.Tag.ToString();
+                            byte[] buffer = File.ReadAllBytes(file);
+                            string update = "update NhanVienKeToan set Hoten =@ten , AddressNV = @dc , phone = @sdt , DOB = @ngaysinh  , AnhCaNhan =@anh , ChucVu=@cv where Emails =@mails";
+                            SqlCommand command = new SqlCommand(update, con);
+                            command.Parameters.AddWithValue("@ten", NameFull.Text);
+                            command.Parameters.AddWithValue("@dc", address.Text);
+                            command.Parameters.AddWithValue("@sdt", phonenumber.Text);
+                            command.Parameters.AddWithValue("@ngaysinh", Convert.ToDateTime(dayofbirth.Value));
+                            command.Parameters.AddWithValue("@cv", Chucvu.Text);
+                            var binary = command.Parameters.Add("@anh", SqlDbType.VarBinary, -1);
+                            binary.Value = buffer;
+                            command.Parameters.AddWithValue("@mails", ((DangKyTaiKhoan)Sam1).GetTxtBox.Text);
+                            SqlDataAdapter ae = new SqlDataAdapter(command);
+                            DataTable ie = new DataTable();
+                            ae.Fill(ie);
+                            MessageBox.Show("Successful employee information update");
+                            choi.Show();
+                            this.Hide();
+
+                        }
+                        else
+                        {
+                            string update = "update NhanVienKeToan set Hoten =@ten , AddressNV = @dc , phone = @sdt , DOB = @ngaysinh  , ChucVu = @cv where Emails =@mails";
+                            SqlCommand command = new SqlCommand(update, con);
+                            command.Parameters.AddWithValue("@ten", NameFull.Text);
+                            command.Parameters.AddWithValue("@dc", address.Text);
+                            command.Parameters.AddWithValue("@sdt", phonenumber.Text);
+                            command.Parameters.AddWithValue("@ngaysinh", Convert.ToDateTime(dayofbirth.Value));
+                            command.Parameters.AddWithValue("@cv", Chucvu.Text);
+                            command.Parameters.AddWithValue("@mails", ((DangKyTaiKhoan)Sam1).GetTxtBox.Text);
+                            SqlDataAdapter ae = new SqlDataAdapter(command);
+                            DataTable ie = new DataTable();
+                            ae.Fill(ie);
+                            MessageBox.Show("Successful employee information update");
+                            choi.Show();
+                            this.Hide();
+
+                        }
+                    }
+                }
+                else if (PhongBan.Text == "Customer care staff")
+                {
+                    if (NameFull.Text == "" || address.Text == "" || phonenumber.Text == "")
+                    {
+                        if (NameFull.Text == "")
+                        {
+                            MessageBox.Show("Fill in Blank Space", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else if (address.Text == "")
+                        {
+                            MessageBox.Show("Fill in Blank Space", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else if (phonenumber.Text == "")
+                        {
+                            MessageBox.Show("Fill in Blank Space", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        if (IsDirty == false)
+                        {
+                            string file = toanphan + privacy.Image.Tag.ToString();
+                            byte[] buffer = File.ReadAllBytes(file);
+                            string update = "update CSKH set Hoten =@ten , AddressNV = @dc , phone = @sdt , DOB = @ngaysinh  , AnhCaNhan =@anh , ChucVu=@cv where Emails =@mails";
+                            SqlCommand command = new SqlCommand(update, con);
+                            command.Parameters.AddWithValue("@ten", NameFull.Text);
+                            command.Parameters.AddWithValue("@dc", address.Text);
+                            command.Parameters.AddWithValue("@sdt", phonenumber.Text);
+                            command.Parameters.AddWithValue("@ngaysinh", Convert.ToDateTime(dayofbirth.Value));
+                            command.Parameters.AddWithValue("@cv", Chucvu.Text);
+                            var binary = command.Parameters.Add("@anh", SqlDbType.VarBinary, -1);
+                            binary.Value = buffer;
+                            command.Parameters.AddWithValue("@mails", ((TrangChu)Sam).mailscs.Text);
+                            SqlDataAdapter ae = new SqlDataAdapter(command);
+                            DataTable ie = new DataTable();
+                            ae.Fill(ie);
+                            MessageBox.Show("Successful employee information update");
+                            TrangChu asd = new TrangChu();
+                            asd.Show();
+                            this.Hide();
+
+                        }
+                        else
+                        {
+                            string update = "update CSKH set Hoten =@ten , AddressNV = @dc , phone = @sdt , DOB = @ngaysinh  , ChucVu = @cv where Emails =@mails";
+                            SqlCommand command = new SqlCommand(update, con);
+                            command.Parameters.AddWithValue("@ten", NameFull.Text);
+                            command.Parameters.AddWithValue("@dc", address.Text);
+                            command.Parameters.AddWithValue("@sdt", phonenumber.Text);
+                            command.Parameters.AddWithValue("@ngaysinh", Convert.ToDateTime(dayofbirth.Value));
+                            command.Parameters.AddWithValue("@cv", Chucvu.Text);
+                            command.Parameters.AddWithValue("@mails", ((TrangChu)Sam).mailscs.Text);
+                            SqlDataAdapter ae = new SqlDataAdapter(command);
+                            DataTable ie = new DataTable();
+                            ae.Fill(ie);
+                            MessageBox.Show("Successful employee information update");
+                            TrangChu asd = new TrangChu();
+                            asd.Show();
+                            this.Hide();
+
+                        }
+                    }
+                }
+            }
 
         }
 
@@ -540,6 +727,12 @@ namespace VietTravel
             if (done_button.Text == "Finish" || done_button.Text == "Completely")
             {
                 lp.Show();
+                this.Hide();
+            }
+            else if (done_button.Text == "Success")
+            {
+                Signin yut = new Signin();
+                yut.Show();
                 this.Hide();
             }
             else

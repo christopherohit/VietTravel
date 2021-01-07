@@ -16,6 +16,7 @@ namespace VietTravel
         string cStr = "Data Source=DESKTOP-7CBSM7T\\HENDRICHS;Initial Catalog=QuanLyDuLich;Integrated Security=True";
 
         public Button io { get { return this.button1; } }
+        public PictureBox pro { get { return this.pictureBox1; } }
 
         public ThemKhachHang(DataGridViewRow row)
         {
@@ -232,13 +233,13 @@ namespace VietTravel
         {
             if (button1.Text == "Done")
             {
-                System.Windows.Forms.Form nim = System.Windows.Forms.Application.OpenForms["MainHDV"];
+                System.Windows.Forms.Form nim = System.Windows.Forms.Application.OpenForms["AllClient"];
                 nim.Show();
                 this.Hide();
             }
             else if (button1.Text == "Continue")
             {
-                System.Windows.Forms.Form nimbus = System.Windows.Forms.Application.OpenForms["MainHDV"];
+                System.Windows.Forms.Form nimbus = System.Windows.Forms.Application.OpenForms["AllClient"];
                 nimbus.Show();
                 this.Hide();
             }

@@ -46,6 +46,14 @@ namespace VietTravel
             ada.Fill(asdi);
             dataGridView1.DataSource = asdi;
             dataGridView1.ReadOnly = true;
+            dataGridView1.Columns["TenDaiLy"].HeaderText = "Agency Name";
+            dataGridView1.Columns["TenDiaDiem"].HeaderText = "Location Trip";
+            dataGridView1.Columns["SoLuong"].HeaderText = "Amount";
+            dataGridView1.Columns["TinhTrang"].HeaderText = "Status Quo";
+            dataGridView1.Columns["TenSoHuu"].HeaderText = "Accomodation";
+            dataGridView1.Columns["NgayKhoiHanh"].HeaderText = "Department Day";
+            dataGridView1.Columns["NgayKhoiHanh"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            dataGridView1.Columns["NgayKhoiHanh"].ValueType = typeof(DateTime);
         }
 
         private void button3_Click(object sender, EventArgs e)

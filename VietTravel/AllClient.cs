@@ -63,6 +63,7 @@ namespace VietTravel
             jio.Show();
             this.Hide();
             jio.io.Text = "Done";
+            jio.pro.Visible = false;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -77,6 +78,7 @@ namespace VietTravel
                         ThemKhachHang auri = new ThemKhachHang(row);
                         auri.Show();
                         this.Hide();
+                        auri.pro.Visible = false;
                     }
                 }
             }

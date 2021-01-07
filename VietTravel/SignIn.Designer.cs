@@ -54,7 +54,7 @@ namespace VietTravel
             this.UserBox.Name = "UserBox";
             this.UserBox.Size = new System.Drawing.Size(137, 20);
             this.UserBox.TabIndex = 1;
-            this.UserBox.Text = "muskbe@icloud.com";
+            this.UserBox.Text = "filwce@gmail.com";
             // 
             // label2
             // 
@@ -72,7 +72,8 @@ namespace VietTravel
             this.PassBox.PasswordChar = '*';
             this.PassBox.Size = new System.Drawing.Size(137, 20);
             this.PassBox.TabIndex = 1;
-            this.PassBox.Text = "Adminpassword";
+            this.PassBox.Text = "12345678900";
+            this.PassBox.TextChanged += new System.EventHandler(this.PassBox_TextChanged);
             // 
             // InBut
             // 

@@ -17,6 +17,7 @@ namespace VietTravel
 
         public Button done { get { return this.button1; } }
         public TextBox vohieuhoa { get { return this.InAgency; } }
+        public Button vhh { get { return this.create; } }
         public EditAgency(DataGridViewRow row)
         {
             InitializeComponent();
@@ -25,6 +26,7 @@ namespace VietTravel
             InAgency.Text = row.Cells["SoLuongChuyenDi"].Value.ToString();
             InAgency.Enabled = false;
             HienThi();
+            AgencyName.Enabled = false;
         }
 
         public EditAgency()
@@ -91,22 +93,16 @@ namespace VietTravel
                     }
                     else
                     {
-                        var res = MessageBox.Show("Changing the name of the dealer can pose a lot of risks\nDo you want to continue", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                        if (res == DialogResult.OK)
-                        {
-                            string upd = "update AgencyForAdmin set TenDaiLy = @ten , DiaDiem = @diadiem where TenDaiLy = @ten";
-                            SqlCommand sql = new SqlCommand(upd, con);
-                            sql.Parameters.AddWithValue("@ten", AgencyName.Text);
-                            sql.Parameters.AddWithValue("@diadiem", LocaTion.Text);
-                            SqlDataAdapter et = new SqlDataAdapter(sql);
-                            DataTable a = new DataTable();
-                            et.Fill(a);
-                            MessageBox.Show("Update Successfully");
-                        }
-                        else
-                        {
-
-                        }
+                        
+                        string upd = "update AgencyForAdmin set  DiaDiem = @diadiem where TenDaiLy = @ten";
+                        SqlCommand sql = new SqlCommand(upd, con);
+                        sql.Parameters.AddWithValue("ten", AgencyName.Text);
+                        sql.Parameters.AddWithValue("@diadiem", LocaTion.Text);
+                        SqlDataAdapter et = new SqlDataAdapter(sql);
+                        DataTable a = new DataTable();
+                        et.Fill(a);
+                        MessageBox.Show("Update Successfully");
+                        
                     }
                 }
             }
@@ -151,13 +147,62 @@ namespace VietTravel
                     }
                 } 
             }
+            else if (button1.Text == "Completely")
+            {
+                if (AgencyName.Text == "" || LocaTion.Text == "")
+                {
+                    if (AgencyName.Text == "")
+                    {
+                        MessageBox.Show("Please Fill in The Blank Space", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else if (LocaTion.Text == "")
+                    {
+                        MessageBox.Show("Please Fill in The Blank Space", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    string kie = "Select * from AgencyForAdmin where TenDaiLy = @tendl";
+                    SqlCommand ai = new SqlCommand(kie, con);
+                    ai.Parameters.AddWithValue("tendl", AgencyName.Text);
+                    SqlDataAdapter iu = new SqlDataAdapter(ai);
+                    DataTable data = new DataTable();
+                    iu.Fill(data);
+                    if (data.Rows.Count > 1)
+                    {
+                        MessageBox.Show("Some Agency was used to this name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        
+                        string upd = "update AGENCYFORAdmin set  DiaDiem = @diadiem where TenDaiLy = @ten";
+                        SqlCommand sql = new SqlCommand(upd, con);
+                        sql.Parameters.AddWithValue("tendl", AgencyName.Text);
+                        sql.Parameters.AddWithValue("@diadiem", LocaTion.Text);
+                        SqlDataAdapter et = new SqlDataAdapter(sql);
+                        DataTable a = new DataTable();
+                        et.Fill(a);
+                        MessageBox.Show("Update Successfully");
+                        
+                    }
+                }
+            }
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            TrangChu abxu = new TrangChu();
-            abxu.Show();
-            this.Hide();
+            System.Windows.Forms.Form loij = System.Windows.Forms.Application.OpenForms["TripAdmin"];
+            if (button1.Text == "Completely")
+            {
+                loij.Show();
+                this.Hide();
+            }
+            else
+            {
+                TrangChu abxu = new TrangChu();
+                abxu.Show();
+                this.Hide();
+            }
         }
 
         private void create_Click(object sender, EventArgs e)
@@ -200,17 +245,38 @@ namespace VietTravel
 
         private void edit_Click(object sender, EventArgs e)
         {
-            if (TripBelong.Rows.Count > 0)
+            if (button1.Text == "Completely")
             {
-                for (int i = 0; i < TripBelong.Rows.Count; i++)
+                if (TripBelong.Rows.Count > 0)
                 {
-                    if (TripBelong.Rows[i].Selected == true)
+                    for (int i = 0; i < TripBelong.Rows.Count; i++)
                     {
-                        DataGridViewRow rails = this.TripBelong.Rows[i];
-                        EditTrip rot = new EditTrip(rails);
-                        rot.Show();
-                        this.Hide();
-                        rot.button.Text = "Accept";
+                        if (TripBelong.Rows[i].Selected == true)
+                        {
+                            DataGridViewRow rails = this.TripBelong.Rows[i];
+                            EditTrip rot = new EditTrip(rails);
+                            rot.Show();
+                            this.Hide();
+                            rot.button.Text = "Success";
+                            rot.Box.Visible = false;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (TripBelong.Rows.Count > 0)
+                {
+                    for (int i = 0; i < TripBelong.Rows.Count; i++)
+                    {
+                        if (TripBelong.Rows[i].Selected == true)
+                        {
+                            DataGridViewRow rails = this.TripBelong.Rows[i];
+                            EditTrip rot = new EditTrip(rails);
+                            rot.Show();
+                            this.Hide();
+                            rot.button.Text = "Accept";
+                        }
                     }
                 }
             }
@@ -218,9 +284,18 @@ namespace VietTravel
 
         private void EditAgency_FormClosed(object sender, FormClosedEventArgs e)
         {
-            TrangChu ewn = new TrangChu();
-            ewn.Show();
-            this.Hide();
+            System.Windows.Forms.Form scl = System.Windows.Forms.Application.OpenForms["TripAdmin"];
+            if (button1.Text == "Completely")
+            {
+                scl.Show();
+                this.Hide();
+            }
+            else
+            {
+                TrangChu ewn = new TrangChu();
+                ewn.Show();
+                this.Hide();
+            }
         }
     }
 }

@@ -46,6 +46,8 @@ namespace VietTravel
             dataGridView1.Columns["TinhTrang"].HeaderText = "Status Quo";
             dataGridView1.Columns["TenSoHuu"].HeaderText = "Accomodation";
             dataGridView1.Columns["NgayKhoiHanh"].HeaderText = "Department Day";
+            dataGridView1.Columns["NgayKhoiHanh"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            dataGridView1.Columns["NgayKhoiHanh"].ValueType = typeof(DateTime);
             dataGridView1.ReadOnly = true;
 
         }

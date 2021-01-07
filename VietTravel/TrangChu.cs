@@ -440,19 +440,12 @@ namespace VietTravel
                         switch (res)
                         {
                             case DialogResult.Yes:
-                                MessageBox.Show(row.Cells["MaHDV"].Value.ToString());
-                                string xoahuongdanvien = "Delete From HuongDanVien where Emails = @emails";
-                                string xoachuyendi = "delete From ChuyenDi where MaHDV = @mahdv";
-                                SqlCommand sqlCommand = new SqlCommand(xoahuongdanvien, con);
-                                SqlCommand sql = new SqlCommand(xoachuyendi, con);
-                                sql.Parameters.AddWithValue("@mahdv", row.Cells["MaHDV"].Value.ToString());
-                                sqlCommand.Parameters.AddWithValue("@emails", row.Cells["Emails"].Value.ToString());
-                                DataTable dataTable = new DataTable();
+                                string tiu = "exec XoaNhanVien @ma";
+                                SqlCommand coman = new SqlCommand(tiu, con);
+                                coman.Parameters.AddWithValue("@ma", row.Cells["MaHDV"].Value.ToString());
+                                SqlDataAdapter b = new SqlDataAdapter(coman);
                                 DataTable data = new DataTable();
-                                SqlDataAdapter y = new SqlDataAdapter(sql);
-                                SqlDataAdapter c = new SqlDataAdapter(sqlCommand);
-                                y.Fill(data);
-                                c.Fill(dataTable);
+                                b.Fill(data);
                                 Form form = new TrangChu();
                                 form.Show();
                                 this.Hide();
@@ -986,7 +979,7 @@ namespace VietTravel
                 }
             }
         }
-
+        
         private void EditAgency_Click(object sender, EventArgs e)
         {
             if (AgencyGribView.Rows.Count > 0)
@@ -1091,4 +1084,5 @@ namespace VietTravel
         }
     }
 }
+//1087
 //5600

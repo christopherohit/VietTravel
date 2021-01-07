@@ -36,6 +36,14 @@ namespace VietTravel
             dataGridView1.Columns["GiaIen"].Visible = false;
             dataGridView1.Columns["LuoTThich"].Visible = false;
             dataGridView1.ReadOnly = true;
+            dataGridView1.Columns["TenDaiLy"].HeaderText = "Agency Name";
+            dataGridView1.Columns["TenDiaDiem"].HeaderText = "Location Trip";
+            dataGridView1.Columns["SoLuong"].HeaderText = "Amount";
+            dataGridView1.Columns["TinhTrang"].HeaderText = "Status Quo";
+            dataGridView1.Columns["TenSoHuu"].HeaderText = "Accomodation";
+            dataGridView1.Columns["NgayKhoiHanh"].HeaderText = "Department Day";
+            dataGridView1.Columns["NgayKhoiHanh"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            dataGridView1.Columns["NgayKhoiHanh"].ValueType = typeof(DateTime);
         }
 
         private void OldTrip_FormClosed(object sender, FormClosedEventArgs e)

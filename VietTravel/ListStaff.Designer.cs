@@ -106,7 +106,7 @@ namespace VietTravel
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tabControl1.Cursor = System.Windows.Forms.Cursors.Default;
             this.tabControl1.Location = new System.Drawing.Point(12, 172);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -200,12 +200,14 @@ namespace VietTravel
             this.groupBox2.Controls.Add(this.eded);
             this.groupBox2.Controls.Add(this.deled);
             this.groupBox2.Controls.Add(this.aded);
+            this.groupBox2.Cursor = System.Windows.Forms.Cursors.Default;
             this.groupBox2.Location = new System.Drawing.Point(611, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(249, 217);
             this.groupBox2.TabIndex = 43;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Manipulation";
+            this.groupBox2.MouseHover += new System.EventHandler(this.groupBox2_MouseHover);
             // 
             // eded
             // 
@@ -250,6 +252,7 @@ namespace VietTravel
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(594, 213);
             this.dataGridView2.TabIndex = 0;
+            this.dataGridView2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             // 
             // tabPage3
             // 
@@ -318,6 +321,7 @@ namespace VietTravel
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView3.Size = new System.Drawing.Size(593, 209);
             this.dataGridView3.TabIndex = 0;
+            this.dataGridView3.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellClick);
             // 
             // textBox1
             // 

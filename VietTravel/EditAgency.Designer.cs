@@ -52,6 +52,7 @@ namespace VietTravel
             // 
             // TripBelong
             // 
+            this.TripBelong.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.TripBelong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TripBelong.Location = new System.Drawing.Point(12, 127);
             this.TripBelong.Name = "TripBelong";
