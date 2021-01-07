@@ -676,6 +676,92 @@ namespace VietTravel
                     }
                 }
             }
+            else if (button1.Text == "Great")
+            {
+                if (MC.Text == "" || soluong.Text == "" || TongTien.Text == "")
+                {
+                    if (MC.Text == "")
+                    {
+                        MessageBox.Show("Please fill in blank space");
+                    }
+                    else if (soluong.Text == "")
+                    {
+                        MessageBox.Show("Please fill in blank space");
+                    }
+                    else if (TongTien.Text == "")
+                    {
+                        MessageBox.Show("Please fill in blank space");
+                    }
+                }
+                else
+                {
+                    string luachona = "Select * from ChuyenDi where MaChuyen = @ma";
+                    SqlCommand command3 = new SqlCommand(luachona, con);
+                    command3.Parameters.AddWithValue("@ma", MC.Text);
+                    SqlDataAdapter sql1 = new SqlDataAdapter(command3);
+                    DataTable data1 = new DataTable();
+                    sql1.Fill(data1);
+                    if (data1.Rows.Count > 0)
+                    {
+                        MessageBox.Show("Trip Code is belong another trip please recheck", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        string kiemtranv = "Select * from ChuyenDi tr , HuongDanVien TG where tr.MaHDV = TG.MaHDV And HuongDanVien = @nv And TinhTrang = 'On Sale' And TinhTrang = 'Hot Sale'";
+                        SqlCommand ki = new SqlCommand(kiemtranv, con);
+                        ki.Parameters.AddWithValue("@nv", HuongDanVien.Text);
+                        SqlDataAdapter adapter = new SqlDataAdapter(ki);
+                        DataTable ads = new DataTable();
+                        adapter.Fill(ads);
+                        if (ads.Rows.Count > 0)
+                        {
+                            MessageBox.Show("This Employ belong another trip ,Please choose another staff", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            if (IsDirty == true)
+                            {
+                                MessageBox.Show("You have not yet selected a photo for the trip location", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            else
+                            {
+                                string luu = toannang + AnhChuyen.Image.Tag.ToString();
+                                Byte[] buffer = File.ReadAllBytes(luu);
+                                string suaanh = "select cd.TenDiaDiem from ChuyenDi cd , TRIPAVAILABLE tp where cd.TenDiaDiem = tp.TenDiaDiem and tp.PhongCanh = @anh";
+                                SqlCommand Samira = new SqlCommand(suaanh, con);
+                                var binary = Samira.Parameters.Add("@anh", SqlDbType.VarBinary, -1);
+                                binary.Value = buffer;
+                                SqlDataAdapter anivi = new SqlDataAdapter(Samira);
+                                DataTable via = new DataTable();
+                                anivi.Fill(via);
+                                string cap = "insert into ChuyenDi (MaChuyen,TenDiaDiem , SoLuong , TinhTrang , DichVuFree , TenSoHuu , Giaien , MgayKhoiHanh , LuotThich,MaHDV ) values (@ma , @tendiadiem , @soluong , @tinhtrang , @dichvu , @tensohuu , @gia , @ngaydi , @yeucau , @matg)";
+                                string list = "select tr.MaHDV from ChuyenDi tr , HuongDanVien hdv where tr.MaHDV = hdv.MaHDV and hdv.HuongDanVien = @ten";
+                                SqlCommand sql = new SqlCommand(list, con);
+                                sql.Parameters.AddWithValue("@ten", HuongDanVien.Text);
+                                SqlDataAdapter a = new SqlDataAdapter(sql);
+                                DataTable o = new DataTable();
+                                a.Fill(o);
+                                MessageBox.Show(o.Rows[0].ItemArray[0].ToString());
+                                SqlCommand Yoo = new SqlCommand(cap, con);
+                                Yoo.Parameters.AddWithValue("@ma", MC.Text);
+                                Yoo.Parameters.AddWithValue("@tendiadiem", Convert.ToString(via.Rows[0].ItemArray[0].ToString()));
+                                Yoo.Parameters.AddWithValue("@soluong", soluong.Text);
+                                Yoo.Parameters.AddWithValue("@tinhtrang", TinhTrang.Text);
+                                Yoo.Parameters.AddWithValue("@dichvu", DichVu.Text);
+                                Yoo.Parameters.AddWithValue("@tensohuu", ChoO.Text);
+                                Yoo.Parameters.AddWithValue("@gia", TongTien.Text);
+                                Yoo.Parameters.AddWithValue("@ngay", Convert.ToDateTime(NgayXuatPhat.Value.ToString()));
+                                Yoo.Parameters.AddWithValue("@yeucau", textBox1.Text);
+                                Yoo.Parameters.AddWithValue("@matg", Convert.ToInt32(o.Rows[0].ItemArray[0].ToString()));
+                                SqlDataAdapter ori = new SqlDataAdapter(Yoo);
+                                DataTable azir = new DataTable();
+                                ori.Fill(azir);
+                                MessageBox.Show("Added Trip Success");
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void EditTrip_FormClosed(object sender, FormClosedEventArgs e)
@@ -690,6 +776,12 @@ namespace VietTravel
             {
                 System.Windows.Forms.Form olks = System.Windows.Forms.Application.OpenForms["MainHDV"];
                 olks.Show();
+                this.Hide();
+            }
+            else if (button1.Text == "Great")
+            {
+                System.Windows.Forms.Form jik = System.Windows.Forms.Application.OpenForms["TripAdmin"];
+                jik.Show();
                 this.Hide();
             }
             else if (button1.Text == "Success")

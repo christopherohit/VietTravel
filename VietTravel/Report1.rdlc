@@ -6,7 +6,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.39496in</Width>
+              <Width>1.83246in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.39496in</Width>
@@ -484,7 +484,7 @@
         <DataSetName>BaoCaoDoanhSoChuyenDi</DataSetName>
         <Top>0.06944in</Top>
         <Height>0.625in</Height>
-        <Width>9.40625in</Width>
+        <Width>9.84374in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -615,7 +615,7 @@
     <Height>2in</Height>
     <Style />
   </Body>
-  <Width>9.46181in</Width>
+  <Width>9.84374in</Width>
   <Page>
     <PageHeader>
       <Height>1.28125in</Height>

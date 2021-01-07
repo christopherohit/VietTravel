@@ -71,5 +71,28 @@ namespace VietTravel
                 }
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(conStr);
+            System.Windows.Forms.Form opas = System.Windows.Forms.Application.OpenForms["SignIn"];
+            
+                if (dataGridView1.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                    {
+                        if (dataGridView1.Rows[i].Selected == true)
+                        {
+                            DataGridViewRow row = this.dataGridView1.Rows[i];
+                            EditTrip edit = new EditTrip(row);
+                            edit.Show();
+                            this.Hide();
+                            edit.Box.Visible = false;
+                            edit.button.Text = "Great";
+                        }
+                    }
+                }
+            
+        }
     }
 }

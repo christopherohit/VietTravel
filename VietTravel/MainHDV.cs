@@ -66,7 +66,45 @@ namespace VietTravel
 
         private void MainHDV_Load(object sender, EventArgs e)
         {
-
+            System.Windows.Forms.Form loi = System.Windows.Forms.Application.OpenForms["SignIn"];
+            SqlConnection con = new SqlConnection(conStr);
+            string kiemtra = "select * From HuongDanVien where Emails = @mails";
+            string kiemtra2 = "select * from CSKH where Emails = @mails";
+            string kiemtra3 = "select * from NhanVienKeToan where Emails = @mails";
+            SqlCommand i1 = new SqlCommand(kiemtra, con);
+            i1.Parameters.AddWithValue("@mails", ((Signin)loi).TextBox.Text);
+            SqlDataAdapter ocv = new SqlDataAdapter(i1);
+            DataTable mm = new DataTable();
+            ocv.Fill(mm);
+            SqlCommand i2 = new SqlCommand(kiemtra2, con);
+            i2.Parameters.AddWithValue("@mails", ((Signin)loi).TextBox.Text);
+            SqlDataAdapter sqlData = new SqlDataAdapter(i2);
+            DataTable vc = new DataTable();
+            sqlData.Fill(vc);
+            SqlCommand i3 = new SqlCommand(kiemtra3, con);
+            i3.Parameters.AddWithValue("@mails", ((Signin)loi).TextBox.Text);
+            SqlDataAdapter opasr = new SqlDataAdapter(i3);
+            DataTable ikmc = new DataTable();
+            opasr.Fill(ikmc);
+            if (mm.Rows.Count > 0)
+            {
+                button1.Enabled = false;
+                button2.Enabled = false;
+                button4.Enabled = false;
+                Client.Enabled = false;
+            }
+            else if (vc.Rows.Count > 0)
+            {
+                OnTrip.Enabled = false;
+                SoldOut.Enabled = false;
+                button4.Enabled = false;
+                button2.Enabled = false;
+            }
+            else if (ikmc.Rows.Count > 0)
+            {
+                OnTrip.Enabled = false;
+                SoldOut.Enabled = false;
+            }
         }
 
         private void OnTrip_Click(object sender, EventArgs e)
@@ -293,9 +331,41 @@ namespace VietTravel
 
         private void Exact_Click(object sender, EventArgs e)
         {
-            Report it = new Report();
-            it.Show();
-            this.Hide();
+            System.Windows.Forms.Form vnc = System.Windows.Forms.Application.OpenForms["SignIn"];
+            SqlConnection con = new SqlConnection(conStr);
+            string kiemtra = "select * From HuongDanVien where Emails = @mails";
+            string kiemtra2 = "select * from CSKH where Emails = @mails";
+            string kiemtra3 = "select * from NhanVienKeToan where Emails = @mails";
+            SqlCommand i1 = new SqlCommand(kiemtra, con);
+            i1.Parameters.AddWithValue("@mails", ((Signin)vnc).TextBox.Text);
+            SqlDataAdapter ocv = new SqlDataAdapter(i1);
+            DataTable mm = new DataTable();
+            ocv.Fill(mm);
+            SqlCommand i2 = new SqlCommand(kiemtra2, con);
+            i2.Parameters.AddWithValue("@mails", ((Signin)vnc).TextBox.Text);
+            SqlDataAdapter sqlData = new SqlDataAdapter(i2);
+            DataTable vc = new DataTable();
+            sqlData.Fill(vc);
+            SqlCommand i3 = new SqlCommand(kiemtra3, con);
+            i3.Parameters.AddWithValue("@mails", ((Signin)vnc).TextBox.Text);
+            SqlDataAdapter opasr = new SqlDataAdapter(i3);
+            DataTable ikmc = new DataTable();
+            opasr.Fill(ikmc);
+            if (mm.Rows.Count > 0)
+            {
+                MessageBox.Show("This feature is not available in your department", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (vc.Rows.Count > 0)
+            {
+                MessageBox.Show("This feature is not available in your department", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (ikmc.Rows.Count > 0)
+            {
+                Report it = new Report();
+                it.Show();
+                this.Hide();
+            }
+            
         }
 
         private void button2_Click(object sender, EventArgs e)

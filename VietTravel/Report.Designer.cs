@@ -30,37 +30,39 @@ namespace VietTravel
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Report));
-            this.QuanLyDuLichDataSet5 = new VietTravel.QuanLyDuLichDataSet5();
             this.ChuyenDiBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.QuanLyDuLichDataSet5 = new VietTravel.QuanLyDuLichDataSet5();
             this.ChuyenDiTableAdapter = new VietTravel.QuanLyDuLichDataSet5TableAdapters.ChuyenDiTableAdapter();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.aGENCYFORAdminBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.quanLyDuLichDataSet6 = new VietTravel.QuanLyDuLichDataSet6();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.quanLyDuLichDataSet6 = new VietTravel.QuanLyDuLichDataSet6();
-            this.aGENCYFORAdminBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.aGENCYFORAdminTableAdapter = new VietTravel.QuanLyDuLichDataSet6TableAdapters.AGENCYFORAdminTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.QuanLyDuLichDataSet5)).BeginInit();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.ChuyenDiBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.QuanLyDuLichDataSet5)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.quanLyDuLichDataSet6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aGENCYFORAdminBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quanLyDuLichDataSet6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
-            // 
-            // QuanLyDuLichDataSet5
-            // 
-            this.QuanLyDuLichDataSet5.DataSetName = "QuanLyDuLichDataSet5";
-            this.QuanLyDuLichDataSet5.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // ChuyenDiBindingSource
             // 
             this.ChuyenDiBindingSource.DataMember = "ChuyenDi";
             this.ChuyenDiBindingSource.DataSource = this.QuanLyDuLichDataSet5;
+            // 
+            // QuanLyDuLichDataSet5
+            // 
+            this.QuanLyDuLichDataSet5.DataSetName = "QuanLyDuLichDataSet5";
+            this.QuanLyDuLichDataSet5.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // ChuyenDiTableAdapter
             // 
@@ -78,15 +80,17 @@ namespace VietTravel
             // 
             // reportViewer1
             // 
-            reportDataSource1.Name = "BaoCaoDoanhSoChuyenDi";
-            reportDataSource1.Value = this.ChuyenDiBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.Location = new System.Drawing.Point(-10, 19);
+            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            reportDataSource2.Name = "BaoCaoDoanhSoChuyenDi";
+            reportDataSource2.Value = this.ChuyenDiBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "VietTravel.Report1.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(3, 16);
             this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.ProcessingMode = Microsoft.Reporting.WinForms.ProcessingMode.Remote;
             this.reportViewer1.ServerReport.BearerToken = null;
+            this.reportViewer1.ServerReport.ReportPath = "Report1.rdlc";
             this.reportViewer1.ServerReport.ReportServerUrl = new System.Uri("", System.UriKind.Relative);
-            this.reportViewer1.Size = new System.Drawing.Size(978, 288);
+            this.reportViewer1.Size = new System.Drawing.Size(984, 294);
             this.reportViewer1.TabIndex = 1;
             // 
             // label1
@@ -110,14 +114,43 @@ namespace VietTravel
             // 
             // comboBox1
             // 
-            this.comboBox1.DataSource = this.aGENCYFORAdminBindingSource;
-            this.comboBox1.DisplayMember = "TenDaiLy";
             this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Amazing",
+            "Arizo",
+            "Raizent",
+            "Xizonion",
+            "LinQ",
+            "Peninsula",
+            "Georgia",
+            "Florida",
+            "Virginia",
+            "Pennsylvania",
+            "Alaska",
+            "Nevada",
+            "New Jersey",
+            "Delaware",
+            "Minnesota",
+            "Wisconsin",
+            "Missouri",
+            "Vermont",
+            "Suncheon",
+            "Gwacheon",
+            "Michigan"});
             this.comboBox1.Location = new System.Drawing.Point(104, 53);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(169, 21);
             this.comboBox1.TabIndex = 3;
-            this.comboBox1.ValueMember = "TenDaiLy";
+            // 
+            // aGENCYFORAdminBindingSource
+            // 
+            this.aGENCYFORAdminBindingSource.DataMember = "AGENCYFORAdmin";
+            this.aGENCYFORAdminBindingSource.DataSource = this.quanLyDuLichDataSet6;
+            // 
+            // quanLyDuLichDataSet6
+            // 
+            this.quanLyDuLichDataSet6.DataSetName = "QuanLyDuLichDataSet6";
+            this.quanLyDuLichDataSet6.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // button1
             // 
@@ -137,26 +170,31 @@ namespace VietTravel
             this.button2.TabIndex = 4;
             this.button2.Text = "Print All";
             this.button2.UseVisualStyleBackColor = true;
-            // 
-            // quanLyDuLichDataSet6
-            // 
-            this.quanLyDuLichDataSet6.DataSetName = "QuanLyDuLichDataSet6";
-            this.quanLyDuLichDataSet6.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // aGENCYFORAdminBindingSource
-            // 
-            this.aGENCYFORAdminBindingSource.DataMember = "AGENCYFORAdmin";
-            this.aGENCYFORAdminBindingSource.DataSource = this.quanLyDuLichDataSet6;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // aGENCYFORAdminTableAdapter
             // 
             this.aGENCYFORAdminTableAdapter.ClearBeforeFill = true;
             // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(12, 9);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 34;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            // 
             // Report
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1015, 426);
+            this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox1);
@@ -166,12 +204,14 @@ namespace VietTravel
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Report";
             this.Text = "Report";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Report_FormClosed);
             this.Load += new System.EventHandler(this.Report_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.QuanLyDuLichDataSet5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChuyenDiBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.QuanLyDuLichDataSet5)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.quanLyDuLichDataSet6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aGENCYFORAdminBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quanLyDuLichDataSet6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,5 +231,6 @@ namespace VietTravel
         private QuanLyDuLichDataSet6 quanLyDuLichDataSet6;
         private System.Windows.Forms.BindingSource aGENCYFORAdminBindingSource;
         private QuanLyDuLichDataSet6TableAdapters.AGENCYFORAdminTableAdapter aGENCYFORAdminTableAdapter;
+        private System.Windows.Forms.PictureBox pictureBox4;
     }
 }

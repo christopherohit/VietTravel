@@ -222,6 +222,7 @@ namespace VietTravel
                         else
                         {
                             Is.Show();
+                            this.Hide();
                         }
                     }
                 }

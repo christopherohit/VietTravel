@@ -46,8 +46,47 @@ namespace VietTravel
             if (vn.Tables[0].Rows.Count > 0)
             {
                 ReportDataSource rds = new ReportDataSource();
-                rds.Name = "Bao Cao Doanh Thu";
+                rds.Name = "BaoCaoDoanhSoChuyenDi";
                 rds.Value = vn.Tables[0];
+                reportViewer1.LocalReport.DataSources.Clear();
+                reportViewer1.LocalReport.DataSources.Add(rds);
+                reportViewer1.RefreshReport();
+            }
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Form nv = System.Windows.Forms.Application.OpenForms["MainHDV"];
+            nv.Show();
+            this.Hide();
+        }
+
+        private void Report_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            System.Windows.Forms.Form nv = System.Windows.Forms.Application.OpenForms["MainHDV"];
+            nv.Show();
+            this.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(cStr);
+            string query = "Select * from AgencyForAdmin";
+            SqlCommand il = new SqlCommand(query, con);
+            SqlDataAdapter ios = new SqlDataAdapter(il);
+            DataSet vn = new DataSet();
+            ios.Fill(vn);
+
+            reportViewer1.ProcessingMode = Microsoft.Reporting.WinForms.ProcessingMode.Local;
+            reportViewer1.LocalReport.ReportPath = "Report1.rdlc";
+            if (vn.Tables[0].Rows.Count > 0)
+            {
+                ReportDataSource rds = new ReportDataSource();
+                rds.Name = "BaoCaoDoanhSoChuyenDi";
+                rds.Value = vn.Tables[0];
+                reportViewer1.LocalReport.DataSources.Clear();
+                reportViewer1.LocalReport.DataSources.Add(rds);
+                reportViewer1.RefreshReport();
             }
         }
     }
